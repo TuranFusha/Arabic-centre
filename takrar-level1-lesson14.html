@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="light only">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التكرار — الدرس 14</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light only;--bg:#f2f2f7;--bg2:#fff;--text:#000;--text2:#3c3c43;--text3:#8e8e93;--accent:#007aff;--acc-bg:#e5f0ff;--green:#34c759;--grn-bg:#edfaf1;--red:#ff3b30;--red-bg:#fff0ef;--gold:#b8860b;--border:rgba(60,60,67,0.18);--r:12px;--r-sm:10px;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans',-apple-system,sans-serif;font-size:15px;line-height:1.5;}
+@media(prefers-color-scheme:dark){html,body{background:#f2f2f7!important;color:#000!important;}*{color-scheme:light!important;}}
+.nav{position:sticky;top:0;z-index:100;background:rgba(242,242,247,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-in{max-width:720px;margin:0 auto;height:52px;display:flex;align-items:center;padding:0 20px;}
+.logo{font-family:'Amiri',serif;font-size:18px;color:var(--text);direction:rtl;}
+.hero{padding:44px 20px 36px;text-align:center;border-bottom:1px solid var(--border);}
+.hero-eye{font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px;}
+.hero-ar{font-family:'Amiri',serif;font-size:30px;color:var(--text);direction:rtl;margin-bottom:4px;}
+.hero-ru{font-size:24px;font-weight:700;color:var(--text);}
+.prog{border-bottom:1px solid var(--border);padding:10px 20px;}
+.prog-in{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:12px;}
+.prog-lbl{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;}
+.prog-track{flex:1;height:4px;background:#e5e5ea;border-radius:2px;overflow:hidden;}
+.prog-fill{height:100%;background:var(--accent);border-radius:2px;}
+.prog-links{display:flex;gap:12px;margin-left:auto;}
+.prog-a{font-size:12px;color:var(--accent);text-decoration:none;font-weight:500;}
+.tabs-bar{border-bottom:1px solid var(--border);overflow-x:auto;}
+.tabs-bar::-webkit-scrollbar{display:none;}
+.tabs-in{max-width:720px;margin:0 auto;display:flex;padding:0 20px;}
+.tab{padding:13px 16px;border:none;background:transparent;color:var(--text3);font-size:13px;font-weight:500;border-bottom:2px solid transparent;cursor:pointer;font-family:inherit;transition:all .15s;white-space:nowrap;}
+.tab.on{color:var(--accent);border-bottom-color:var(--accent);font-weight:600;}
+.main{max-width:720px;margin:0 auto;padding:28px 20px 80px;}
+.section{display:none;}.section.on{display:block;}
+.sh{margin-bottom:16px;}
+.sh-ar{font-family:'Scheherazade New',serif;font-size:20px;color:var(--text);direction:rtl;display:block;margin-bottom:2px;}
+.sh-ru{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;font-weight:600;}
+.tbl{width:100%;border-collapse:collapse;}
+.tbl th{padding:9px 12px;font-size:11px;font-weight:600;color:var(--text3);text-align:center;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);}
+.tbl td{padding:11px 12px;text-align:center;border-bottom:1px solid var(--border);font-size:13px;color:var(--text2);}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:hover td{background:var(--bg);}
+.ar-c{font-family:'Scheherazade New',serif;font-size:20px;color:var(--gold);direction:rtl;}
+.it-c{font-style:italic;color:var(--text3);}
+.dr{display:flex;gap:10px;margin-bottom:14px;align-items:flex-start;}
+.dr.r{flex-direction:row-reverse;}
+.av{width:32px;height:32px;border-radius:50%;background:#e5e5ea;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--text2);flex-shrink:0;}
+.bub{max-width:72%;flex:1;}
+.dn{font-size:11px;color:var(--text3);margin-bottom:3px;font-weight:500;}
+.dr.r .dn{text-align:right;}
+.db{padding:11px 13px;border-radius:var(--r-sm);border:1px solid var(--border);background:var(--bg2);}
+.db-r{background:var(--acc-bg);border-color:rgba(0,122,255,.15);}
+.d-ar{font-family:'Scheherazade New',serif;font-size:18px;direction:rtl;text-align:right;line-height:1.8;color:var(--text);margin-bottom:3px;}
+.d-tr{font-size:11px;color:var(--text3);font-style:italic;margin-bottom:2px;}
+.d-ru{font-size:12px;color:var(--text2);font-weight:500;}
+.d-play{width:34px;height:34px;border-radius:50%;background:var(--accent);color:white;font-size:13px;flex-shrink:0;cursor:pointer;border:none;transition:all .15s;margin-top:2px;display:flex;align-items:center;justify-content:center;}
+.d-play:hover{opacity:.85;transform:scale(1.08);}
+.d-play.playing{background:var(--green);}
+.gb{background:var(--bg2);border-radius:var(--r);padding:16px;margin-bottom:10px;border:1px solid var(--border);}
+.gl{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.g-ar{font-family:'Scheherazade New',serif;font-size:20px;direction:rtl;text-align:right;line-height:1.9;color:var(--text);margin-bottom:6px;}
+.g-ru{font-size:13px;color:var(--text2);line-height:1.6;}
+.note{background:var(--acc-bg);border-radius:var(--r-sm);padding:12px 14px;font-size:13px;color:var(--accent);margin-top:10px;border:1px solid rgba(0,122,255,.15);}
+.ei{border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:10px;background:var(--bg2);}
+.ei:hover{border-color:var(--accent);}
+.en{font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.eq{font-size:13px;color:var(--text);margin-bottom:10px;font-weight:500;}
+.cbtn{padding:6px 16px;border:1px solid var(--accent);border-radius:20px;background:transparent;color:var(--accent);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;}
+.cbtn:hover{background:var(--accent);color:white;}
+.ab{display:none;margin-top:10px;padding:12px;background:var(--grn-bg);border-radius:var(--r-sm);}
+.ab.on{display:block;}
+.a-ar{font-family:'Scheherazade New',serif;font-size:18px;color:var(--text);direction:rtl;text-align:right;margin-bottom:3px;}
+.a-ru{font-size:12px;color:var(--green);font-weight:600;}
+.audio-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:22px;}
+.play-row{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.play-btn{width:40px;height:40px;border-radius:50%;background:var(--gold);border:none;color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pi{font-size:12px;color:var(--text3);}
+.pi strong{display:block;color:var(--text);font-size:13px;margin-bottom:1px;}
+.aud-ar{font-family:'Scheherazade New',serif;font-size:20px;direction:rtl;text-align:right;line-height:2;color:var(--text);margin-bottom:8px;}
+.aud-tr{font-size:11px;color:var(--text3);font-style:italic;margin-bottom:4px;}
+.aud-ru{font-size:13px;color:var(--text2);margin-bottom:16px;}
+.aud-qs{border-top:1px solid var(--border);padding-top:14px;}
+.aud-ql{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.aud-q{font-size:13px;color:var(--text2);margin-bottom:5px;display:flex;gap:8px;}
+.aud-qn{color:var(--accent);font-weight:700;flex-shrink:0;}
+.gsec{margin-bottom:28px;}
+.gt{font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px;}
+.gs{font-size:12px;color:var(--text3);margin-bottom:14px;}
+.fc-wrap{perspective:1000px;max-width:320px;margin:0 auto 14px;}
+.fc{width:100%;height:150px;cursor:pointer;position:relative;transform-style:preserve-3d;transition:transform .4s;}
+.fc.flp{transform:rotateY(180deg);}
+.fc-f,.fc-b{position:absolute;inset:0;border-radius:var(--r);display:flex;flex-direction:column;align-items:center;justify-content:center;backface-visibility:hidden;padding:18px;border:1px solid var(--border);}
+.fc-f{background:var(--bg2);}
+.fc-b{background:var(--grn-bg);border-color:rgba(52,199,89,.2);transform:rotateY(180deg);}
+.fc-ar{font-family:'Scheherazade New',serif;font-size:30px;color:var(--text);direction:rtl;margin-bottom:6px;}
+.fc-hint,.fc-tag{font-size:11px;color:var(--text3);}
+.fc-ru{font-size:20px;font-weight:600;color:var(--green);margin-bottom:3px;}
+.fc-nav{display:flex;align-items:center;justify-content:center;gap:12px;}
+.fc-btn{padding:7px 18px;border:1px solid var(--border);border-radius:20px;background:var(--bg2);color:var(--text2);font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;}
+.fc-btn:hover{border-color:var(--accent);color:var(--accent);}
+.fc-cnt{font-size:12px;color:var(--text3);}
+.mw{font-family:'Scheherazade New',serif;font-size:36px;color:var(--text);direction:rtl;text-align:center;margin-bottom:4px;}
+.mh{font-size:12px;color:var(--text3);text-align:center;margin-bottom:16px;}
+.m-opts,.f-opts,.q-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.m-opt,.f-opt,.q-opt{padding:13px;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--bg2);cursor:pointer;font-size:13px;font-weight:500;font-family:inherit;color:var(--text);transition:all .15s;text-align:center;}
+.m-opt:hover:not(.dis),.f-opt:hover:not(.dis),.q-opt:hover:not(.dis){border-color:var(--accent);color:var(--accent);background:var(--acc-bg);}
+.m-opt.ok,.f-opt.ok,.q-opt.ok{border-color:var(--green);background:var(--grn-bg);color:#1a7a3a;font-weight:600;}
+.m-opt.no,.f-opt.no,.q-opt.no{border-color:var(--red);background:var(--red-bg);color:#c00;}
+.m-opt.sh,.f-opt.sh,.q-opt.sh{border-color:var(--green);background:var(--grn-bg);color:#1a7a3a;}
+.m-opt.dis,.f-opt.dis,.q-opt.dis{pointer-events:none;}
+.m-score{font-size:12px;color:var(--text3);text-align:right;}
+.fw{text-align:center;}
+.f-timer{font-size:48px;font-weight:700;color:var(--accent);letter-spacing:-2px;line-height:1;}
+.f-timer.low{color:var(--red);}
+.f-tsub{font-size:11px;color:var(--text3);margin-bottom:18px;}
+.f-word{font-family:'Scheherazade New',serif;font-size:36px;color:var(--text);direction:rtl;min-height:52px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.f-dots{display:flex;gap:5px;justify-content:center;margin-bottom:14px;}
+.f-dot{width:8px;height:8px;border-radius:50%;background:#e5e5ea;transition:background .2s;}
+.f-dot.ok{background:var(--green);}
+.f-dot.no{background:var(--red);}
+.f-dot.cur{background:var(--accent);}
+.start-btn{padding:11px 28px;background:var(--accent);color:white;border:none;border-radius:22px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;}
+.g-result{display:none;text-align:center;padding:20px 0;}
+.g-result.on{display:block;}
+.gr-n{font-size:42px;font-weight:700;color:var(--accent);letter-spacing:-1px;margin-bottom:4px;}
+.gr-ar{font-family:'Scheherazade New',serif;font-size:18px;color:var(--text2);direction:rtl;margin-bottom:16px;}
+.retry-btn{padding:9px 22px;border:1.5px solid var(--border);border-radius:22px;background:var(--bg2);color:var(--text2);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;}
+.retry-btn:hover{border-color:var(--accent);color:var(--accent);}
+.qc{border:1.5px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:10px;background:var(--bg2);}
+.ql{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.qt{font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;}
+.q-ar{font-family:'Scheherazade New',serif;font-size:22px;direction:rtl;text-align:right;line-height:1.8;color:var(--text);margin-bottom:10px;}
+.q-fb{display:none;font-size:12px;font-weight:600;margin-top:8px;}
+.q-fb.on{display:block;}
+.q-fb.ok{color:#1a7a3a;}
+.q-fb.no{color:#c00;}
+.qr{display:none;border:1.5px solid var(--border);border-radius:var(--r);padding:28px 20px;margin-top:14px;text-align:center;background:var(--bg2);}
+.qr.on{display:block;}
+.qr-pct{font-size:52px;font-weight:700;color:var(--accent);letter-spacing:-2px;margin-bottom:4px;}
+.qr-lbl{font-size:13px;color:var(--text3);margin-bottom:10px;}
+.qr-ar{font-family:'Scheherazade New',serif;font-size:20px;color:var(--text2);direction:rtl;margin-bottom:18px;}
+.qr-btns{display:flex;gap:10px;justify-content:center;}
+.rg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;}
+.ri{background:var(--bg2);border-radius:var(--r);padding:16px;border:1px solid var(--border);}
+.rl{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;font-weight:600;}
+.rv{font-size:14px;font-weight:600;color:var(--text);}
+.hw{background:var(--bg2);border-radius:var(--r);padding:18px;border:1px solid var(--border);}
+.hwl{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;font-weight:600;}
+.hwi{font-size:13px;color:var(--text2);margin-bottom:8px;display:flex;gap:8px;}
+.hwn{font-size:11px;font-weight:700;color:var(--accent);flex-shrink:0;margin-top:2px;}
+@media(max-width:540px){.q-opts,.m-opts,.f-opts{grid-template-columns:1fr;}.rg{grid-template-columns:1fr;}}
+</style>
+</head><body><nav class="nav"><div class="nav-in"><div class="logo">&#x627;&#x644;&#x062a;&#x651;&#x643;&#x652;&#x631;&#x627;&#x631;&#x64f; &#x623;&#x64f;&#x645;&#x651;&#x64f; &#x627;&#x644;&#x652;&#x639;&#x650;&#x644;&#x652;&#x645;&#x650;</div></div></nav>
+<div class="hero">
+  <div class="hero-eye">&#1059;&#1088;&#1086;&#1074;&#1077;&#1085;&#1100; 1 &middot; &#1059;&#1088;&#1086;&#1082; 14 &#1080;&#1079; 14</div>
+  <div class="hero-ar">الدرس الرابع عشر — المشاعر</div>
+  <div class="hero-ru">Чувства и дуа</div>
+</div>
+<div class="prog"><div class="prog-in">
+  <span class="prog-lbl">&#1055;&#1088;&#1086;&#1075;&#1088;&#1077;&#1089;&#1089;</span>
+  <div class="prog-track"><div class="prog-fill" style="width:100%"></div></div>
+  <span class="prog-lbl">14 / 14</span>
+  <div class="prog-links">
+    <a class="prog-a" href="takrar-level1-lesson13.html">&larr; &#1059;&#1088;&#1086;&#1082; 13</a>
+    <a class="prog-a" href="takrar-level1-exam2.html">Экзамен 2 →</a>
+  </div>
+</div></div><div class="tabs-bar"><div class="tabs-in"><button class="tab on" onclick="tab('vocab',this)">&#1057;&#1083;&#1086;&#1074;&#1072;</button><button class="tab" onclick="tab('dialog',this)">&#1044;&#1080;&#1072;&#1083;&#1086;&#1075;</button><button class="tab" onclick="tab('grammar',this)">&#1043;&#1088;&#1072;&#1084;&#1084;&#1072;&#1090;&#1080;&#1082;&#1072;</button><button class="tab" onclick="tab('exercises',this)">&#1059;&#1087;&#1088;&#1072;&#1078;&#1085;&#1077;&#1085;&#1080;&#1103;</button><button class="tab" onclick="tab('audio',this)">&#1040;&#1091;&#1076;&#1080;&#1086;</button><button class="tab" onclick="tab('games',this)">&#1055;&#1086;&#1074;&#1090;&#1086;&#1088;&#1077;&#1085;&#1080;&#1077;</button><button class="tab" onclick="tab('quiz',this)">&#1058;&#1077;&#1089;&#1090;</button><button class="tab" onclick="tab('result',this)">&#1048;&#1090;&#1086;&#1075;</button></div></div><div class="main"><div class="section on" id="vocab">
+  <div class="sh"><span class="sh-ar">&#1575;&#1604;&#1605;&#1601;&#1585;&#1583;&#1575;&#1578; &#1575;&#1604;&#1580;&#1583;&#1610;&#1583;&#1577;</span><span class="sh-ru">&#1053;&#1086;&#1074;&#1099;&#1077; &#1089;&#1083;&#1086;&#1074;&#1072;</span></div>
+  <table class="tbl"><thead><tr><th>&#1040;&#1088;&#1072;&#1073;&#1089;&#1082;&#1080;&#1081;</th><th>&#1063;&#1090;&#1077;&#1085;&#1080;&#1077;</th><th>&#1055;&#1077;&#1088;&#1077;&#1074;&#1086;&#1076;</th></tr></thead><tbody><tr><td class="ar-c">سَعِيدٌ</td><td class="it-c">са'идун</td><td>счастливый</td></tr><tr><td class="ar-c">حَزِينٌ</td><td class="it-c">хазинун</td><td>грустный</td></tr><tr><td class="ar-c">خَائِفٌ</td><td class="it-c">ха'ифун</td><td>испуганный</td></tr><tr><td class="ar-c">غَاضِبٌ</td><td class="it-c">гадибун</td><td>злой</td></tr><tr><td class="ar-c">مُتَعَبٌ</td><td class="it-c">мута'абун</td><td>уставший</td></tr><tr><td class="ar-c">دُعَاءٌ</td><td class="it-c">ду'аун</td><td>дуа</td></tr><tr><td class="ar-c">اللَّهُمَّ</td><td class="it-c">Аллахумма</td><td>О Аллах</td></tr><tr><td class="ar-c">رَبِّ</td><td class="it-c">рабби</td><td>Господь мой</td></tr><tr><td class="ar-c">يَسِّرْ</td><td class="it-c">яссир</td><td>облегчи</td></tr><tr><td class="ar-c">أَعِنِّي</td><td class="it-c">а'инни</td><td>помоги мне</td></tr><tr><td class="ar-c">أَشْعُرُ بِـ</td><td class="it-c">аш'уру би-</td><td>я чувствую</td></tr><tr><td class="ar-c">شُعُورٌ</td><td class="it-c">шу'урун</td><td>чувство</td></tr><tr><td class="ar-c">فَرَحٌ</td><td class="it-c">фарахун</td><td>радость</td></tr><tr><td class="ar-c">حُزْنٌ</td><td class="it-c">хузнун</td><td>грусть</td></tr></tbody></table>
+</div><div class="section" id="dialog"><div class="sh"><span class="sh-ar">الحوار</span><span class="sh-ru">Диалог</span></div><div class="dr"><div class="av">ي</div><button class="d-play" onclick="playD(this,'lesson14-y1.mp3')">&#9654;</button><div class="bub"><div class="dn">&#1070;&#1089;&#1091;&#1092;</div><div class="db"><div class="d-ar">كَيْفَ حَالُكَ اليَوْمَ يَا آدَم؟</div><div class="d-tr">Кайфа халюка аль-явма йа Адам?</div><div class="d-ru">«Как ты сегодня, Адам?»</div></div></div></div>
+<div class="dr r"><div class="av">آ</div><button class="d-play" onclick="playD(this,'lesson14-a1.mp3')">&#9654;</button><div class="bub"><div class="dn">&#1040;&#1076;&#1072;&#1084;</div><div class="db db-r"><div class="d-ar">الحَمْدُ لِلهِ! أَنَا سَعِيدٌ جِدًّا اليَوْمَ.</div><div class="d-tr">Альхамду лиллях! Ана са'идун джиддан.</div><div class="d-ru">«Хвала Аллаху! Я сегодня очень счастлив.»</div></div></div></div>
+<div class="dr"><div class="av">ي</div><button class="d-play" onclick="playD(this,'lesson14-y2.mp3')">&#9654;</button><div class="bub"><div class="dn">&#1070;&#1089;&#1091;&#1092;</div><div class="db"><div class="d-ar">مَا الَّذِي جَعَلَكَ سَعِيداً؟</div><div class="d-tr">Маль-лязи джа'алака са'идан?</div><div class="d-ru">«Что сделало тебя счастливым?»</div></div></div></div>
+<div class="dr r"><div class="av">آ</div><button class="d-play" onclick="playD(this,'lesson14-a2.mp3')">&#9654;</button><div class="bub"><div class="dn">&#1040;&#1076;&#1072;&#1084;</div><div class="db db-r"><div class="d-ar">قَرَأْتُ القُرْآنَ الكَرِيمَ الصُّبْحَ. اللهُ يَجْعَلُ القَلْبَ مُطْمَئِنًّا!</div><div class="d-tr">Кара'ту аль-Кур'ана аль-Карима ас-субха.</div><div class="d-ru">«Я читал Коран утром. Аллах успокаивает сердце!»</div></div></div></div>
+<div class="dr"><div class="av">ي</div><button class="d-play" onclick="playD(this,'lesson14-y3.mp3')">&#9654;</button><div class="bub"><div class="dn">&#1070;&#1089;&#1091;&#1092;</div><div class="db"><div class="d-ar">أَلَا بِذِكْرِ اللهِ تَطْمَئِنُّ القُلُوبُ!</div><div class="d-tr">Аля бизикриллахи татма'иннуль-кулюб!</div><div class="d-ru">«Воистину, поминанием Аллаха успокаиваются сердца!»</div></div></div></div>
+<div class="dr r"><div class="av">آ</div><button class="d-play" onclick="playD(this,'lesson14-a3.mp3')">&#9654;</button><div class="bub"><div class="dn">&#1040;&#1076;&#1072;&#1084;</div><div class="db db-r"><div class="d-ar">هَذِهِ آيَةٌ عَظِيمَةٌ مِنَ القُرْآنِ الكَرِيمِ. آمِينَ!</div><div class="d-tr">Хазихи айатун 'азима миналь-Кур'ан. Амин!</div><div class="d-ru">«Это великий аят из Корана. Амин!»</div></div></div></div>
+</div><div class="section" id="grammar"><div class="sh"><span class="sh-ar">&#1575;&#1604;&#1602;&#1608;&#1575;&#1593;&#1583;</span><span class="sh-ru">&#1043;&#1088;&#1072;&#1084;&#1084;&#1072;&#1090;&#1080;&#1082;&#1072;</span></div><div class="gb"><div class="gl">Описание состояния</div><div class="g-ar">أَنَا سَعِيدٌ — أَنَا حَزِينٌ — أَنَا مُتَعَبٌ</div><div class="g-ru">«Я счастлив» — «Я грустен» — «Я устал»</div></div><div class="gb"><div class="gl">أَشْعُرُ بِـ — Я чувствую</div><div class="g-ar">أَشْعُرُ بِالسَّعَادَةِ — أَشْعُرُ بِالحُزْنِ</div><div class="g-ru">«Я чувствую счастье» — «Я чувствую грусть»</div></div><div class="gb"><div class="gl">Великий аят — الرعد 28</div><div class="g-ar">أَلَا بِذِكْرِ اللهِ تَطْمَئِنُّ القُلُوبُ</div><div class="g-ru">«Воистину, поминанием Аллаха успокаиваются сердца»</div></div><div class="note">Выучи этот аят наизусть — он лечит тревогу и грусть!</div></div><div class="section" id="exercises"><div class="sh"><span class="sh-ar">&#1575;&#1604;&#1578;&#1583;&#1585;&#1610;&#1576;&#1575;&#1578;</span><span class="sh-ru">&#1059;&#1087;&#1088;&#1072;&#1078;&#1085;&#1077;&#1085;&#1080;&#1103;</span></div><div class="ei"><div class="en">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 1</div><div class="eq">Как сказать «Я сегодня счастлив»?</div><button class="cbtn" onclick="tog('e1')">&#1054;&#1090;&#1074;&#1077;&#1090;</button><div class="ab" id="e1"><div class="a-ar">أَنَا سَعِيدٌ اليَوْمَ</div><div class="a-ru">✓ سَعِيدٌ = счастливый</div></div></div><div class="ei"><div class="en">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 2</div><div class="eq">Переведи аят: أَلَا بِذِكْرِ اللهِ تَطْمَئِنُّ القُلُوبُ</div><button class="cbtn" onclick="tog('e2')">&#1054;&#1090;&#1074;&#1077;&#1090;</button><div class="ab" id="e2"><div class="a-ar">Воистину, поминанием Аллаха успокаиваются сердца</div><div class="a-ru">✓ Ар-Ра'd 28!</div></div></div><div class="ei"><div class="en">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 3</div><div class="eq">Скажи «Я чувствую усталость»</div><button class="cbtn" onclick="tog('e3')">&#1054;&#1090;&#1074;&#1077;&#1090;</button><div class="ab" id="e3"><div class="a-ar">أَشْعُرُ بِالتَّعَبِ</div><div class="a-ru">✓ أَشْعُرُ بِـ = я чувствую</div></div></div><div class="ei"><div class="en">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 4</div><div class="eq">«Грустный» по-арабски?</div><button class="cbtn" onclick="tog('e4')">&#1054;&#1090;&#1074;&#1077;&#1090;</button><div class="ab" id="e4"><div class="a-ar">حَزِينٌ</div><div class="a-ru">✓ Женский род: حَزِينَةٌ</div></div></div><div class="ei"><div class="en">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 5</div><div class="eq">Переведи: «О Аллах, облегчи для меня»</div><button class="cbtn" onclick="tog('e5')">&#1054;&#1090;&#1074;&#1077;&#1090;</button><div class="ab" id="e5"><div class="a-ar">اللَّهُمَّ يَسِّرْ لِي</div><div class="a-ru">✓ اللَّهُمَّ = О Аллах</div></div></div></div><div class="section" id="audio">
+  <div class="sh"><span class="sh-ar">&#1575;&#1604;&#1606;&#1589; &#1575;&#1604;&#1589;&#1608;&#1578;&#1610;</span><span class="sh-ru">&#1040;&#1091;&#1076;&#1080;&#1086; &#1090;&#1077;&#1082;&#1089;&#1090;</span></div>
+  <div class="audio-card">
+    <div class="play-row"><button class="play-btn">&#9654;</button><div class="pi"><strong>&#1059;&#1088;&#1086;&#1082; 14 &mdash; Чувства и дуа</strong>&#1054;&#1079;&#1074;&#1091;&#1095;&#1082;&#1072; &#1073;&#1091;&#1076;&#1077;&#1090; &#1076;&#1086;&#1073;&#1072;&#1074;&#1083;&#1077;&#1085;&#1072;</div></div>
+    <div class="aud-ar">الحَمْدُ لِلهِ عَلَى كُلِّ حَالٍ. أَنَا سَعِيدٌ لِأَنَّنِي أَتَعَلَّمُ اللُّغَةَ العَرَبِيَّةَ. اللُّغَةُ العَرَبِيَّةُ لُغَةُ القُرْآنِ. اللَّهُمَّ اجْعَلْنِي مِمَّنْ يَفْهَمُ كَلَامَكَ.</div>
+    <div class="aud-tr">Альхамду лиллях 'аля кулли халь. Ана са'идун ли-аннани ата'аллям аль-люгаталь-арабийя. Аль-люгатуль-арабийяту люгатуль-Кур'ан. Аллахуммаджальни мимман йафхаму каламак.</div>
+    <div class="aud-ru">«Хвала Аллаху при любом состоянии. Я счастлив потому что учу арабский. Арабский — язык Корана. О Аллах, сделай меня из тех кто понимает Твои слова.»</div>
+    <div class="aud-qs"><div class="aud-ql">&#1055;&#1088;&#1086;&#1074;&#1077;&#1088;&#1086;&#1095;&#1085;&#1099;&#1077; &#1074;&#1086;&#1087;&#1088;&#1086;&#1089;&#1099;</div><div class="aud-q"><span class="aud-qn">١</span><span>لِمَاذَا هُوَ سَعِيدٌ؟ — Почему он счастлив?</span></div><div class="aud-q"><span class="aud-qn">٢</span><span>مَا لُغَةُ القُرْآنِ؟ — Язык Корана?</span></div><div class="aud-q"><span class="aud-qn">٣</span><span>مَاذَا يَطْلُبُ مِنَ اللهِ؟ — Что просит у Аллаха?</span></div></div>
+  </div>
+</div><div class="section" id="games">
+  <div class="sh"><span class="sh-ar">&#x627;&#x644;&#x062a;&#x651;&#x643;&#x631;&#x627;&#x631;</span><span class="sh-ru">&#1055;&#1086;&#1074;&#1090;&#1086;&#1088;&#1077;&#1085;&#1080;&#1077; &#1095;&#1077;&#1088;&#1077;&#1079; &#1080;&#1075;&#1088;&#1099;</span></div>
+  <div class="gsec">
+    <div class="gt">&#1050;&#1072;&#1088;&#1090;&#1086;&#1095;&#1082;&#1080;</div><div class="gs">&#1053;&#1072;&#1078;&#1084;&#1080; &#1095;&#1090;&#1086;&#1073;&#1099; &#1091;&#1074;&#1080;&#1076;&#1077;&#1090;&#1100; &#1087;&#1077;&#1088;&#1077;&#1074;&#1086;&#1076;</div>
+    <div class="fc-wrap"><div class="fc" id="fc" onclick="flipCard()"><div class="fc-f"><div class="fc-ar" id="fc-ar"></div><div class="fc-hint">&#1085;&#1072;&#1078;&#1084;&#1080; &#1095;&#1090;&#1086;&#1073;&#1099; &#1086;&#1090;&#1082;&#1088;&#1099;&#1090;&#1100;</div></div><div class="fc-b"><div class="fc-ru" id="fc-ru"></div><div class="fc-tag" id="fc-tag"></div></div></div></div>
+    <div class="fc-nav"><button class="fc-btn" onclick="fcPrev()">&larr;</button><span class="fc-cnt" id="fc-cnt">1/1</span><button class="fc-btn" onclick="fcNext()">&rarr;</button></div>
+  </div>
+  <div class="gsec">
+    <div class="gt">&#1042;&#1099;&#1073;&#1077;&#1088;&#1080; &#1087;&#1077;&#1088;&#1077;&#1074;&#1086;&#1076;</div><div class="gs">&#1041;&#1077;&#1089;&#1082;&#1086;&#1085;&#1077;&#1095;&#1085;&#1086;&#1077; &#1087;&#1086;&#1074;&#1090;&#1086;&#1088;&#1077;&#1085;&#1080;&#1077;</div>
+    <div class="mw" id="mw"></div><div class="mh">&#1063;&#1090;&#1086; &#1101;&#1090;&#1086; &#1079;&#1085;&#1072;&#1095;&#1080;&#1090;?</div>
+    <div class="m-opts" id="m-opts"></div>
+    <div class="m-score">&#1055;&#1088;&#1072;&#1074;&#1080;&#1083;&#1100;&#1085;&#1086;: <strong id="m-score">0</strong></div>
+  </div>
+  <div class="gsec">
+    <div class="gt">&#1041;&#1099;&#1089;&#1090;&#1088;&#1099;&#1081; &#1086;&#1075;&#1086;&#1085;&#1100;</div><div class="gs">10 &#1089;&#1083;&#1086;&#1074; &middot; 60 &#1089;&#1077;&#1082;&#1091;&#1085;&#1076;</div>
+    <div class="fw">
+      <div id="fire-start"><button class="start-btn" onclick="startFire()">&#1053;&#1072;&#1095;&#1072;&#1090;&#1100;</button></div>
+      <div id="fire-game" style="display:none"><div class="f-timer" id="f-timer">60</div><div class="f-tsub">&#1089;&#1077;&#1082;&#1091;&#1085;&#1076;</div><div class="f-dots" id="f-dots"></div><div class="f-word" id="f-word"></div><div class="f-opts" id="f-opts"></div></div>
+      <div class="g-result" id="fire-res"><div class="gr-n" id="fr-n">0/10</div><div class="gr-ar" id="fr-ar"></div><button class="retry-btn" onclick="restartFire()">&#1045;&#1097;&#1105; &#1088;&#1072;&#1079;</button></div>
+    </div>
+  </div>
+</div><div class="section" id="quiz"><div class="sh"><span class="sh-ar">&#1575;&#1582;&#1578;&#1576;&#1575;&#1585; &#1575;&#1604;&#1583;&#1585;&#1587;</span><span class="sh-ru">&#1058;&#1077;&#1089;&#1090; &mdash; 6 &#1074;&#1086;&#1087;&#1088;&#1086;&#1089;&#1086;&#1074;</span></div><div class="qc" id="q1"><div class="ql">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 1 &#1080;&#1079; 6</div><div class="qt">«Счастливый» по-арабски?</div><div class="q-opts"><button class="q-opt" onclick="ans(1,'a')">حَزِينٌ</button><button class="q-opt" onclick="ans(1,'b')">خَائِفٌ</button><button class="q-opt" onclick="ans(1,'c')">سَعِيدٌ</button><button class="q-opt" onclick="ans(1,'d')">مُتَعَبٌ</button></div><div class="q-fb" id="q1-fb"></div></div><div class="qc" id="q2"><div class="ql">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 2 &#1080;&#1079; 6</div><div class="q-ar">أَشْعُرُ بِالتَّعَبِ</div><div class="qt">Переведи:</div><div class="q-opts"><button class="q-opt" onclick="ans(2,'a')">Я счастлив</button><button class="q-opt" onclick="ans(2,'b')">Я грустен</button><button class="q-opt" onclick="ans(2,'c')">Я чувствую усталость</button><button class="q-opt" onclick="ans(2,'d')">Я испуган</button></div><div class="q-fb" id="q2-fb"></div></div><div class="qc" id="q3"><div class="ql">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 3 &#1080;&#1079; 6</div><div class="qt">Аят об успокоении сердца?</div><div class="q-opts"><button class="q-opt" onclick="ans(3,'a')">البقرة 255</button><button class="q-opt" onclick="ans(3,'b')">يس 1</button><button class="q-opt" onclick="ans(3,'c')">الرعد 28</button><button class="q-opt" onclick="ans(3,'d')">الفاتحة 1</button></div><div class="q-fb" id="q3-fb"></div></div><div class="qc" id="q4"><div class="ql">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 4 &#1080;&#1079; 6</div><div class="qt">«О Аллах» в дуа?</div><div class="q-opts"><button class="q-opt" onclick="ans(4,'a')">رَبِّ</button><button class="q-opt" onclick="ans(4,'b')">يَا اللهُ</button><button class="q-opt" onclick="ans(4,'c')">اللَّهُمَّ</button><button class="q-opt" onclick="ans(4,'d')">بِسْمِ اللهِ</button></div><div class="q-fb" id="q4-fb"></div></div><div class="qc" id="q5"><div class="ql">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 5 &#1080;&#1079; 6</div><div class="qt">«Грустный» по-арабски?</div><div class="q-opts"><button class="q-opt" onclick="ans(5,'a')">سَعِيدٌ</button><button class="q-opt" onclick="ans(5,'b')">غَاضِبٌ</button><button class="q-opt" onclick="ans(5,'c')">حَزِينٌ</button><button class="q-opt" onclick="ans(5,'d')">خَائِفٌ</button></div><div class="q-fb" id="q5-fb"></div></div><div class="qc" id="q6"><div class="ql">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 6 &#1080;&#1079; 6</div><div class="qt">Язык Корана?</div><div class="q-opts"><button class="q-opt" onclick="ans(6,'a')">Персидский</button><button class="q-opt" onclick="ans(6,'b')">Турецкий</button><button class="q-opt" onclick="ans(6,'c')">Урду</button><button class="q-opt" onclick="ans(6,'d')">Арабский</button></div><div class="q-fb" id="q6-fb"></div></div><div class="qr" id="qr"><div class="qr-pct" id="qr-pct">0%</div><div class="qr-lbl" id="qr-lbl"></div><div class="qr-ar" id="qr-ar"></div><div class="qr-btns"><button class="retry-btn" onclick="resetQuiz()">&#1045;&#1097;&#1105; &#1088;&#1072;&#1079;</button><button class="start-btn" onclick="tab('result',document.querySelectorAll('.tab')[7])" style="padding:9px 22px;font-size:13px">&#1048;&#1090;&#1086;&#1075; &rarr;</button></div></div></div><div class="section" id="result"><div class="sh"><span class="sh-ar">&#1606;&#1578;&#1610;&#1580;&#1577; &#1575;&#1604;&#1583;&#1585;&#1587;</span><span class="sh-ru">&#1048;&#1090;&#1086;&#1075; &#1091;&#1088;&#1086;&#1082;&#1072;</span></div><div class="rg"><div class="ri"><div class="rl">Словарный запас</div><div class="rv">14 слов</div></div><div class="ri"><div class="rl">Диалог</div><div class="rv">Чувства и дуа</div></div><div class="ri"><div class="rl">Аят</div><div class="rv">الرعد 28</div></div><div class="ri"><div class="rl">Готов</div><div class="rv">К Экзамену 2!</div></div></div><div class="hw"><div class="hwl">&#1044;&#1086;&#1084;&#1072;&#1096;&#1085;&#1077;&#1077; &#1079;&#1072;&#1076;&#1072;&#1085;&#1080;&#1077;</div><div class="hwi"><span class="hwn">١</span>Выучи аят الرعد 28 наизусть</div><div class="hwi"><span class="hwn">٢</span>Читай Коран каждое утро</div><div class="hwi"><span class="hwn">٣</span>Пройди все игры — готовься к экзамену!</div><div class="hwi"><span class="hwn">٤</span>Озвучь аудио текст своим голосом</div></div></div></div><script>
+function tab(id,btn){document.querySelectorAll('.section').forEach(s=>s.classList.remove('on'));document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));document.getElementById(id).classList.add('on');if(btn)btn.classList.add('on');window.scrollTo(0,0);}
+function tog(id){document.getElementById(id).classList.toggle('on');}
+var _ca=null,_cb=null;
+function playD(btn,src){if(_ca){_ca.pause();_ca.currentTime=0;}if(_cb){_cb.innerHTML='&#9654;';_cb.classList.remove('playing');}if(_cb===btn){_ca=null;_cb=null;return;}var a=new Audio(src);_ca=a;_cb=btn;btn.innerHTML='&#9646;';btn.classList.add('playing');a.play().catch(function(){btn.innerHTML='&#9654;';btn.classList.remove('playing');});a.onended=function(){btn.innerHTML='&#9654;';btn.classList.remove('playing');_ca=null;_cb=null;};}
+const cards=[{"ar": "مَدْرَسَةٌ", "ru": "школа", "tag": "Урок 5"}, {"ar": "كِتَابٌ", "ru": "книга", "tag": "Урок 5"}, {"ar": "دَرَسَ", "ru": "учил", "tag": "Урок 5"}, {"ar": "يَدْرُسُ", "ru": "учит", "tag": "Урок 5"}, {"ar": "كَتَبَ", "ru": "писал", "tag": "Урок 5"}, {"ar": "فَهِمَ", "ru": "понял", "tag": "Урок 5"}, {"ar": "عَمَلٌ", "ru": "работа", "tag": "Урок 6"}, {"ar": "طَبِيبٌ", "ru": "врач", "tag": "Урок 6"}, {"ar": "يَعْمَلُ", "ru": "работает", "tag": "Урок 6"}, {"ar": "رِزْقٌ", "ru": "пропитание", "tag": "Урок 6"}, {"ar": "صِحَّةٌ", "ru": "здоровье", "tag": "Урок 7"}, {"ar": "مَرَضٌ", "ru": "болезнь", "tag": "Урок 7"}, {"ar": "شَفَاءٌ", "ru": "исцеление", "tag": "Урок 7"}, {"ar": "كُنْتُ", "ru": "я был", "tag": "Урок 7"}, {"ar": "سَفَرٌ", "ru": "путешествие", "tag": "Урок 8"}, {"ar": "مَطَارٌ", "ru": "аэропорт", "tag": "Урок 8"}, {"ar": "تَذْكِرَةٌ", "ru": "билет", "tag": "Урок 8"}, {"ar": "مَعَ السَّلَامَةِ", "ru": "счастливого пути", "tag": "Урок 8"}, {"ar": "لَوْنٌ", "ru": "цвет", "tag": "Урок 9"}, {"ar": "أَبْيَضُ", "ru": "белый", "tag": "Урок 9"}, {"ar": "أَسْوَدُ", "ru": "чёрный", "tag": "Урок 9"}, {"ar": "يَلْبَسُ", "ru": "носит", "tag": "Урок 9"}, {"ar": "يَوْمٌ", "ru": "день", "tag": "Урок 10"}, {"ar": "الجُمُعَةُ", "ru": "пятница", "tag": "Урок 10"}, {"ar": "ذَهَبَ", "ru": "пошёл", "tag": "Урок 10"}, {"ar": "بَكِّراً", "ru": "рано", "tag": "Урок 10"}];
+let fi=0;
+function renderFC(){document.getElementById('fc').classList.remove('flp');document.getElementById('fc-ar').textContent=cards[fi].ar;document.getElementById('fc-ru').textContent=cards[fi].ru;document.getElementById('fc-tag').textContent=cards[fi].tag;document.getElementById('fc-cnt').textContent=(fi+1)+' / '+cards.length;}
+function flipCard(){document.getElementById('fc').classList.toggle('flp');}
+function fcNext(){fi=(fi+1)%cards.length;renderFC();}
+function fcPrev(){fi=(fi-1+cards.length)%cards.length;renderFC();}
+let mi=0,ms=0;
+function sh(a){return[...a].sort(()=>Math.random()-0.5);}
+function renderMatch(){const c=cards[mi%cards.length];const w=sh(cards.filter(x=>x.ar!==c.ar)).slice(0,3);const o=sh([c,...w]);document.getElementById('mw').textContent=c.ar;document.getElementById('m-opts').innerHTML=o.map(x=>`<button class="m-opt" onclick="mAns(this,'${x.ru}','${c.ru}')">${x.ru}</button>`).join('');}
+function mAns(btn,ch,co){document.querySelectorAll('.m-opt').forEach(b=>b.classList.add('dis'));if(ch===co){btn.classList.add('ok');ms++;document.getElementById('m-score').textContent=ms;setTimeout(()=>{mi++;renderMatch();},700);}else{btn.classList.add('no');document.querySelectorAll('.m-opt').forEach(b=>{if(b.textContent===co)b.classList.add('sh');});setTimeout(()=>{mi++;renderMatch();},1000);}}
+const fw=sh(cards).slice(0,10);
+let fwi=0,fws=0,fwt=60,fwint=null;
+function startFire(){fwi=0;fws=0;fwt=60;document.getElementById('fire-start').style.display='none';document.getElementById('fire-game').style.display='block';document.getElementById('fire-res').classList.remove('on');document.getElementById('f-dots').innerHTML=Array(10).fill(0).map((_,i)=>`<div class="f-dot ${i===0?'cur':''}" id="fd${i}"></div>`).join('');renderFireQ();fwint=setInterval(()=>{fwt--;const t=document.getElementById('f-timer');t.textContent=fwt;t.className='f-timer'+(fwt<=10?' low':'');if(fwt<=0)endFire();},1000);}
+function renderFireQ(){if(fwi>=10){endFire();return;}const c=fw[fwi];const w=sh(cards.filter(x=>x.ar!==c.ar)).slice(0,3);const o=sh([c,...w]);document.getElementById('f-word').textContent=c.ar;document.getElementById('f-opts').innerHTML=o.map(x=>`<button class="f-opt" onclick="fAns(this,'${x.ru}','${c.ru}')">${x.ru}</button>`).join('');}
+function fAns(btn,ch,co){document.querySelectorAll('.f-opt').forEach(b=>b.classList.add('dis'));const d=document.getElementById('fd'+fwi);if(ch===co){btn.classList.add('ok');fws++;if(d){d.classList.remove('cur');d.classList.add('ok');}}else{btn.classList.add('no');document.querySelectorAll('.f-opt').forEach(b=>{if(b.textContent===co)b.classList.add('sh');});if(d){d.classList.remove('cur');d.classList.add('no');}}fwi++;const nd=document.getElementById('fd'+fwi);if(nd)nd.classList.add('cur');if(fwi<10)setTimeout(renderFireQ,700);else setTimeout(endFire,700);}
+function endFire(){clearInterval(fwint);document.getElementById('fire-game').style.display='none';document.getElementById('fire-res').classList.add('on');document.getElementById('fr-n').textContent=fws+'/10';const a=fws>=8?'ماشاء الله!':fws>=5?'أحسنت!':'حاول مرة أخرى';document.getElementById('fr-ar').textContent=a;}
+function restartFire(){document.getElementById('fire-res').classList.remove('on');document.getElementById('fire-start').style.display='block';}
+let qs=0,qa=0;
+const QC={1:'c',2:'c',3:'c',4:'c',5:'c',6:'d'};const QF={1:{'a':'✗ грустный','b':'✗ испуганный','c':'✓ سَعِيدٌ = счастливый!','d':'✗ уставший'}},2:{'a':'✗ السَّعَادَة = счастье','b':'✗ الحُزْن = грусть','c':'✓ التَّعَب = усталость!','d':'✗ الخَوْف = страх'}},3:{'a':'✗ Это аятуль-курси','b':'✗ Начало Ясин','c':'✓ أَلَا بِذِكْرِ اللهِ — الرعد 28!','d':'✗ Нет в Фатихе'}},4:{'a':'✓ рабби тоже верно','b':'✓ йа Аллах тоже','c':'✓ اللَّهُمَّ = О Аллах — классика!','d':'✗ перед едой'}},5:{'a':'✗ счастливый','b':'✗ злой','c':'✓ حَزِينٌ = грустный!','d':'✗ испуганный'}},6:{'a':'✗','b':'✗','c':'✗','d':'✓ Арабский — язык Корана!'}}};
+function ans(n,ch){const q=document.getElementById('q'+n);if(q.classList.contains('done'))return;q.classList.add('done');qa++;const opts=q.querySelectorAll('.q-opt');const L=['a','b','c','d'];opts.forEach((o,i)=>{o.classList.add('dis');if(L[i]===QC[n])o.classList.add('sh');});opts[L.indexOf(ch)].classList.remove('sh');if(ch===QC[n]){opts[L.indexOf(ch)].classList.add('ok');qs++;}else opts[L.indexOf(ch)].classList.add('no');const fb=document.getElementById('q'+n+'-fb');fb.textContent=(QF[n]&&QF[n][ch])||'';fb.className='q-fb on '+(ch===QC[n]?'ok':'no');if(qa===6)showQR();}
+function showQR(){const r=document.getElementById('qr');r.classList.add('on');const p=Math.round(qs/6*100);document.getElementById('qr-pct').textContent=p+'%';document.getElementById('qr-lbl').textContent=qs+' из 6';document.getElementById('qr-ar').textContent=p>=85?'ماشاء الله! ممتاز!':p>=60?'أحسنت!':'حاول مرة أخرى';r.scrollIntoView({behavior:'smooth',block:'center'});}
+function resetQuiz(){qs=0;qa=0;for(let i=1;i<=6;i++){const q=document.getElementById('q'+i);q.classList.remove('done');q.querySelectorAll('.q-opt').forEach(o=>o.className='q-opt');const fb=document.getElementById('q'+i+'-fb');fb.className='q-fb';fb.textContent='';}document.getElementById('qr').classList.remove('on');window.scrollTo(0,0);}
+renderFC();renderMatch();
+</script></body></html>

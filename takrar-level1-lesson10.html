@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="light only">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التكرار — الدرس ١٠</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light only;--bg:#f2f2f7;--bg2:#ffffff;--bg3:#f2f2f7;--text:#000000;--text2:#3c3c43;--text3:#8e8e93;--accent:#007aff;--acc-bg:#e5f0ff;--green:#34c759;--grn-bg:#edfaf1;--red:#ff3b30;--red-bg:#fff0ef;--gold:#b8860b;--gold-bg:#fdf6e3;--border:rgba(60,60,67,0.18);--r:12px;--r-sm:10px;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans',-apple-system,sans-serif;font-size:15px;line-height:1.5;}
+@media(prefers-color-scheme:dark){html,body{background:#f2f2f7!important;color:#000!important;}*{color-scheme:light!important;}}
+.nav{position:sticky;top:0;z-index:100;background:rgba(242,242,247,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-in{max-width:720px;margin:0 auto;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;}
+.logo{font-family:'Amiri',serif;font-size:18px;color:var(--text);direction:rtl;}
+.hero{padding:44px 20px 36px;text-align:center;border-bottom:1px solid var(--border);background:var(--bg);}
+.hero-eye{font-size:12px;font-weight:600;color:var(--accent);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:10px;}
+.hero-ar{font-family:'Amiri',serif;font-size:30px;color:var(--text);direction:rtl;margin-bottom:4px;}
+.hero-ru{font-size:24px;font-weight:700;color:var(--text);letter-spacing:-0.5px;}
+.prog{border-bottom:1px solid var(--border);padding:10px 20px;}
+.prog-in{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:12px;}
+.prog-lbl{font-size:11px;color:var(--text3);white-space:nowrap;text-transform:uppercase;letter-spacing:0.5px;}
+.prog-track{flex:1;height:4px;background:#e5e5ea;border-radius:2px;overflow:hidden;}
+.prog-fill{height:100%;width:71%;background:var(--accent);border-radius:2px;}
+.prog-links{display:flex;gap:12px;margin-left:auto;}
+.prog-a{font-size:12px;color:var(--accent);text-decoration:none;font-weight:500;}
+.tabs-bar{border-bottom:1px solid var(--border);overflow-x:auto;}
+.tabs-bar::-webkit-scrollbar{display:none;}
+.tabs-in{max-width:720px;margin:0 auto;display:flex;padding:0 20px;}
+.tab{padding:13px 16px;border:none;background:transparent;color:var(--text3);font-size:13px;font-weight:500;border-bottom:2px solid transparent;cursor:pointer;font-family:inherit;transition:all 0.15s;white-space:nowrap;}
+.tab.on{color:var(--accent);border-bottom-color:var(--accent);font-weight:600;}
+.main{max-width:720px;margin:0 auto;padding:28px 20px 80px;}
+.section{display:none;}.section.on{display:block;}
+.sh{margin-bottom:16px;}
+.sh-ar{font-family:'Scheherazade New',serif;font-size:20px;color:var(--text);direction:rtl;display:block;margin-bottom:2px;}
+.sh-ru{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;font-weight:600;}
+.tbl{width:100%;border-collapse:collapse;}
+.tbl th{padding:9px 12px;font-size:11px;font-weight:600;color:var(--text3);text-align:center;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border);}
+.tbl td{padding:11px 12px;text-align:center;border-bottom:1px solid var(--border);font-size:13px;color:var(--text2);}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:hover td{background:var(--bg);}
+.ar-c{font-family:'Scheherazade New',serif;font-size:20px;color:var(--gold);direction:rtl;}
+.it-c{font-style:italic;color:var(--text3);}
+.dr{display:flex;gap:10px;margin-bottom:14px;align-items:flex-start;}
+.dr.r{flex-direction:row-reverse;}
+.av{width:32px;height:32px;border-radius:50%;background:#e5e5ea;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--text2);flex-shrink:0;}
+.bub{max-width:76%;flex:1;}
+.dn{font-size:11px;color:var(--text3);margin-bottom:3px;font-weight:500;}
+.dr.r .dn{text-align:right;}
+.db{padding:11px 13px;border-radius:var(--r-sm);border:1px solid var(--border);background:var(--bg2);}
+.db-r{background:var(--acc-bg);border-color:rgba(0,122,255,0.15);}
+.d-ar{font-family:'Scheherazade New',serif;font-size:18px;direction:rtl;text-align:right;line-height:1.8;color:var(--text);margin-bottom:3px;}
+.d-tr{font-size:11px;color:var(--text3);font-style:italic;margin-bottom:2px;}
+.d-ru{font-size:12px;color:var(--text2);font-weight:500;}
+.gb{background:var(--bg2);border-radius:var(--r);padding:16px;margin-bottom:10px;border:1px solid var(--border);}
+.gl{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
+.g-ar{font-family:'Scheherazade New',serif;font-size:20px;direction:rtl;text-align:right;line-height:1.9;color:var(--text);margin-bottom:6px;}
+.g-ru{font-size:13px;color:var(--text2);line-height:1.6;}
+.note{background:var(--acc-bg);border-radius:var(--r-sm);padding:12px 14px;font-size:13px;color:var(--accent);margin-top:10px;border:1px solid rgba(0,122,255,0.15);}
+.ei{border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:10px;background:var(--bg2);}
+.ei:hover{border-color:var(--accent);}
+.en{font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}
+.eq{font-size:13px;color:var(--text);margin-bottom:10px;font-weight:500;}
+.cbtn{padding:6px 16px;border:1px solid var(--accent);border-radius:20px;background:transparent;color:var(--accent);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.15s;}
+.cbtn:hover{background:var(--accent);color:white;}
+.ab{display:none;margin-top:10px;padding:12px;background:var(--grn-bg);border-radius:var(--r-sm);border:1px solid rgba(52,199,89,0.2);}
+.ab.on{display:block;}
+.a-ar{font-family:'Scheherazade New',serif;font-size:18px;color:var(--text);direction:rtl;text-align:right;margin-bottom:3px;}
+.a-ru{font-size:12px;color:var(--green);font-weight:600;}
+.audio-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:22px;}
+.play-row{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.play-btn{width:40px;height:40px;border-radius:50%;background:var(--gold);border:none;color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.15s;}
+.play-btn:hover{opacity:0.85;}
+.pi{font-size:12px;color:var(--text3);}
+.pi strong{display:block;color:var(--text);font-size:13px;margin-bottom:1px;}
+.aud-ar{font-family:'Scheherazade New',serif;font-size:20px;direction:rtl;text-align:right;line-height:2;color:var(--text);margin-bottom:8px;}
+.aud-tr{font-size:11px;color:var(--text3);font-style:italic;margin-bottom:4px;}
+.aud-ru{font-size:13px;color:var(--text2);margin-bottom:16px;}
+.aud-qs{border-top:1px solid var(--border);padding-top:14px;}
+.aud-ql{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
+.aud-q{font-size:13px;color:var(--text2);margin-bottom:5px;display:flex;gap:8px;}
+.aud-qn{color:var(--accent);font-weight:700;flex-shrink:0;}
+.gsec{margin-bottom:28px;}
+.gt{font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px;}
+.gs{font-size:12px;color:var(--text3);margin-bottom:14px;}
+.fc-wrap{perspective:1000px;max-width:320px;margin:0 auto 14px;}
+.fc{width:100%;height:150px;cursor:pointer;position:relative;transform-style:preserve-3d;transition:transform 0.4s ease;}
+.fc.flp{transform:rotateY(180deg);}
+.fc-f,.fc-b{position:absolute;inset:0;border-radius:var(--r);display:flex;flex-direction:column;align-items:center;justify-content:center;backface-visibility:hidden;padding:18px;border:1px solid var(--border);}
+.fc-f{background:var(--bg2);}
+.fc-b{background:var(--grn-bg);border-color:rgba(52,199,89,0.2);transform:rotateY(180deg);}
+.fc-ar{font-family:'Scheherazade New',serif;font-size:30px;color:var(--text);direction:rtl;margin-bottom:6px;}
+.fc-hint{font-size:11px;color:var(--text3);}
+.fc-ru{font-size:20px;font-weight:600;color:var(--green);margin-bottom:3px;}
+.fc-tag{font-size:11px;color:var(--text3);}
+.fc-nav{display:flex;align-items:center;justify-content:center;gap:12px;}
+.fc-btn{padding:7px 18px;border:1px solid var(--border);border-radius:20px;background:var(--bg2);color:var(--text2);font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;transition:all 0.15s;}
+.fc-btn:hover{border-color:var(--accent);color:var(--accent);}
+.fc-cnt{font-size:12px;color:var(--text3);}
+.mw{font-family:'Scheherazade New',serif;font-size:36px;color:var(--text);direction:rtl;text-align:center;margin-bottom:4px;}
+.mh{font-size:12px;color:var(--text3);text-align:center;margin-bottom:16px;}
+.m-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
+.m-opt{padding:13px;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--bg2);cursor:pointer;font-size:13px;font-weight:500;font-family:inherit;color:var(--text);transition:all 0.15s;text-align:center;}
+.m-opt:hover:not(.dis){border-color:var(--accent);color:var(--accent);background:var(--acc-bg);}
+.m-opt.ok{border-color:var(--green);background:var(--grn-bg);color:#1a7a3a;}
+.m-opt.no{border-color:var(--red);background:var(--red-bg);color:#cc0000;}
+.m-opt.sh{border-color:var(--green);background:var(--grn-bg);color:#1a7a3a;}
+.m-opt.dis{pointer-events:none;}
+.m-score{font-size:12px;color:var(--text3);text-align:right;}
+.fw{text-align:center;}
+.f-timer{font-size:48px;font-weight:700;color:var(--accent);letter-spacing:-2px;line-height:1;}
+.f-timer.low{color:var(--red);}
+.f-tsub{font-size:11px;color:var(--text3);margin-bottom:18px;}
+.f-word{font-family:'Scheherazade New',serif;font-size:36px;color:var(--text);direction:rtl;min-height:52px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.f-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.f-opt{padding:12px;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--bg2);cursor:pointer;font-size:13px;font-weight:500;font-family:inherit;color:var(--text);transition:all 0.15s;}
+.f-opt:hover:not(.dis){border-color:var(--accent);color:var(--accent);}
+.f-opt.ok{border-color:var(--green);background:var(--grn-bg);color:#1a7a3a;}
+.f-opt.no{border-color:var(--red);background:var(--red-bg);color:#cc0000;}
+.f-opt.sh{border-color:var(--green);background:var(--grn-bg);color:#1a7a3a;}
+.f-opt.dis{pointer-events:none;}
+.f-dots{display:flex;gap:5px;justify-content:center;margin-bottom:14px;}
+.f-dot{width:8px;height:8px;border-radius:50%;background:#e5e5ea;transition:background 0.2s;}
+.f-dot.ok{background:var(--green);}
+.f-dot.no{background:var(--red);}
+.f-dot.cur{background:var(--accent);}
+.start-btn{padding:11px 28px;background:var(--accent);color:white;border:none;border-radius:22px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.15s;}
+.start-btn:hover{opacity:0.88;}
+.g-result{display:none;text-align:center;padding:20px 0;}
+.g-result.on{display:block;}
+.gr-n{font-size:42px;font-weight:700;color:var(--accent);letter-spacing:-1px;margin-bottom:4px;}
+.gr-ar{font-family:'Scheherazade New',serif;font-size:18px;color:var(--text2);direction:rtl;margin-bottom:16px;}
+.retry-btn{padding:9px 22px;border:1.5px solid var(--border);border-radius:22px;background:var(--bg2);color:var(--text2);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.15s;}
+.retry-btn:hover{border-color:var(--accent);color:var(--accent);}
+.qc{border:1.5px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:10px;background:var(--bg2);}
+.ql{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}
+.qt{font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;}
+.q-ar{font-family:'Scheherazade New',serif;font-size:22px;direction:rtl;text-align:right;line-height:1.8;color:var(--text);margin-bottom:10px;}
+.q-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.q-opt{padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--bg2);cursor:pointer;font-size:13px;font-weight:500;font-family:inherit;color:var(--text);text-align:center;transition:all 0.15s;}
+.q-opt:hover:not(.dis){border-color:var(--accent);color:var(--accent);background:var(--acc-bg);}
+.q-opt.ok{border-color:var(--green);background:var(--grn-bg);color:#1a7a3a;font-weight:600;}
+.q-opt.no{border-color:var(--red);background:var(--red-bg);color:#cc0000;}
+.q-opt.sh{border-color:var(--green);background:var(--grn-bg);color:#1a7a3a;}
+.q-opt.dis{pointer-events:none;}
+.q-fb{display:none;font-size:12px;font-weight:600;margin-top:8px;}
+.q-fb.on{display:block;}
+.q-fb.ok{color:#1a7a3a;}
+.q-fb.no{color:#cc0000;}
+.qr{display:none;border:1.5px solid var(--border);border-radius:var(--r);padding:28px 20px;margin-top:14px;text-align:center;background:var(--bg2);}
+.qr.on{display:block;}
+.qr-pct{font-size:52px;font-weight:700;color:var(--accent);letter-spacing:-2px;margin-bottom:4px;}
+.qr-lbl{font-size:13px;color:var(--text3);margin-bottom:10px;}
+.qr-ar{font-family:'Scheherazade New',serif;font-size:20px;color:var(--text2);direction:rtl;margin-bottom:18px;}
+.qr-btns{display:flex;gap:10px;justify-content:center;}
+.rg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;}
+.ri{background:var(--bg2);border-radius:var(--r);padding:16px;border:1px solid var(--border);}
+.rl{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;font-weight:600;}
+.rv{font-size:14px;font-weight:600;color:var(--text);}
+.hw{background:var(--bg2);border-radius:var(--r);padding:18px;border:1px solid var(--border);}
+.hwl{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;font-weight:600;}
+.hwi{font-size:13px;color:var(--text2);margin-bottom:8px;display:flex;gap:8px;align-items:flex-start;}
+.hwn{font-size:11px;font-weight:700;color:var(--accent);flex-shrink:0;margin-top:2px;}
+.d-play{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--accent);color:white;font-size:13px;flex-shrink:0;cursor:pointer;border:none;transition:all 0.15s;margin-top:2px;font-family:inherit;}
+.d-play:hover{opacity:0.85;transform:scale(1.08);}
+.d-play.playing{background:var(--green);}
+@media(max-width:540px){.q-opts,.m-opts,.f-opts{grid-template-columns:1fr;}.rg{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-in">
+    <div class="logo">التَّكْرَارُ أُمُّ الْعِلْمِ</div>
+  </div>
+</nav>
+<div class="hero">
+  <div class="hero-eye">Уровень 1 · Урок 10 из 14</div>
+  <div class="hero-ar">الدرس العاشر — الوقت والأيام</div>
+  <div class="hero-ru">Время и дни недели</div>
+</div>
+<div class="prog">
+  <div class="prog-in">
+    <span class="prog-lbl">Прогресс</span>
+    <div class="prog-track"><div class="prog-fill"></div></div>
+    <span class="prog-lbl">10 / 14</span>
+    <div class="prog-links">
+      <a class="prog-a" href="takrar-level1-lesson9.html">← Урок 9</a>
+      <a class="prog-a" href="takrar-level1-lesson11.html">Урок 11 →</a>
+    </div>
+  </div>
+</div>
+<div class="tabs-bar">
+  <div class="tabs-in">
+    <button class="tab on" onclick="tab('vocab',this)">Слова</button>
+    <button class="tab" onclick="tab('dialog',this)">Диалог</button>
+    <button class="tab" onclick="tab('grammar',this)">Грамматика</button>
+    <button class="tab" onclick="tab('exercises',this)">Упражнения</button>
+    <button class="tab" onclick="tab('audio',this)">Аудио</button>
+    <button class="tab" onclick="tab('games',this)">Повторение</button>
+    <button class="tab" onclick="tab('quiz',this)">Тест</button>
+    <button class="tab" onclick="tab('result',this)">Итог</button>
+  </div>
+</div>
+<div class="main">
+
+<div class="section on" id="vocab">
+  <div class="sh"><span class="sh-ar">المفردات الجديدة</span><span class="sh-ru">Новые слова</span></div>
+  <table class="tbl">
+    <thead><tr><th>Арабский</th><th>Чтение</th><th>Перевод</th></tr></thead>
+    <tbody>
+      <tr><td class="ar-c">وَقْتٌ</td><td class="it-c">вактун</td><td>время</td></tr>
+      <tr><td class="ar-c">سَاعَةٌ</td><td class="it-c">са'атун</td><td>час / часы</td></tr>
+      <tr><td class="ar-c">يَوْمٌ</td><td class="it-c">явмун</td><td>день</td></tr>
+      <tr><td class="ar-c">أُسْبُوعٌ</td><td class="it-c">усбу'ун</td><td>неделя</td></tr>
+      <tr><td class="ar-c">الأَحَدُ</td><td class="it-c">аль-ахад</td><td>воскресенье</td></tr>
+      <tr><td class="ar-c">الاثْنَيْنِ</td><td class="it-c">аль-иснайн</td><td>понедельник</td></tr>
+      <tr><td class="ar-c">الثُّلَاثَاءُ</td><td class="it-c">ас-суласа</td><td>вторник</td></tr>
+      <tr><td class="ar-c">الأَرْبِعَاءُ</td><td class="it-c">аль-арби'а</td><td>среда</td></tr>
+      <tr><td class="ar-c">الخَمِيسُ</td><td class="it-c">аль-хамис</td><td>четверг</td></tr>
+      <tr><td class="ar-c">الجُمُعَةُ</td><td class="it-c">аль-джум'а</td><td>пятница</td></tr>
+      <tr><td class="ar-c">السَّبْتُ</td><td class="it-c">ас-сабт</td><td>суббота</td></tr>
+      <tr><td class="ar-c">الآنَ</td><td class="it-c">аль-ана</td><td>сейчас</td></tr>
+      <tr><td class="ar-c">بَكِّراً</td><td class="it-c">баккиран</td><td>рано</td></tr>
+      <tr><td class="ar-c">مَتَى؟</td><td class="it-c">мата?</td><td>когда?</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section" id="dialog">
+  <div class="sh"><span class="sh-ar">الحوار — في المسجد</span><span class="sh-ru">Диалог — в мечети</span></div>
+  <div class="dr">
+    <div class="av">ي</div>
+    <button class="d-play" onclick="playD(this,'lesson10-y1.mp3')">▶</button>
+    <div class="bub">
+      <div class="dn">Юсуф</div>
+      <div class="db"><div class="d-ar">يَا آدَم، أَيُّ يَوْمٍ هَذَا؟</div><div class="d-tr">Йа Адам, аййу явмин хаза?</div><div class="d-ru">«Адам, какой сегодня день?»</div></div>
+    </div>
+  </div>
+  <div class="dr r">
+    <div class="av">آ</div>
+    <button class="d-play" onclick="playD(this,'lesson10-a1.mp3')">▶</button>
+    <div class="bub">
+      <div class="dn">Адам</div>
+      <div class="db db-r"><div class="d-ar">اليَوْمَ الجُمُعَةُ. هَلْ ذَهَبْتَ إِلَى المَسْجِدِ؟</div><div class="d-tr">Аль-явма аль-джум'а. Халь захабта иляль-масджид?</div><div class="d-ru">«Сегодня пятница. Ты ходил в мечеть?»</div></div>
+    </div>
+  </div>
+  <div class="dr">
+    <div class="av">ي</div>
+    <button class="d-play" onclick="playD(this,'lesson10-y2.mp3')">▶</button>
+    <div class="bub">
+      <div class="dn">Юсуф</div>
+      <div class="db"><div class="d-ar">نَعَمْ! ذَهَبْتُ بَكِّراً. وَأَنْتَ؟</div><div class="d-tr">На'ам! Захабту баккиран. Ва анта?</div><div class="d-ru">«Да! Пошёл рано. А ты?»</div></div>
+    </div>
+  </div>
+  <div class="dr r">
+    <div class="av">آ</div>
+    <button class="d-play" onclick="playD(this,'lesson10-a2.mp3')">▶</button>
+    <div class="bub">
+      <div class="dn">Адам</div>
+      <div class="db db-r"><div class="d-ar">أَيْضاً ذَهَبْتُ بَكِّراً. الجُمُعَةُ يَوْمٌ عَظِيمٌ!</div><div class="d-tr">Айдан захабту баккиран. Аль-джум'ату явмун 'азим!</div><div class="d-ru">«Тоже пошёл рано. Пятница — великий день!»</div></div>
+    </div>
+  </div>
+  <div class="dr">
+    <div class="av">ي</div>
+    <button class="d-play" onclick="playD(this,'lesson10-y3.mp3')">▶</button>
+    <div class="bub">
+      <div class="dn">Юсуф</div>
+      <div class="db"><div class="d-ar">نَعَمْ! خَيْرُ يَوْمٍ طَلَعَتْ فِيهِ الشَّمْسُ يَوْمُ الجُمُعَةِ!</div><div class="d-tr">На'ам! Хайру явмин тала'ат фихи аш-шамсу явмуль-джум'а!</div><div class="d-ru">«Да! Лучший день под солнцем — день пятницы!»</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="grammar">
+  <div class="sh"><span class="sh-ar">القواعد</span><span class="sh-ru">Грамматика</span></div>
+  <div class="gb">
+    <div class="gl">Дни недели</div>
+    <table class="tbl">
+      <thead><tr><th>День</th><th>Арабский</th><th>Особенность</th></tr></thead>
+      <tbody>
+        <tr><td>Пятница</td><td class="ar-c">الجُمُعَةُ</td><td>Главный день мусульман</td></tr>
+        <tr><td>Воскресенье</td><td class="ar-c">الأَحَدُ</td><td>Первый день в арабском</td></tr>
+        <tr><td>Суббота</td><td class="ar-c">السَّبْتُ</td><td>Последний день</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="gb">
+    <div class="gl">Вопрос о дне — أَيُّ يَوْمٍ؟</div>
+    <div class="g-ar">أَيُّ يَوْمٍ هَذَا؟ — اليَوْمَ الجُمُعَةُ</div>
+    <div class="g-ru">«Какой сегодня день?» — «Сегодня пятница»</div>
+  </div>
+  <div class="gb">
+    <div class="gl">Прошедшее время — ذَهَبَ (пошёл)</div>
+    <table class="tbl">
+      <thead><tr><th>Лицо</th><th>Прошедшее</th><th>Перевод</th></tr></thead>
+      <tbody>
+        <tr><td>Я</td><td class="ar-c">ذَهَبْتُ</td><td>я пошёл</td></tr>
+        <tr><td>Ты (м)</td><td class="ar-c">ذَهَبْتَ</td><td>ты пошёл</td></tr>
+        <tr><td>Он</td><td class="ar-c">ذَهَبَ</td><td>он пошёл</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">Хадис пророка ﷺ: خَيْرُ يَوْمٍ طَلَعَتْ فِيهِ الشَّمْسُ يَوْمُ الجُمُعَةِ — «Лучший день под солнцем — день пятницы» — Муслим</div>
+</div>
+
+<div class="section" id="exercises">
+  <div class="sh"><span class="sh-ar">التدريبات</span><span class="sh-ru">Упражнения</span></div>
+  <div class="ei"><div class="en">Вопрос 1</div><div class="eq">Как спросить «Какой сегодня день?»</div><button class="cbtn" onclick="tog('e1')">Ответ</button><div class="ab" id="e1"><div class="a-ar">أَيُّ يَوْمٍ هَذَا؟</div><div class="a-ru">✓ أَيُّ = какой | يَوْمٍ = день</div></div></div>
+  <div class="ei"><div class="en">Вопрос 2</div><div class="eq">Переведи: «Я пошёл в мечеть рано»</div><button class="cbtn" onclick="tog('e2')">Ответ</button><div class="ab" id="e2"><div class="a-ar">ذَهَبْتُ إِلَى المَسْجِدِ بَكِّراً</div><div class="a-ru">✓ ذَهَبْتُ = я пошёл | بَكِّراً = рано</div></div></div>
+  <div class="ei"><div class="en">Вопрос 3</div><div class="eq">«Пятница» по-арабски?</div><button class="cbtn" onclick="tog('e3')">Ответ</button><div class="ab" id="e3"><div class="a-ar">الجُمُعَةُ</div><div class="a-ru">✓ Главный день мусульман!</div></div></div>
+  <div class="ei"><div class="en">Вопрос 4</div><div class="eq">Переведи хадис: خَيْرُ يَوْمٍ طَلَعَتْ فِيهِ الشَّمْسُ يَوْمُ الجُمُعَةِ</div><button class="cbtn" onclick="tog('e4')">Ответ</button><div class="ab" id="e4"><div class="a-ar">Лучший день под солнцем — день пятницы</div><div class="a-ru">✓ Хадис из Муслима — запомни наизусть!</div></div></div>
+  <div class="ei"><div class="en">Вопрос 5</div><div class="eq">«Он пошёл» — прошедшее от ذَهَبَ?</div><button class="cbtn" onclick="tog('e5')">Ответ</button><div class="ab" id="e5"><div class="a-ar">ذَهَبَ</div><div class="a-ru">✓ ذَهَبَ = он пошёл | ذَهَبْتُ = я пошёл</div></div></div>
+</div>
+
+<div class="section" id="audio">
+  <div class="sh"><span class="sh-ar">النص الصوتي</span><span class="sh-ru">Аудио текст</span></div>
+  <div class="audio-card">
+    <div class="play-row">
+      <button class="play-btn">▶</button>
+      <div class="pi"><strong>Урок 10 — Время и дни недели</strong>Озвучка добавляется بِإِذْنِ اللهِ</div>
+    </div>
+    <div class="aud-ar">اليَوْمَ الجُمُعَةُ. يَوْمُ الجُمُعَةِ يَوْمٌ عَظِيمٌ. ذَهَبْتُ إِلَى المَسْجِدِ بَكِّراً. سَمِعْتُ خُطْبَةً جَمِيلَةً. أُحِبُّ يَوْمَ الجُمُعَةِ كَثِيراً.</div>
+    <div class="aud-tr">Аль-явма аль-джум'а. Явмуль-джум'ати явмун 'азим. Захабту иляль-масджиди баккиран. Сами'ту хутбатан джамилян. Ухиббу явмаль-джум'ати касиран.</div>
+    <div class="aud-ru">«Сегодня пятница. День пятницы — великий день. Я пошёл в мечеть рано. Я услышал красивую хутбу. Я очень люблю день пятницы.»</div>
+    <div class="aud-qs">
+      <div class="aud-ql">Проверочные вопросы</div>
+      <div class="aud-q"><span class="aud-qn">١</span><span>أَيُّ يَوْمٍ هُوَ؟ — Какой это день?</span></div>
+      <div class="aud-q"><span class="aud-qn">٢</span><span>أَيْنَ ذَهَبَ؟ — Куда он пошёл?</span></div>
+      <div class="aud-q"><span class="aud-qn">٣</span><span>مَتَى ذَهَبَ؟ — Когда он пошёл?</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="games">
+  <div class="sh"><span class="sh-ar">التَّكْرَارُ — Уроки 5 و 6</span><span class="sh-ru">Повторение через игры</span></div>
+  <div class="gsec">
+    <div class="gt">Карточки</div>
+    <div class="gs">Слова из уроков 5 (Учёба) и 6 (Работа)</div>
+    <div class="fc-wrap"><div class="fc" id="fc" onclick="flipCard()"><div class="fc-f"><div class="fc-ar" id="fc-ar">مَدْرَسَةٌ</div><div class="fc-hint">нажми чтобы открыть</div></div><div class="fc-b"><div class="fc-ru" id="fc-ru">школа</div><div class="fc-tag" id="fc-tag">Урок 5</div></div></div></div>
+    <div class="fc-nav"><button class="fc-btn" onclick="fcPrev()">← Назад</button><span class="fc-cnt" id="fc-cnt">1 / 28</span><button class="fc-btn" onclick="fcNext()">Вперёд →</button></div>
+  </div>
+  <div class="gsec">
+    <div class="gt">Выбери перевод</div>
+    <div class="gs">Бесконечное повторение</div>
+    <div class="mw" id="mw">كِتَابٌ</div>
+    <div class="mh">Что это означает?</div>
+    <div class="m-opts" id="m-opts"></div>
+    <div class="m-score">Правильно: <strong id="m-score">0</strong></div>
+  </div>
+  <div class="gsec">
+    <div class="gt">Быстрый огонь</div>
+    <div class="gs">10 слов · 60 секунд</div>
+    <div class="fw">
+      <div id="fire-start"><button class="start-btn" onclick="startFire()">Начать</button></div>
+      <div id="fire-game" style="display:none">
+        <div class="f-timer" id="f-timer">60</div>
+        <div class="f-tsub">секунд</div>
+        <div class="f-dots" id="f-dots"></div>
+        <div class="f-word" id="f-word"></div>
+        <div class="f-opts" id="f-opts"></div>
+      </div>
+      <div class="g-result" id="fire-res">
+        <div class="gr-n" id="fr-n">0/10</div>
+        <div class="gr-ar" id="fr-ar"></div>
+        <button class="retry-btn" onclick="restartFire()">Ещё раз</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="quiz">
+  <div class="sh"><span class="sh-ar">اختبار الدرس</span><span class="sh-ru">Тест — 6 вопросов</span></div>
+  <div class="qc" id="q1"><div class="ql">Вопрос 1 из 6</div><div class="qt">«Пятница» по-арабски?</div><div class="q-opts"><button class="q-opt" onclick="ans(1,'a')">الخَمِيسُ</button><button class="q-opt" onclick="ans(1,'b')">الجُمُعَةُ</button><button class="q-opt" onclick="ans(1,'c')">السَّبْتُ</button><button class="q-opt" onclick="ans(1,'d')">الأَحَدُ</button></div><div class="q-fb" id="q1-fb"></div></div>
+  <div class="qc" id="q2"><div class="ql">Вопрос 2 из 6</div><div class="qt">Как спросить «Какой сегодня день?»</div><div class="q-opts"><button class="q-opt" onclick="ans(2,'a')">مَتَى هَذَا؟</button><button class="q-opt" onclick="ans(2,'b')">أَيُّ يَوْمٍ هَذَا؟</button><button class="q-opt" onclick="ans(2,'c')">كَيْفَ اليَوْمُ؟</button><button class="q-opt" onclick="ans(2,'d')">مَا اليَوْمُ؟</button></div><div class="q-fb" id="q2-fb"></div></div>
+  <div class="qc" id="q3"><div class="ql">Вопрос 3 из 6</div><div class="q-ar">ذَهَبْتُ إِلَى المَسْجِدِ بَكِّراً</div><div class="qt">Переведи:</div><div class="q-opts"><button class="q-opt" onclick="ans(3,'a')">Он пошёл в мечеть поздно</button><button class="q-opt" onclick="ans(3,'b')">Я пойду в мечеть завтра</button><button class="q-opt" onclick="ans(3,'c')">Я пошёл в мечеть рано</button><button class="q-opt" onclick="ans(3,'d')">Мечеть открылась рано</button></div><div class="q-fb" id="q3-fb"></div></div>
+  <div class="qc" id="q4"><div class="ql">Вопрос 4 из 6</div><div class="qt">«Я пошёл» — прошедшее от ذَهَبَ?</div><div class="q-opts"><button class="q-opt" onclick="ans(4,'a')">يَذْهَبُ</button><button class="q-opt" onclick="ans(4,'b')">ذَهَبَ</button><button class="q-opt" onclick="ans(4,'c')">ذَهَبْتُ</button><button class="q-opt" onclick="ans(4,'d')">سَأَذْهَبُ</button></div><div class="q-fb" id="q4-fb"></div></div>
+  <div class="qc" id="q5"><div class="ql">Вопрос 5 из 6</div><div class="qt">Что означает بَكِّراً?</div><div class="q-opts"><button class="q-opt" onclick="ans(5,'a')">Поздно</button><button class="q-opt" onclick="ans(5,'b')">Рано</button><button class="q-opt" onclick="ans(5,'c')">Быстро</button><button class="q-opt" onclick="ans(5,'d')">Сейчас</button></div><div class="q-fb" id="q5-fb"></div></div>
+  <div class="qc" id="q6"><div class="ql">Вопрос 6 из 6</div><div class="qt">Какой день лучший по хадису пророка ﷺ?</div><div class="q-opts"><button class="q-opt" onclick="ans(6,'a')">Понедельник</button><button class="q-opt" onclick="ans(6,'b')">Суббота</button><button class="q-opt" onclick="ans(6,'c')">Воскресенье</button><button class="q-opt" onclick="ans(6,'d')">Пятница</button></div><div class="q-fb" id="q6-fb"></div></div>
+  <div class="qr" id="qr"><div class="qr-pct" id="qr-pct">0%</div><div class="qr-lbl" id="qr-lbl"></div><div class="qr-ar" id="qr-ar"></div><div class="qr-btns"><button class="retry-btn" onclick="resetQuiz()">Ещё раз</button><button class="start-btn" onclick="tab('result',document.querySelectorAll('.tab')[7])" style="padding:9px 22px;font-size:13px">Итог →</button></div></div>
+</div>
+
+<div class="section" id="result">
+  <div class="sh"><span class="sh-ar">نتيجة الدرس</span><span class="sh-ru">Итог урока</span></div>
+  <div class="rg">
+    <div class="ri"><div class="rl">Словарный запас</div><div class="rv">14 слов</div></div>
+    <div class="ri"><div class="rl">Диалог</div><div class="rv">В мечети</div></div>
+    <div class="ri"><div class="rl">Повторение</div><div class="rv">Уроки 5 и 6</div></div>
+    <div class="ri"><div class="rl">Хадис</div><div class="rv">День пятницы ﷺ</div></div>
+  </div>
+  <div class="hw">
+    <div class="hwl">Домашнее задание</div>
+    <div class="hwi"><span class="hwn">١</span>Выучи дни недели наизусть</div>
+    <div class="hwi"><span class="hwn">٢</span>В следующую пятницу иди в мечеть рано</div>
+    <div class="hwi"><span class="hwn">٣</span>Запомни хадис о пятнице наизусть</div>
+    <div class="hwi"><span class="hwn">٤</span>Озвучь аудио текст своим голосом</div>
+  </div>
+</div>
+</div>
+
+<script>
+function tab(id,btn){document.querySelectorAll('.section').forEach(s=>s.classList.remove('on'));document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));document.getElementById(id).classList.add('on');if(btn)btn.classList.add('on');window.scrollTo(0,0);}
+function tog(id){document.getElementById(id).classList.toggle('on');}
+
+var _ca=null,_cb=null;
+function playD(btn,src){if(_ca){_ca.pause();_ca.currentTime=0;}if(_cb){_cb.textContent='▶';_cb.classList.remove('playing');}if(_cb===btn){_ca=null;_cb=null;return;}var a=new Audio(src);_ca=a;_cb=btn;btn.textContent='■';btn.classList.add('playing');a.play().catch(function(){btn.textContent='▶';btn.classList.remove('playing');});a.onended=function(){btn.textContent='▶';btn.classList.remove('playing');_ca=null;_cb=null;};}
+
+const cards=[
+  {ar:'مَدْرَسَةٌ',ru:'школа',tag:'Урок 5'},{ar:'جَامِعَةٌ',ru:'университет',tag:'Урок 5'},
+  {ar:'كِتَابٌ',ru:'книга',tag:'Урок 5'},{ar:'قَلَمٌ',ru:'ручка',tag:'Урок 5'},
+  {ar:'دَرَسَ',ru:'учил',tag:'Урок 5'},{ar:'يَدْرُسُ',ru:'учит',tag:'Урок 5'},
+  {ar:'قَرَأَ',ru:'читал',tag:'Урок 5'},{ar:'يَقْرَأُ',ru:'читает',tag:'Урок 5'},
+  {ar:'كَتَبَ',ru:'писал',tag:'Урок 5'},{ar:'سَهْلٌ',ru:'лёгкий',tag:'Урок 5'},
+  {ar:'فَهِمَ',ru:'понял',tag:'Урок 5'},{ar:'مَاذَا تَدْرُسُ؟',ru:'что изучаешь?',tag:'Урок 5'},
+  {ar:'لَوْحٌ',ru:'доска',tag:'Урок 5'},{ar:'فَصْلٌ',ru:'класс',tag:'Урок 5'},
+  {ar:'عَمَلٌ',ru:'работа',tag:'Урок 6'},{ar:'مَكْتَبٌ',ru:'офис',tag:'Урок 6'},
+  {ar:'مُهَنْدِسٌ',ru:'инженер',tag:'Урок 6'},{ar:'طَبِيبٌ',ru:'врач',tag:'Урок 6'},
+  {ar:'تَاجِرٌ',ru:'торговец',tag:'Урок 6'},{ar:'عَمِلَ',ru:'работал',tag:'Урок 6'},
+  {ar:'يَعْمَلُ',ru:'работает',tag:'Урок 6'},{ar:'كُلَّ يَوْمٍ',ru:'каждый день',tag:'Урок 6'},
+  {ar:'صَبَاحاً',ru:'утром',tag:'Урок 6'},{ar:'مَسَاءً',ru:'вечером',tag:'Урок 6'},
+  {ar:'رِزْقٌ',ru:'пропитание',tag:'Урок 6'},{ar:'مَتَى؟',ru:'когда?',tag:'Урок 10'},
+  {ar:'الجُمُعَةُ',ru:'пятница',tag:'Урок 10'},{ar:'يَوْمٌ',ru:'день',tag:'Урок 10'},
+];
+
+let fi=0;
+function renderFC(){document.getElementById('fc').classList.remove('flp');document.getElementById('fc-ar').textContent=cards[fi].ar;document.getElementById('fc-ru').textContent=cards[fi].ru;document.getElementById('fc-tag').textContent=cards[fi].tag;document.getElementById('fc-cnt').textContent=(fi+1)+' / '+cards.length;}
+function flipCard(){document.getElementById('fc').classList.toggle('flp');}
+function fcNext(){fi=(fi+1)%cards.length;renderFC();}
+function fcPrev(){fi=(fi-1+cards.length)%cards.length;renderFC();}
+
+let mi=0,ms=0;
+function sh(a){return[...a].sort(()=>Math.random()-0.5);}
+function renderMatch(){const c=cards[mi%cards.length];const w=sh(cards.filter(x=>x.ar!==c.ar)).slice(0,3);const o=sh([c,...w]);document.getElementById('mw').textContent=c.ar;document.getElementById('m-opts').innerHTML=o.map(x=>`<button class="m-opt" onclick="mAns(this,'${x.ru}','${c.ru}')">${x.ru}</button>`).join('');}
+function mAns(btn,ch,co){document.querySelectorAll('.m-opt').forEach(b=>b.classList.add('dis'));if(ch===co){btn.classList.add('ok');ms++;document.getElementById('m-score').textContent=ms;setTimeout(()=>{mi++;renderMatch();},700);}else{btn.classList.add('no');document.querySelectorAll('.m-opt').forEach(b=>{if(b.textContent===co)b.classList.add('sh');});setTimeout(()=>{mi++;renderMatch();},1000);}}
+
+const fw=sh(cards).slice(0,10);
+let fwi=0,fws=0,fwt=60,fwint=null;
+function startFire(){fwi=0;fws=0;fwt=60;document.getElementById('fire-start').style.display='none';document.getElementById('fire-game').style.display='block';document.getElementById('fire-res').classList.remove('on');document.getElementById('f-dots').innerHTML=Array(10).fill(0).map((_,i)=>`<div class="f-dot ${i===0?'cur':''}" id="fd${i}"></div>`).join('');renderFireQ();fwint=setInterval(()=>{fwt--;const t=document.getElementById('f-timer');t.textContent=fwt;t.className='f-timer'+(fwt<=10?' low':'');if(fwt<=0)endFire();},1000);}
+function renderFireQ(){if(fwi>=10){endFire();return;}const c=fw[fwi];const w=sh(cards.filter(x=>x.ar!==c.ar)).slice(0,3);const o=sh([c,...w]);document.getElementById('f-word').textContent=c.ar;document.getElementById('f-opts').innerHTML=o.map(x=>`<button class="f-opt" onclick="fAns(this,'${x.ru}','${c.ru}')">${x.ru}</button>`).join('');}
+function fAns(btn,ch,co){document.querySelectorAll('.f-opt').forEach(b=>b.classList.add('dis'));const d=document.getElementById('fd'+fwi);if(ch===co){btn.classList.add('ok');fws++;if(d){d.classList.remove('cur');d.classList.add('ok');}}else{btn.classList.add('no');document.querySelectorAll('.f-opt').forEach(b=>{if(b.textContent===co)b.classList.add('sh');});if(d){d.classList.remove('cur');d.classList.add('no');}}fwi++;const nd=document.getElementById('fd'+fwi);if(nd)nd.classList.add('cur');if(fwi<10)setTimeout(renderFireQ,700);else setTimeout(endFire,700);}
+function endFire(){clearInterval(fwint);document.getElementById('fire-game').style.display='none';document.getElementById('fire-res').classList.add('on');document.getElementById('fr-n').textContent=fws+'/10';document.getElementById('fr-ar').textContent=fws>=8?'ماشاء الله! ممتاز!':fws>=5?'أحسنت! بارك الله فيك':'حاول مرة أخرى بإذن الله';}
+function restartFire(){document.getElementById('fire-res').classList.remove('on');document.getElementById('fire-start').style.display='block';}
+
+const qc={1:'b',2:'b',3:'c',4:'c',5:'b',6:'d'};
+const qf={1:{b:'✓ الجُمُعَةُ = пятница',a:'✗ الخَمِيسُ = четверг. الجُمُعَةُ = пятница'},2:{b:'✓ أَيُّ يَوْمٍ هَذَا؟',a:'✗ مَتَى = когда. أَيُّ يَوْمٍ = какой день'},3:{c:'✓ ذَهَبْتُ = я пошёл | بَكِّراً = рано',a:'✗ Неверно. ذَهَبْتُ = я пошёл'},4:{c:'✓ ذَهَبْتُ = я пошёл',a:'✗ يَذْهَبُ = он идёт. ذَهَبْتُ = я пошёл'},5:{b:'✓ بَكِّراً = рано',a:'✗ مُتَأَخِّراً = поздно. بَكِّراً = рано'},6:{d:'✓ Пятница — лучший день! Хадис Муслим',a:'✗ Неверно. Лучший день — пятница اليُوْمُ الجُمُعَةُ'}};
+let qs=0,qa=0;
+function ans(n,ch){const q=document.getElementById('q'+n);if(q.classList.contains('done'))return;q.classList.add('done');qa++;const opts=q.querySelectorAll('.q-opt');const L=['a','b','c','d'];opts.forEach((o,i)=>{o.classList.add('dis');if(L[i]===qc[n])o.classList.add('sh');});opts[L.indexOf(ch)].classList.remove('sh');if(ch===qc[n]){opts[L.indexOf(ch)].classList.add('ok');qs++;}else opts[L.indexOf(ch)].classList.add('no');const fb=document.getElementById('q'+n+'-fb');fb.textContent=qf[n][ch]||'';fb.className='q-fb on '+(ch===qc[n]?'ok':'no');if(qa===6)showQR();}
+function showQR(){const r=document.getElementById('qr');r.classList.add('on');const p=Math.round(qs/6*100);document.getElementById('qr-pct').textContent=p+'%';document.getElementById('qr-lbl').textContent=qs+' из 6 правильных';document.getElementById('qr-ar').textContent=p>=85?'ماشاء الله! ممتاز جداً!':p>=60?'أحسنت! بارك الله فيك':'حاول مرة أخرى بإذن الله';r.scrollIntoView({behavior:'smooth',block:'center'});}
+function resetQuiz(){qs=0;qa=0;for(let i=1;i<=6;i++){const q=document.getElementById('q'+i);q.classList.remove('done');q.querySelectorAll('.q-opt').forEach(o=>o.className='q-opt');const fb=document.getElementById('q'+i+'-fb');fb.className='q-fb';fb.textContent='';}document.getElementById('qr').classList.remove('on');window.scrollTo(0,0);}
+
+renderFC();renderMatch();
+</script>
+</body>
+</html>

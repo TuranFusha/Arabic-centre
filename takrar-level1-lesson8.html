@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التكرار أم العلم — الدرس ٨</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Merriweather:wght@300;400;700&family=Noto+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#b8860b;--gold-light:#d4a017;--gold-pale:#fdf6e3;
+  --bg:#fafaf8;--bg2:#fff;--bg3:#f5f2eb;
+  --text:#1a1a1a;--muted:#6b6560;--border:#e8e0d0;
+  --green:#2d6a4f;--green-light:#52b788;
+  --blue:#1d4e89;--blue-light:#4a7fbd;
+  --purple:#6b46c1;--purple-light:#9f7aea;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans',sans-serif;font-size:14px;line-height:1.6;}
+
+/* TOP */
+.top-bar{background:linear-gradient(135deg,#1a1208,#2c1f08);padding:10px 20px;text-align:center;}
+.top-bismillah{font-family:'Scheherazade New',serif;font-size:18px;color:#d4a017;direction:rtl;}
+
+/* NAV */
+.site-nav{background:var(--bg2);border-bottom:3px solid var(--gold);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.06);}
+.sn-logo{font-family:'Amiri',serif;font-size:20px;color:var(--gold);direction:rtl;}
+.sn-links{display:flex;gap:4px;}
+.sn-btn{padding:6px 12px;border:none;background:transparent;color:var(--muted);font-size:11px;font-weight:600;cursor:pointer;border-radius:6px;font-family:'Noto Sans',sans-serif;transition:all 0.2s;}
+.sn-btn:hover{background:var(--gold-pale);color:var(--gold);}
+.sn-btn.active{background:var(--gold);color:white;}
+
+/* HERO */
+.lesson-hero{background:linear-gradient(135deg,#1a1208,#2c1f08);padding:36px 20px;text-align:center;position:relative;overflow:hidden;}
+.lesson-hero::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(184,134,11,0.04) 30px,rgba(184,134,11,0.04) 31px);}
+.lh-content{position:relative;z-index:1;max-width:600px;margin:0 auto;}
+.lh-badge{display:inline-block;background:rgba(184,134,11,0.2);border:1px solid rgba(184,134,11,0.4);color:#d4a017;padding:4px 14px;border-radius:20px;font-size:10px;letter-spacing:2px;font-weight:700;margin-bottom:12px;}
+.lh-ar{font-family:'Amiri',serif;font-size:28px;color:#d4a017;direction:rtl;margin-bottom:6px;}
+.lh-title{font-family:'Merriweather',serif;font-size:22px;color:white;margin-bottom:6px;}
+.lh-sub{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:2px;}
+
+/* PROGRESS BAR */
+.prog-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:8px 20px;}
+.pb-inner{max-width:800px;margin:0 auto;display:flex;align-items:center;gap:12px;}
+.pb-label{font-size:10px;color:var(--muted);white-space:nowrap;}
+.pb-track{flex:1;height:6px;background:var(--bg3);border-radius:3px;overflow:hidden;}
+.pb-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:3px;width:57%;}
+.pb-num{font-size:10px;color:var(--gold);font-weight:700;white-space:nowrap;}
+.pb-links{display:flex;gap:6px;margin-left:auto;}
+.pb-link{padding:4px 10px;border:1px solid var(--border);border-radius:6px;font-size:10px;color:var(--muted);text-decoration:none;font-weight:600;transition:all 0.2s;}
+.pb-link:hover{border-color:var(--gold);color:var(--gold);}
+
+/* TABS */
+.tabs{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 20px;overflow-x:auto;}
+.tabs-inner{max-width:800px;margin:0 auto;display:flex;}
+.tab{padding:12px 18px;border:none;background:transparent;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;font-family:'Noto Sans',sans-serif;transition:all 0.2s;white-space:nowrap;letter-spacing:0.5px;}
+.tab:hover{color:var(--gold);}
+.tab.active{color:var(--gold);border-bottom-color:var(--gold);}
+
+/* MAIN */
+.main{max-width:800px;margin:0 auto;padding:28px 20px 60px;}
+.section{display:none;}
+.section.active{display:block;}
+
+/* CARD */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:18px;}
+.card-title{font-family:'Merriweather',serif;font-size:15px;font-weight:700;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--gold);display:flex;align-items:center;gap:10px;}
+.card-title-ar{font-family:'Amiri',serif;font-size:16px;color:var(--gold);}
+
+/* VOCAB TABLE */
+.vtbl{width:100%;border-collapse:collapse;}
+.vtbl th{background:var(--gold);color:white;padding:8px 12px;font-size:10px;letter-spacing:1px;text-transform:uppercase;text-align:center;}
+.vtbl td{padding:9px 12px;text-align:center;border-bottom:1px solid var(--border);font-size:12px;}
+.vtbl tr:nth-child(even) td{background:var(--bg3);}
+.vtbl tr:hover td{background:var(--gold-pale);}
+.ar{font-family:'Scheherazade New',serif;font-size:20px;color:var(--gold);direction:rtl;}
+.tr{font-style:italic;color:var(--muted);}
+
+/* DIALOG */
+.d-item{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start;}
+.d-item.r{flex-direction:row-reverse;}
+.d-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;color:white;}
+.d-av-y{background:var(--gold);}
+.d-av-a{background:var(--blue);}
+.d-bub{max-width:78%;}
+.d-name{font-size:9px;letter-spacing:1px;text-transform:uppercase;font-weight:700;margin-bottom:3px;}
+.d-name-y{color:var(--gold);}
+.d-name-a{color:var(--blue);text-align:right;}
+.d-box{border-radius:10px;padding:10px 14px;}
+.d-box-y{background:var(--gold-pale);border:1px solid #e8d5a0;}
+.d-box-a{background:#f0f4ff;border:1px solid #b0c0e8;}
+.d-ar{font-family:'Scheherazade New',serif;font-size:18px;direction:rtl;text-align:right;line-height:1.9;margin-bottom:4px;}
+.d-ro{font-size:9px;color:var(--muted);font-style:italic;margin-bottom:3px;}
+.d-ru{font-size:11px;color:var(--text);font-weight:600;}
+
+/* GRAM */
+.gram{background:var(--gold-pale);border:1px solid #e8d5a0;border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:10px;}
+.gram-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:8px;}
+.gram-ar{font-family:'Scheherazade New',serif;font-size:19px;direction:rtl;text-align:right;line-height:1.9;margin-bottom:6px;}
+.gram-ru{font-size:11px;color:var(--muted);line-height:1.6;}
+.tip{background:#f0f8f0;border:1px solid #a0c8b0;border-radius:6px;padding:8px 12px;font-size:11px;color:var(--green);font-weight:600;margin:8px 0;}
+
+/* EXERCISES */
+.ex{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:10px;}
+.ex-num{display:inline-flex;align-items:center;justify-content:center;background:var(--gold);color:white;width:22px;height:22px;border-radius:50%;font-size:10px;font-weight:700;margin-bottom:8px;}
+.ex-q{font-size:12px;margin-bottom:8px;}
+.abtn{padding:5px 14px;border-radius:20px;border:1px solid var(--gold);background:transparent;color:var(--gold);font-size:9px;letter-spacing:1px;cursor:pointer;font-family:'Noto Sans',sans-serif;font-weight:700;transition:all 0.2s;text-transform:uppercase;}
+.abtn:hover{background:var(--gold);color:white;}
+.abox{display:none;background:white;border:1px solid #e8d5a0;border-radius:6px;padding:10px 12px;margin-top:8px;}
+.abox.show{display:block;}
+.abox-ar{font-family:'Scheherazade New',serif;font-size:16px;color:var(--gold);direction:rtl;text-align:right;margin-bottom:4px;}
+.abox-ru{font-size:11px;color:var(--green);font-weight:600;}
+
+/* AUDIO */
+.audio-box{background:linear-gradient(135deg,#1a1208,#2c1f08);border-radius:10px;padding:20px;}
+.audio-play{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.play-btn{width:44px;height:44px;border-radius:50%;background:var(--gold);border:none;color:white;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s;}
+.play-btn:hover{background:var(--gold-light);transform:scale(1.05);}
+.play-info strong{display:block;color:white;font-size:13px;margin-bottom:2px;}
+.play-info{color:rgba(255,255,255,0.6);font-size:11px;}
+.audio-ar{font-family:'Scheherazade New',serif;font-size:19px;direction:rtl;text-align:right;line-height:2;margin-bottom:10px;color:#e8c97a;}
+.audio-tr{font-size:9px;color:rgba(255,255,255,0.4);font-style:italic;margin-bottom:4px;}
+.audio-ru{font-size:12px;color:rgba(255,255,255,0.75);margin-bottom:16px;}
+.audio-qs{border-top:1px solid rgba(255,255,255,0.1);padding-top:14px;}
+.audio-qs-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#d4a017;margin-bottom:8px;font-weight:700;}
+.audio-q{font-size:12px;color:rgba(255,255,255,0.75);margin-bottom:6px;display:flex;gap:8px;}
+.audio-q-n{color:#d4a017;font-weight:700;flex-shrink:0;}
+
+/* ===== ИГРЫ ===== */
+.game-header{text-align:center;padding:16px 0 20px;}
+.gh-ar{font-family:'Scheherazade New',serif;font-size:20px;color:var(--gold);direction:rtl;margin-bottom:4px;}
+.gh-ru{font-size:11px;color:var(--muted);}
+
+/* Игра 1 — Карточки */
+.flashcard-wrap{perspective:1000px;margin:0 auto 20px;max-width:360px;}
+.flashcard{width:100%;height:180px;cursor:pointer;position:relative;transform-style:preserve-3d;transition:transform 0.5s ease;}
+.flashcard.flipped{transform:rotateY(180deg);}
+.fc-front,.fc-back{position:absolute;inset:0;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;backface-visibility:hidden;padding:20px;}
+.fc-front{background:linear-gradient(135deg,#1a1208,#2c1f08);border:2px solid rgba(184,134,11,0.3);}
+.fc-back{background:linear-gradient(135deg,#0d1a0d,#1a2e1a);border:2px solid rgba(82,183,120,0.3);transform:rotateY(180deg);}
+.fc-ar{font-family:'Scheherazade New',serif;font-size:32px;color:#d4a017;direction:rtl;margin-bottom:8px;}
+.fc-hint{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1px;}
+.fc-ru{font-size:22px;font-weight:700;color:#52b788;margin-bottom:6px;}
+.fc-lesson{font-size:10px;color:rgba(255,255,255,0.4);}
+.fc-nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:20px;}
+.fc-btn{padding:8px 20px;border:1px solid var(--border);border-radius:8px;background:var(--bg2);color:var(--text);font-size:12px;font-weight:600;cursor:pointer;font-family:'Noto Sans',sans-serif;transition:all 0.2s;}
+.fc-btn:hover{border-color:var(--gold);color:var(--gold);}
+.fc-counter{font-size:12px;color:var(--muted);}
+
+/* Игра 2 — Выбери перевод */
+.match-q{text-align:center;margin-bottom:20px;}
+.mq-ar{font-family:'Scheherazade New',serif;font-size:36px;color:var(--gold);direction:rtl;margin-bottom:8px;}
+.mq-sub{font-size:11px;color:var(--muted);}
+.match-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.mo-btn{padding:14px;border:2px solid var(--border);border-radius:10px;background:var(--bg2);cursor:pointer;font-size:13px;font-weight:600;font-family:'Noto Sans',sans-serif;transition:all 0.25s;text-align:center;}
+.mo-btn:hover:not(.disabled){border-color:var(--blue-light);background:#f0f4ff;color:var(--blue);}
+.mo-btn.correct{border-color:var(--green);background:#e8f5e9;color:var(--green);}
+.mo-btn.wrong{border-color:#e57373;background:#ffebee;color:#c62828;}
+.mo-btn.disabled{pointer-events:none;}
+.match-score{text-align:center;font-size:12px;color:var(--muted);margin-bottom:16px;}
+.match-score span{font-weight:700;color:var(--green);font-size:16px;}
+
+/* Игра 3 — Быстрый огонь */
+.fire-wrap{text-align:center;}
+.fire-timer{font-family:'Merriweather',serif;font-size:48px;font-weight:700;color:var(--gold);margin-bottom:4px;}
+.fire-timer.low{color:#e57373;}
+.fire-sub{font-size:11px;color:var(--muted);margin-bottom:20px;}
+.fire-q{font-family:'Scheherazade New',serif;font-size:34px;color:var(--text);direction:rtl;margin-bottom:16px;min-height:50px;display:flex;align-items:center;justify-content:center;}
+.fire-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.fo-btn{padding:12px;border:2px solid var(--border);border-radius:10px;background:var(--bg2);cursor:pointer;font-size:13px;font-weight:600;font-family:'Noto Sans',sans-serif;transition:all 0.15s;}
+.fo-btn:hover:not(.disabled){border-color:var(--gold);background:var(--gold-pale);}
+.fo-btn.correct{border-color:var(--green);background:#e8f5e9;color:var(--green);}
+.fo-btn.wrong{border-color:#e57373;background:#ffebee;color:#c62828;}
+.fo-btn.disabled{pointer-events:none;}
+.fire-progress{display:flex;gap:6px;justify-content:center;margin-bottom:16px;}
+.fp-dot{width:10px;height:10px;border-radius:50%;background:var(--border);transition:background 0.3s;}
+.fp-dot.done-ok{background:var(--green);}
+.fp-dot.done-no{background:#e57373;}
+.fp-dot.current{background:var(--gold);}
+.fire-result{display:none;padding:20px;text-align:center;}
+.fire-result.show{display:block;}
+.fr-score{font-family:'Merriweather',serif;font-size:48px;font-weight:700;color:var(--gold);margin-bottom:6px;}
+.fr-ar{font-family:'Scheherazade New',serif;font-size:22px;color:var(--text);direction:rtl;margin-bottom:16px;}
+.start-game-btn{padding:12px 32px;background:var(--gold);color:white;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Noto Sans',sans-serif;transition:all 0.2s;margin-top:10px;}
+.start-game-btn:hover{background:var(--gold-light);}
+.start-game-btn.green{background:var(--green);}
+.start-game-btn.green:hover{background:var(--green-light);}
+
+/* QUIZ */
+.quiz-intro{text-align:center;padding:16px;margin-bottom:16px;background:var(--gold-pale);border-radius:8px;border:1px solid #e8d5a0;}
+.quiz-intro-ar{font-family:'Amiri',serif;font-size:22px;color:var(--gold);direction:rtl;margin-bottom:4px;}
+.quiz-intro-ru{font-size:11px;color:var(--muted);}
+.q-item{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:14px;}
+.q-num{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:600;}
+.q-text{font-size:13px;font-weight:600;margin-bottom:8px;}
+.q-text-ar{font-family:'Scheherazade New',serif;font-size:20px;direction:rtl;text-align:right;margin-bottom:10px;line-height:1.9;}
+.q-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.q-opt{padding:10px 14px;border:1px solid var(--border);border-radius:8px;background:white;cursor:pointer;font-size:12px;text-align:center;transition:all 0.2s;font-family:'Noto Sans',sans-serif;}
+.q-opt:hover:not(.disabled){border-color:var(--gold);background:var(--gold-pale);}
+.q-opt.selected-correct{background:#e8f5e9;border-color:var(--green);color:var(--green);font-weight:700;}
+.q-opt.selected-wrong{background:#ffebee;border-color:#e57373;color:#c62828;font-weight:700;}
+.q-opt.show-correct{background:#e8f5e9;border-color:var(--green);color:var(--green);}
+.q-opt.disabled{pointer-events:none;}
+.q-feedback{font-size:11px;margin-top:8px;font-weight:600;display:none;}
+.q-feedback.show{display:block;}
+.q-feedback.ok{color:var(--green);}
+.q-feedback.no{color:#c62828;}
+.quiz-result{display:none;text-align:center;padding:30px 20px;background:var(--bg2);border:2px solid var(--gold);border-radius:12px;margin-top:20px;}
+.quiz-result.show{display:block;}
+.qr-score{font-family:'Merriweather',serif;font-size:52px;font-weight:700;color:var(--gold);margin-bottom:4px;}
+.qr-label{font-size:13px;color:var(--muted);margin-bottom:14px;}
+.qr-ar{font-family:'Scheherazade New',serif;font-size:22px;color:var(--text);direction:rtl;margin-bottom:10px;}
+.qr-badge{display:inline-block;padding:6px 20px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:16px;}
+.qr-badge.excellent{background:#e8f5e9;color:var(--green);border:1px solid var(--green-light);}
+.qr-badge.good{background:var(--gold-pale);color:var(--gold);border:1px solid #e8d5a0;}
+.qr-badge.retry{background:#ffebee;color:#c62828;border:1px solid #e57373;}
+.qr-btn{padding:10px 28px;background:var(--gold);color:white;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans',sans-serif;transition:all 0.2s;margin:0 6px;}
+.qr-btn:hover{background:var(--gold-light);}
+.qr-btn.sec{background:white;color:var(--gold);border:1px solid var(--gold);}
+
+/* RESULT TAB */
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.ri{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;}
+.ri-ico{font-size:24px;margin-bottom:6px;display:block;}
+.ri-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;}
+.ri-val{font-size:13px;font-weight:700;color:var(--green);}
+.hw{background:#f0f8f0;border:1px solid #a0c8b0;border-radius:8px;padding:14px 16px;}
+.hw-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--green);margin-bottom:10px;}
+.hw-item{font-size:12px;color:var(--text);margin-bottom:6px;display:flex;gap:8px;}
+.hw-dot{color:var(--gold);font-weight:700;flex-shrink:0;}
+
+footer{background:#1a1208;color:rgba(255,255,255,0.5);text-align:center;padding:28px 20px;margin-top:40px;}
+.f-ar{font-family:'Scheherazade New',serif;font-size:20px;color:#d4a017;direction:rtl;margin-bottom:6px;}
+.f-copy{font-size:10px;opacity:0.3;}
+
+@media(max-width:550px){
+  .q-options,.match-opts,.fire-opts{grid-template-columns:1fr;}
+  .result-grid{grid-template-columns:1fr;}
+  .sn-links{display:none;}
+}
+</style>
+
+<meta name="color-scheme" content="light only">
+<style>
+/* ===== iOS LIGHT OVERRIDE ===== */
+:root {
+  --bg: #f2f2f7 !important;
+  --bg2: #ffffff !important;
+  --bg3: #f2f2f7 !important;
+  --dark: #f2f2f7 !important;
+  --dark2: #ffffff !important;
+  --dark3: #f2f2f7 !important;
+  --text: #000000 !important;
+  --text-muted: #6c6c70 !important;
+  --muted: #6c6c70 !important;
+  --border: rgba(60,60,67,0.18) !important;
+  --gold: #b8860b !important;
+  --gold-pale: #fdf6e3 !important;
+  --gold-light: #d4a017 !important;
+  --green: #34c759 !important;
+  --green-light: #34c759 !important;
+  --blue: #007aff !important;
+  --blue-light: #007aff !important;
+  color-scheme: light only;
+}
+
+/* FORCE WHITE/GRAY EVERYWHERE */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #f2f2f7 !important;
+  color: #000000 !important;
+  font-family: -apple-system, 'Noto Sans', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+.site-nav, nav, .sn-logo, .sn-logo-ar, .nav, .nav-inner, .top-site {
+  background: rgba(242,242,247,0.95) !important;
+  border-bottom: 1px solid rgba(60,60,67,0.18) !important;
+  backdrop-filter: blur(20px) !important;
+  color: #000000 !important;
+}
+
+.top-bar {
+  background: rgba(242,242,247,0.95) !important;
+  border-bottom: 1px solid rgba(60,60,67,0.18) !important;
+}
+
+.top-bismillah {
+  color: #b8860b !important;
+}
+
+.top-site {
+  color: #6c6c70 !important;
+}
+
+/* HERO */
+.lesson-hero, .exam-hero, .hero {
+  background: #f2f2f7 !important;
+  color: #000000 !important;
+}
+
+.lesson-hero::before, .exam-hero::before, .hero::before {
+  display: none !important;
+}
+
+.lh-ar, .lh-title, .lh-sub, .lh-badge,
+.eh-ar, .eh-title, .eh-sub, .eh-badge, .eh-icon,
+.hero-ar, .hero-ru, .hero-sub {
+  color: #000000 !important;
+}
+
+.lh-badge, .eh-badge, .hero-eye {
+  background: rgba(0,122,255,0.1) !important;
+  border: 1px solid rgba(0,122,255,0.2) !important;
+  color: #007aff !important;
+}
+
+/* PROGRESS BAR */
+.lesson-nav-bar, .prog-bar, .lnb-inner, .prog, .prog-in {
+  background: #f2f2f7 !important;
+  border-bottom: 1px solid rgba(60,60,67,0.18) !important;
+}
+
+.lnb-label, .lnb-num, .pb-label, .pb-num, .prog-lbl {
+  color: #6c6c70 !important;
+}
+
+.lnb-link, .pb-link, .prog-a {
+  color: #007aff !important;
+  background: transparent !important;
+  border-color: rgba(60,60,67,0.18) !important;
+}
+
+.lnb-track, .pb-track, .prog-track {
+  background: #e5e5ea !important;
+}
+
+.lnb-fill, .pb-fill, .prog-fill {
+  background: #007aff !important;
+}
+
+/* TABS */
+.tabs, .tabs-bar {
+  background: #f2f2f7 !important;
+  border-bottom: 1px solid rgba(60,60,67,0.18) !important;
+}
+
+.tab {
+  color: #6c6c70 !important;
+  background: transparent !important;
+  border-bottom: 2px solid transparent !important;
+}
+
+.tab.active, .tab.on {
+  color: #007aff !important;
+  border-bottom-color: #007aff !important;
+  background: transparent !important;
+}
+
+/* MAIN CONTENT */
+.main, .wrap, .lesson-wrap, .adhkar-wrap {
+  background: transparent !important;
+}
+
+/* CARDS / BLOCKS */
+.card, .block, .rbox, .rule-box, .gram, .gram-block, .gb,
+.iblock, .audio-box, .audio-card,
+.etime, .dcard, .dcard.dm, .dcard.de,
+.score-item, .sitem, .rg-item, .ri,
+.result-card, .intro-card, .exam-info,
+.qi, .qc, .q-card, .quiz-intro,
+.type-card, .tcard, .gsec,
+.hw, .hw-card, .hw-box,
+.topic, .t1, .t2, .t3, .t4,
+.qblock, .quran-block,
+.iblock, .flashcard-wrap {
+  background: #ffffff !important;
+  border-color: rgba(60,60,67,0.18) !important;
+  color: #000000 !important;
+}
+
+/* SECTION TITLES */
+.stitle, .sec-title, .sh-ru, .sh-ar,
+.card-title, .card-name, .card-name-ar,
+.block-title, .block-name {
+  color: #000000 !important;
+  border-bottom-color: #007aff !important;
+}
+
+.sg, .sb, .sp, .so, .gold-title, .blue-title, .purple-title, .orange-title {
+  color: #007aff !important;
+}
+
+/* ARABIC TEXT */
+.ar, .ar-c, .ar-td, .gram-ar, .g-ar, .rule-ar, .rar,
+.gram-block .gram-ar, .quran-ar, .q-ar,
+.d-ar, .abox-ar, .ans-ar, .a-ar,
+.audio-ar, .aud-ar,
+.fc-ar, .mq-ar, .match-word, .mw, .fire-q, .f-word,
+.dialog-item .d-ar,
+.d-text, .dtext,
+.iayah, .i-ayah,
+.quiz-intro-ar, .qr-ar, .lh-ar,
+.bismillah, .top-bismillah, .bismillah-header,
+.hero-ar, .hero-bismillah,
+.hero-quote, .logo-ar, .sn-logo-ar, .logo,
+.type-example, .tex, .tc-ex,
+.footer-ar, .pfar, .f-ar, .far,
+.abox-ar, .a-ar, .ans-ar,
+.gram-ar, .g-ar {
+  color: #000000 !important;
+  background: transparent !important;
+}
+
+/* GOLD COLOR ACCENTS — keep them visible */
+.ar-td, .ar, .ar-c {
+  color: #8b6508 !important;
+}
+
+/* TABLE */
+.vtbl, .gtbl, .gram-table, .tbl {
+  background: #ffffff !important;
+}
+
+.vtbl th, .gtbl th, .gram-table th, .tbl th {
+  background: #007aff !important;
+  color: #ffffff !important;
+}
+
+.vtbl td, .gtbl td, .gram-table td, .tbl td {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border-bottom: 1px solid rgba(60,60,67,0.12) !important;
+}
+
+.vtbl tr:nth-child(even) td, .gtbl tr:nth-child(even) td,
+.gram-table tr:nth-child(even) td {
+  background: #f9f9fb !important;
+}
+
+.vtbl tr:hover td, .gtbl tr:hover td {
+  background: #f2f2f7 !important;
+}
+
+.ar-td, .ard, .ar {
+  color: #8b6508 !important;
+}
+
+.it-c, .tr, .tr-td {
+  color: #8e8e93 !important;
+  font-style: italic !important;
+}
+
+/* DIALOG */
+.d-box-y, .db, .d-box-l {
+  background: #f2f2f7 !important;
+  border-color: rgba(60,60,67,0.15) !important;
+}
+
+.d-box-a, .d-box-r, .db-r {
+  background: #e5f0ff !important;
+  border-color: rgba(0,122,255,0.15) !important;
+}
+
+.d-ar, .d-ro, .d-ru, .d-name, .d-name-y, .d-name-a {
+  color: #000000 !important;
+  background: transparent !important;
+}
+
+.d-ro, .d-tr { color: #8e8e93 !important; }
+.d-ru { color: #3c3c43 !important; }
+
+.d-av, .d-avatar, .av {
+  background: #e5e5ea !important;
+  border: 1px solid rgba(60,60,67,0.18) !important;
+  color: #3c3c43 !important;
+}
+
+.d-av-y { background: #fff3d6 !important; color: #8b6508 !important; }
+.d-av-a { background: #e5f0ff !important; color: #007aff !important; }
+
+/* PRACTICE ITEMS */
+.pitem, .practice-item, .ex, .ex-item, .ei {
+  background: #ffffff !important;
+  border-color: rgba(60,60,67,0.18) !important;
+}
+
+.pitem:hover, .ei:hover { border-color: #007aff !important; }
+
+.par, .p-ar { color: #000000 !important; }
+.pnum, .p-num { color: #c7c7cc !important; }
+
+/* ANSWER BOXES */
+.abox, .answer-box, .ans-box, .ab {
+  background: #f0faf4 !important;
+  border-color: rgba(52,199,89,0.3) !important;
+}
+
+.abox-ru, .answer-content, .a-ru, .ans-ru {
+  color: #1a7a3a !important;
+}
+
+/* BUTTONS */
+.abtn, .answer-btn, .cbtn, .check-btn {
+  background: transparent !important;
+  border-color: #007aff !important;
+  color: #007aff !important;
+}
+
+.abtn:hover, .cbtn:hover { background: #007aff !important; color: #ffffff !important; }
+
+/* QUIZ OPTIONS */
+.q-opt, .qc-opt, .q-opt, .m-opt, .f-opt, .fo-btn, .mo-btn {
+  background: #ffffff !important;
+  border-color: rgba(60,60,67,0.18) !important;
+  color: #000000 !important;
+}
+
+.q-opt:hover:not(.disabled):not(.dis),
+.m-opt:hover:not(.disabled):not(.dis),
+.f-opt:hover:not(.disabled):not(.dis) {
+  border-color: #007aff !important;
+  background: #e5f0ff !important;
+  color: #007aff !important;
+}
+
+.q-opt.selected-correct, .q-opt.ok, .m-opt.ok, .f-opt.ok,
+.q-opt.show-correct, .q-opt.sh, .m-opt.sh, .f-opt.sh,
+.q-opt.selected-correct, .qc-opt.selected-correct {
+  background: #edfaf1 !important;
+  border-color: #34c759 !important;
+  color: #1a7a3a !important;
+}
+
+.q-opt.selected-wrong, .q-opt.no, .m-opt.no, .f-opt.no,
+.qc-opt.selected-wrong {
+  background: #fff0ef !important;
+  border-color: #ff3b30 !important;
+  color: #cc0000 !important;
+}
+
+/* QUIZ RESULT */
+.quiz-result, .qr, .result-card {
+  background: #ffffff !important;
+  border-color: rgba(60,60,67,0.18) !important;
+}
+
+.qr-score, .qr-pct, .fr-score, .gr-score, .gr-n {
+  color: #007aff !important;
+}
+
+.qr-label, .qr-lbl { color: #6c6c70 !important; }
+
+.qr-badge.excellent { background: #edfaf1 !important; color: #1a7a3a !important; border-color: #34c759 !important; }
+.qr-badge.good { background: #fdf6e3 !important; color: #8b6508 !important; border-color: #d4a017 !important; }
+.qr-badge.retry { background: #fff0ef !important; color: #cc0000 !important; border-color: #ff3b30 !important; }
+
+/* QR BUTTONS */
+.qr-btn, .start-btn, .start-game-btn, .rb-btn, .retry-btn, .qr-btn.sec {
+  background: #007aff !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+.qr-btn.sec, .retry-btn {
+  background: #ffffff !important;
+  color: #007aff !important;
+  border: 1px solid rgba(60,60,67,0.18) !important;
+}
+
+/* AUDIO */
+.audio-box, .audio-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(60,60,67,0.18) !important;
+}
+
+.audio-ar, .aud-ar, .audio-text {
+  color: #000000 !important;
+}
+
+.audio-tr, .aud-tr { color: #8e8e93 !important; }
+.audio-ru, .aud-ru { color: #3c3c43 !important; }
+.audio-qs-lbl, .aud-ql { color: #6c6c70 !important; }
+.audio-q, .aud-q { color: #3c3c43 !important; }
+.audio-q-n, .aud-qn { color: #007aff !important; }
+
+.play-info, .pi { color: #6c6c70 !important; }
+.play-info strong, .pi strong { color: #000000 !important; }
+
+/* ADHKAR */
+.etime.em { background: #fdf6e3 !important; border-color: #e8d5a0 !important; }
+.etime.ae { background: #e5f0ff !important; border-color: #b0c0e8 !important; }
+.dcard.dm { background: #ffffff !important; border-color: rgba(60,60,67,0.18) !important; border-right-color: #b8860b !important; }
+.dcard.de { background: #ffffff !important; border-color: rgba(60,60,67,0.18) !important; border-right-color: #007aff !important; }
+
+.dcard .d-text, .dtext { color: #000000 !important; }
+.dnum, .d-num { color: #8b6508 !important; opacity: 0.08 !important; }
+.rbadge, .d-badge { background: #fdf6e3 !important; color: #8b6508 !important; border-color: #e8d5a0 !important; }
+.dcard.de .rbadge, .dcard.de .d-badge { background: #e5f0ff !important; color: #007aff !important; border-color: #b0c0e8 !important; }
+.cbtn.dm, .d-cbtn { background: #fdf6e3 !important; color: #8b6508 !important; border: 1px solid #e8d5a0 !important; }
+.dcard.de .d-cbtn { background: #e5f0ff !important; color: #007aff !important; border-color: #b0c0e8 !important; }
+.cnum, .d-cnum { color: #8b6508 !important; }
+.dcard.de .d-cnum { color: #007aff !important; }
+.rbtn, .rst-btn { background: #f2f2f7 !important; border-color: rgba(60,60,67,0.18) !important; color: #6c6c70 !important; }
+
+/* FLASHCARDS */
+.fc-front, .fc-f { background: #f2f2f7 !important; border-color: rgba(60,60,67,0.18) !important; }
+.fc-back, .fc-b { background: #edfaf1 !important; border-color: rgba(52,199,89,0.2) !important; }
+.fc-ar { color: #000000 !important; }
+.fc-hint, .fc-lesson-tag, .fc-tag { color: #8e8e93 !important; }
+.fc-ru { color: #1a7a3a !important; }
+.fc-btn { background: #ffffff !important; border-color: rgba(60,60,67,0.18) !important; color: #3c3c43 !important; }
+
+/* GAME SCORES */
+.fire-timer, .f-timer { color: #007aff !important; }
+.fire-timer.low, .f-timer.low { color: #ff3b30 !important; }
+.fire-q, .f-word, .match-word, .mw { color: #000000 !important; }
+.match-hint, .mh { color: #8e8e93 !important; }
+
+/* DOTS */
+.fp-dot, .f-dot, .ms-dot { background: #e5e5ea !important; }
+.fp-dot.done-ok, .f-dot.ok { background: #34c759 !important; }
+.fp-dot.done-no, .f-dot.no { background: #ff3b30 !important; }
+.fp-dot.current, .f-dot.cur { background: #007aff !important; }
+
+/* TIP BOX */
+.tip { background: #edfaf1 !important; border-color: rgba(52,199,89,0.3) !important; color: #1a7a3a !important; }
+.note { background: #e5f0ff !important; color: #007aff !important; }
+
+/* RESULT GRID */
+.result-grid, .rg, .sgrid, .score-grid {
+  background: transparent !important;
+}
+
+.score-item, .sitem, .ri, .rg-item {
+  background: #ffffff !important;
+  border-color: rgba(60,60,67,0.18) !important;
+}
+
+.score-label, .slbl, .rl, .ri-lbl { color: #6c6c70 !important; }
+.score-val, .sval, .rv, .ri-val { color: #000000 !important; }
+
+/* HW */
+.hw, .hw-card, .hw-box {
+  background: #ffffff !important;
+  border-color: rgba(52,199,89,0.3) !important;
+}
+.hw-lbl, .hwl { color: #6c6c70 !important; }
+.hw-item, .hwi { color: #3c3c43 !important; }
+.hw-dot, .hwn { color: #007aff !important; }
+
+/* FOOTER */
+footer, .footer, .pfooter {
+  background: #f2f2f7 !important;
+  border-top: 1px solid rgba(60,60,67,0.18) !important;
+}
+
+.footer-ar, .pfar, .f-ar, .far {
+  color: #8b6508 !important;
+}
+
+.footer-ru, .pfru, .f-ru { color: #6c6c70 !important; }
+.footer-copy, .f-copy, .f-cp { color: #aeaeb2 !important; }
+
+/* EXAM */
+.exam-hero { background: #f2f2f7 !important; border-bottom: 2px solid #34c759 !important; }
+.exam-info { background: #ffffff !important; border-bottom: 1px solid rgba(60,60,67,0.18) !important; }
+.ei-val { color: #000000 !important; font-weight: 600 !important; }
+.ei-item { color: #6c6c70 !important; }
+.exam-progress, .prog-bar-inner { background: #ffffff !important; }
+.ep-track { background: #e5e5ea !important; }
+.ep-fill { background: #34c759 !important; }
+.q-num, .q-label, .ql { color: #8e8e93 !important; }
+.q-text, .qt { color: #000000 !important; font-weight: 600 !important; }
+.q-text-ar, .q-ar, .qc-ar { color: #000000 !important; }
+.q-feedback.ok, .q-fb.ok { color: #1a7a3a !important; }
+.q-feedback.no, .q-fb.no { color: #cc0000 !important; }
+.topic-card, .tc { background: #f2f2f7 !important; border-color: rgba(60,60,67,0.18) !important; }
+.tc-ar { color: #8b6508 !important; }
+.tc-ru { color: #6c6c70 !important; }
+.start-game-btn { background: #34c759 !important; }
+.review-card { background: #fff0ef !important; border-color: #ff3b30 !important; }
+.rv-right { color: #1a7a3a !important; }
+.rv-wrong { color: #cc0000 !important; }
+.rc-circle.excellent { border-color: #34c759 !important; background: #edfaf1 !important; }
+.rc-circle.good { border-color: #b8860b !important; background: #fdf6e3 !important; }
+.rc-circle.retry { border-color: #ff3b30 !important; background: #fff0ef !important; }
+.rc-circle.excellent .rc-pct { color: #1a7a3a !important; }
+.rc-circle.good .rc-pct { color: #8b6508 !important; }
+.rc-circle.retry .rc-pct { color: #cc0000 !important; }
+.rc-btn.primary { background: #34c759 !important; color: #ffffff !important; }
+.rc-btn.sec { background: #ffffff !important; color: #007aff !important; border-color: rgba(60,60,67,0.18) !important; }
+.rs-num.green { color: #34c759 !important; }
+.rs-num.red { color: #ff3b30 !important; }
+.rs-num.gold { color: #8b6508 !important; }
+
+/* DARK MODE FORCE OVERRIDE */
+@media (prefers-color-scheme: dark) {
+  html, body { background: #f2f2f7 !important; color: #000000 !important; }
+  * { color-scheme: light !important; }
+}
+</style>
+
+
+
+<style>
+.d-av, .d-avatar, .av {
+  cursor: pointer !important;
+  transition: all 0.18s !important;
+  position: relative !important;
+  user-select: none !important;
+}
+.d-av:hover, .d-avatar:hover, .av:hover {
+  opacity: 0.8 !important;
+  transform: scale(1.08) !important;
+}
+.d-av.playing, .d-avatar.playing, .av.playing {
+  background: #007aff !important;
+  color: white !important;
+  box-shadow: 0 0 0 3px rgba(0,122,255,0.25) !important;
+}
+.d-av-y.playing { background: #007aff !important; color: white !important; }
+.d-av-a.playing { background: #007aff !important; color: white !important; }
+</style>
+
+<style>
+/* Play button on dialog */
+.d-play {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #007aff;
+  color: white;
+  font-size: 13px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s;
+  margin-top: 2px;
+  font-family: inherit;
+}
+.d-play:hover { background: #0062cc; transform: scale(1.08); }
+.d-play.playing { background: #34c759; }
+.d-play.playing::after { content: ''; }
+</style>
+</head>
+<body>
+
+</div>
+
+<div class="sn-links">
+    <button class="sn-btn active">Уровень 1</button>
+    <button class="sn-btn">Азкары</button>
+  </div>
+</div>
+
+<div class="lesson-hero">
+  <div class="lh-content">
+    <div class="lh-badge">Уровень 1 · Урок 8 из 14</div>
+    <div class="lh-ar">الدرس الثامن — السفر</div>
+    <div class="lh-title">Путешествие</div>
+    
+  </div>
+</div>
+
+<div class="prog-bar">
+  <div class="pb-inner">
+    <span class="pb-label">Прогресс</span>
+    <div class="pb-track"><div class="pb-fill"></div></div>
+    <span class="pb-num">8 / 14</span>
+    <div class="pb-links">
+      <a class="pb-link" href="takrar-level1-exam1.html">← Экзамен 1</a>
+      <a class="pb-link" href="takrar-level1-lesson9.html">Урок 9 →</a>
+    </div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tabs-inner">
+    <button class="tab active" onclick="tab('vocab',this)">Слова</button>
+    <button class="tab" onclick="tab('dialog',this)">Диалог</button>
+    <button class="tab" onclick="tab('grammar',this)">Грамматика</button>
+    <button class="tab" onclick="tab('exercises',this)">Упражнения</button>
+    <button class="tab" onclick="tab('audio',this)">Аудио</button>
+    <button class="tab" onclick="tab('games',this)">Повторение</button>
+    <button class="tab" onclick="tab('quiz',this)">Тест</button>
+    <button class="tab" onclick="tab('result',this)">Итог</button>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- VOCAB -->
+<div class="section active" id="vocab">
+  <div class="card">
+    <div class="card-title"><span class="card-title-ar">المفردات —</span> Новые слова</div>
+    <table class="vtbl">
+      <thead><tr><th>Арабский</th><th>Чтение</th><th>Перевод</th></tr></thead>
+      <tbody>
+        <tr><td class="ar">سَفَرٌ</td><td class="tr">сафарун</td><td>путешествие</td></tr>
+        <tr><td class="ar">مَطَارٌ</td><td class="tr">матарун</td><td>аэропорт</td></tr>
+        <tr><td class="ar">طَيَّارَةٌ</td><td class="tr">таййаратун</td><td>самолёт</td></tr>
+        <tr><td class="ar">تَذْكِرَةٌ</td><td class="tr">тазкиратун</td><td>билет</td></tr>
+        <tr><td class="ar">حَقِيبَةٌ</td><td class="tr">хакибатун</td><td>сумка / чемодан</td></tr>
+        <tr><td class="ar">فُنْدُقٌ</td><td class="tr">фундукун</td><td>отель</td></tr>
+        <tr><td class="ar">سَافَرَ</td><td class="tr">сафара</td><td>путешествовал (прош.)</td></tr>
+        <tr><td class="ar">يُسَافِرُ</td><td class="tr">йусафиру</td><td>путешествует (наст.)</td></tr>
+        <tr><td class="ar">وَصَلَ</td><td class="tr">васала</td><td>прибыл</td></tr>
+        <tr><td class="ar">غَداً</td><td class="tr">гадан</td><td>завтра</td></tr>
+        <tr><td class="ar">الأُسْبُوعَ القَادِمَ</td><td class="tr">аль-усбу'аль-кадим</td><td>на следующей неделе</td></tr>
+        <tr><td class="ar">إِنْ شَاءَ اللهُ</td><td class="tr">иншааллах</td><td>если захочет Аллах</td></tr>
+        <tr><td class="ar">مَعَ السَّلَامَةِ</td><td class="tr">ма'ас-салямя</td><td>счастливого пути</td></tr>
+        <tr><td class="ar">أَهْلاً وَسَهْلاً</td><td class="tr">ахлян ва сахлян</td><td>добро пожаловать</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- DIALOG -->
+<div class="section" id="dialog">
+  <div class="card">
+    <div class="card-title"><span class="card-title-ar">الحوار —</span> Диалог · في المطار</div>
+
+    <div class="d-item r">
+      <div class="d-av-a">آ</div>
+      <button class="d-play" onclick="playD(this,'lesson8-a1.mp3')">▶</button><div class="d-bub">
+        <div class="d-name d-name-a">آدَم — Адам</div>
+        <div class="d-box d-box-a">
+          <div class="d-ar">يَا يُوسُف، أَنَا مُسَافِرٌ غَداً إِلَى مَكَّةَ!</div>
+          <div class="d-ro">Йа Юсуф, ана мусафирун гадан иля Макка!</div>
+          <div class="d-ru">«Юсуф, я завтра еду в Мекку!»</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-item">
+      <div class="d-av-y">ي</div>
+      <button class="d-play" onclick="playD(this,'lesson8-y1.mp3')">▶</button><div class="d-bub">
+        <div class="d-name d-name-y">يُوسُف — Юсуф</div>
+        <div class="d-box d-box-y">
+          <div class="d-ar">ماشاء الله! لِمَاذَا تُسَافِرُ؟</div>
+          <div class="d-ro">Машааллах! Лимаза тусафиру?</div>
+          <div class="d-ru">«Машааллах! Зачем ты едешь?»</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-item r">
+      <div class="d-av-a">آ</div>
+      <button class="d-play" onclick="playD(this,'lesson8-a2.mp3')">▶</button><div class="d-bub">
+        <div class="d-name d-name-a">آدَم</div>
+        <div class="d-box d-box-a">
+          <div class="d-ar">أُسَافِرُ لِلْعُمْرَةِ إِنْ شَاءَ اللهُ!</div>
+          <div class="d-ro">Усафиру лиль-умрати иншааллах!</div>
+          <div class="d-ru">«Еду на умру иншааллах!»</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-item">
+      <div class="d-av-y">ي</div>
+      <button class="d-play" onclick="playD(this,'lesson8-y2.mp3')">▶</button><div class="d-bub">
+        <div class="d-name d-name-y">يُوسُف</div>
+        <div class="d-box d-box-y">
+          <div class="d-ar">بَارَكَ اللهُ فِيكَ! مَعَ السَّلَامَةِ يَا أَخِي!</div>
+          <div class="d-ro">Барака Ллаху фик! Ма'ас-саляма йа ахи!</div>
+          <div class="d-ru">«Да благословит тебя Аллах! Счастливого пути, брат!»</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-item r">
+      <div class="d-av-a">آ</div>
+      <button class="d-play" onclick="playD(this,'lesson8-a3.mp3')">▶</button><div class="d-bub">
+        <div class="d-name d-name-a">آدَم</div>
+        <div class="d-box d-box-a">
+          <div class="d-ar">جَزَاكَ اللهُ خَيْراً! سَأَدْعُو لَكَ هُنَاكَ إِنْ شَاءَ اللهُ!</div>
+          <div class="d-ro">Джазакаллаху хайран! Са-ад'у лака хунака иншааллах!</div>
+          <div class="d-ru">«Да воздаст тебе Аллах благом! Буду делать дуа за тебя там иншааллах!»</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GRAMMAR -->
+<div class="section" id="grammar">
+  <div class="card">
+    <div class="card-title"><span class="card-title-ar">القواعد —</span> Грамматика</div>
+
+    <div class="gram">
+      <div class="gram-lbl">لِـ — для / ради / чтобы</div>
+      <table class="vtbl">
+        <thead><tr><th>Арабский</th><th>Перевод</th></tr></thead>
+        <tbody>
+          <tr><td class="ar">أُسَافِرُ لِلْعُمْرَةِ</td><td>Еду ради умры</td></tr>
+          <tr><td class="ar">أَدْرُسُ لِلْعِلْمِ</td><td>Учусь ради знания</td></tr>
+          <tr><td class="ar">أَعْمَلُ لِلرِّزْقِ</td><td>Работаю ради пропитания</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="gram">
+      <div class="gram-lbl">سَـ — будущее время</div>
+      <div class="gram-ar">سَأُسَافِرُ — سَأَدْرُسُ — سَأَعْمَلُ — سَآتِي</div>
+      <div class="gram-ru">«Я поеду» — «Я буду учиться» — «Я буду работать» — «Я приду»</div>
+    </div>
+
+    <div class="gram">
+      <div class="gram-lbl">لِمَاذَا؟ — Зачем? Почему?</div>
+      <div class="gram-ar">لِمَاذَا تُسَافِرُ؟ — لِمَاذَا تَدْرُسُ؟ — لِمَاذَا تَعْمَلُ؟</div>
+      <div class="gram-ru">«Зачем ты едешь?» — «Зачем учишься?» — «Зачем работаешь?»</div>
+    </div>
+
+    <div class="tip"> إِنْ شَاءَ اللهُ — это не просто выражение! Это Коран: وَلَا تَقُولَنَّ لِشَيْءٍ إِنِّي فَاعِلٌ ذَلِكَ غَداً إِلَّا أَنْ يَشَاءَ اللهُ (Аль-Кахф 23-24)</div>
+  </div>
+</div>
+
+<!-- EXERCISES -->
+<div class="section" id="exercises">
+  <div class="card">
+    <div class="card-title"><span class="card-title-ar">التدريبات —</span> Упражнения</div>
+    <div class="tip">Нажми «Ответ» чтобы проверить!</div>
+
+    <div class="ex"><div class="ex-num">١</div><div class="ex-q">Переведи: «Я завтра еду в Мекку»</div><button class="abtn" onclick="tog('e1')">Ответ</button><div class="abox" id="e1"><div class="abox-ar">أَنَا مُسَافِرٌ غَداً إِلَى مَكَّةَ</div><div class="abox-ru"> غَداً = завтра | إِلَى = в / к</div></div></div>
+
+    <div class="ex"><div class="ex-num">٢</div><div class="ex-q">Как сказать «Счастливого пути»?</div><button class="abtn" onclick="tog('e2')">Ответ</button><div class="abox" id="e2"><div class="abox-ar">مَعَ السَّلَامَةِ</div><div class="abox-ru"> Буквально: «С миром!»</div></div></div>
+
+    <div class="ex"><div class="ex-num">٣</div><div class="ex-q">Переведи: «Я буду делать дуа за тебя»</div><button class="abtn" onclick="tog('e3')">Ответ</button><div class="abox" id="e3"><div class="abox-ar">سَأَدْعُو لَكَ</div><div class="abox-ru"> سَـ = будущее | أَدْعُو = я взываю | لَكَ = за тебя</div></div></div>
+
+    <div class="ex"><div class="ex-num">٤</div><div class="ex-q">Спроси: «Зачем ты путешествуешь?»</div><button class="abtn" onclick="tog('e4')">Ответ</button><div class="abox" id="e4"><div class="abox-ar">لِمَاذَا تُسَافِرُ؟</div><div class="abox-ru"> لِمَاذَا = зачем / почему</div></div></div>
+
+    <div class="ex"><div class="ex-num">٥</div><div class="ex-q">Переведи: «Еду ради знания иншааллах»</div><button class="abtn" onclick="tog('e5')">Ответ</button><div class="abox" id="e5"><div class="abox-ar">أُسَافِرُ لِلْعِلْمِ إِنْ شَاءَ اللهُ</div><div class="abox-ru"> لِلْعِلْمِ = ради знания</div></div></div>
+  </div>
+</div>
+
+<!-- AUDIO -->
+<div class="section" id="audio">
+  <div class="card">
+    <div class="card-title"><span class="card-title-ar">النص الصوتي —</span> Аудио текст</div>
+    <div class="audio-box">
+      <div class="audio-play">
+        <button class="play-btn">▶</button>
+        <div class="play-info"><strong>Урок 8 — Путешествие · السفر</strong>Озвучка будет добавлена بِإِذْنِ اللهِ</div>
+      </div>
+      <div class="audio-ar">أَنَا آدَم. أُسَافِرُ كَثِيراً. غَداً سَأُسَافِرُ إِلَى مَكَّةَ لِلْعُمْرَةِ إِنْ شَاءَ اللهُ. أَنَا مَسْرُورٌ جِدًّا! سَأَدْعُو لِإِخْوَانِي هُنَاكَ. مَعَ السَّلَامَةِ يَا إِخْوَانِي!</div>
+      <div class="audio-tr">Ана Адам. Усафиру касиран. Гадан са-усафиру иля Макката лиль-умрати иншааллах. Ана масрурун джиддан! Са-ад'у ли-ихвани хунак. Ма'ас-саляма йа ихвани!</div>
+      <div class="audio-ru">«Я Адам. Я много путешествую. Завтра иншааллах поеду в Мекку на умру. Я очень рад! Буду делать дуа за своих братьев там. Счастливого пути, братья!»</div>
+      <div class="audio-qs">
+        <div class="audio-qs-lbl">Проверочные вопросы</div>
+        <div class="audio-q"><span class="audio-q-n">١</span><span>أَيْنَ يُسَافِرُ؟ — Куда он едет?</span></div>
+        <div class="audio-q"><span class="audio-q-n">٢</span><span>لِمَاذَا يُسَافِرُ؟ — Зачем он едет?</span></div>
+        <div class="audio-q"><span class="audio-q-n">٣</span><span>مَتَى يُسَافِرُ؟ — Когда он едет?</span></div>
+      </div>
+    </div>
+    <div class="tip" style="margin-top:12px">Запиши своим голосом и загрузи как lesson8-audio.mp3!</div>
+  </div>
+</div>
+
+<!-- GAMES — ПОВТОРЕНИЕ -->
+<div class="section" id="games">
+
+  <!-- Игра 1: Карточки -->
+  <div class="card">
+    <div class="card-title"><span class="card-title-ar">بطاقات —</span> Карточки · Уроки 1 и 2</div>
+    <div class="game-header">
+      <div class="gh-ru">Нажми на карточку — увидишь перевод</div>
+    </div>
+
+    <div class="flashcard-wrap">
+      <div class="flashcard" id="fc" onclick="flipCard()">
+        <div class="fc-front">
+          <div class="fc-ar" id="fc-ar">اِسْمٌ</div>
+          <div class="fc-hint">нажми чтобы увидеть перевод</div>
+        </div>
+        <div class="fc-back">
+          <div class="fc-ru" id="fc-ru">имя</div>
+          <div class="fc-lesson" id="fc-lesson">Урок 1</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fc-nav">
+      <button class="fc-btn" onclick="fcPrev()">← Назад</button>
+      <span class="fc-counter" id="fc-counter">1 / 28</span>
+      <button class="fc-btn" onclick="fcNext()">Вперёд →</button>
+    </div>
+  </div>
+
+  <!-- Игра 2: Выбери перевод -->
+  <div class="card">
+    <div class="card-title"><span class="card-title-ar">اختر الترجمة —</span> Выбери перевод</div>
+    <div class="game-header">
+      <div class="gh-ru">Выбери правильный перевод арабского слова</div>
+    </div>
+
+    <div id="match-game">
+      <div class="match-q">
+        <div class="mq-ar" id="mg-word">بَلَدٌ</div>
+        <div class="mq-sub">Что это означает?</div>
+      </div>
+      <div class="match-opts" id="mg-opts"></div>
+      <div class="match-score">Правильно: <span id="mg-score">0</span></div>
+    </div>
+  </div>
+
+  <!-- Игра 3: Быстрый огонь -->
+  <div class="card">
+    <div class="card-title"><span class="card-title-ar">النار السريعة —</span> Быстрый огонь</div>
+    <div class="game-header">
+      <div class="gh-ar">السرعة والدقة</div>
+      <div class="gh-ru">10 слов за 60 секунд — успей ответить!</div>
+    </div>
+
+    <div class="fire-wrap">
+      <div id="fire-start">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:20px">10 слов · 60 секунд · Слова из уроков 1-2</div>
+        <button class="start-game-btn green" onclick="startFire()">Начать</button>
+      </div>
+
+      <div id="fire-game" style="display:none">
+        <div class="fire-timer" id="fire-timer">60</div>
+        <div class="fire-sub">секунд</div>
+        <div class="fire-progress" id="fire-progress"></div>
+        <div class="fire-q" id="fire-q"></div>
+        <div class="fire-opts" id="fire-opts"></div>
+      </div>
+
+      <div class="fire-result" id="fire-result">
+        <div class="fr-score" id="fr-score">0/10</div>
+        <div class="fr-ar" id="fr-ar"></div>
+        <button class="start-game-btn" onclick="restartFire()">↺ Ещё раз</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="section" id="quiz">
+  <div class="card">
+    <div class="card-title"><span class="card-title-ar">الاختبار —</span> Тест урока</div>
+    <div class="quiz-intro">
+      <div class="quiz-intro-ru">6 вопросов по новому материалу</div>
+    </div>
+
+    <div class="q-item" id="q1"><div class="q-num">Вопрос 1 из 6</div><div class="q-text">Что означает سَفَرٌ?</div><div class="q-options"><button class="q-opt" onclick="ans(1,'a')">Аэропорт</button><button class="q-opt" onclick="ans(1,'b')">Путешествие</button><button class="q-opt" onclick="ans(1,'c')">Билет</button><button class="q-opt" onclick="ans(1,'d')">Отель</button></div><div class="q-feedback" id="q1-fb"></div></div>
+
+    <div class="q-item" id="q2"><div class="q-num">Вопрос 2 из 6</div><div class="q-text">«Счастливого пути» по-арабски?</div><div class="q-options"><button class="q-opt" onclick="ans(2,'a')">أَهْلاً وَسَهْلاً</button><button class="q-opt" onclick="ans(2,'b')">مَعَ السَّلَامَةِ</button><button class="q-opt" onclick="ans(2,'c')">بِسْمِ اللهِ</button><button class="q-opt" onclick="ans(2,'d')">إِنْ شَاءَ اللهُ</button></div><div class="q-feedback" id="q2-fb"></div></div>
+
+    <div class="q-item" id="q3"><div class="q-num">Вопрос 3 из 6</div><div class="q-text-ar">سَأُسَافِرُ غَداً</div><div class="q-text">Переведи:</div><div class="q-options"><button class="q-opt" onclick="ans(3,'a')">Я еду сегодня</button><button class="q-opt" onclick="ans(3,'b')">Он поедет завтра</button><button class="q-opt" onclick="ans(3,'c')">Я поеду завтра</button><button class="q-opt" onclick="ans(3,'d')">Я уже приехал</button></div><div class="q-feedback" id="q3-fb"></div></div>
+
+    <div class="q-item" id="q4"><div class="q-num">Вопрос 4 из 6</div><div class="q-text">Как спросить «Зачем?»</div><div class="q-options"><button class="q-opt" onclick="ans(4,'a')">مَتَى؟</button><button class="q-opt" onclick="ans(4,'b')">أَيْنَ؟</button><button class="q-opt" onclick="ans(4,'c')">لِمَاذَا؟</button><button class="q-opt" onclick="ans(4,'d')">كَيْفَ؟</button></div><div class="q-feedback" id="q4-fb"></div></div>
+
+    <div class="q-item" id="q5"><div class="q-num">Вопрос 5 из 6</div><div class="q-text">Что означает تَذْكِرَةٌ?</div><div class="q-options"><button class="q-opt" onclick="ans(5,'a')">Чемодан</button><button class="q-opt" onclick="ans(5,'b')">Аэропорт</button><button class="q-opt" onclick="ans(5,'c')">Самолёт</button><button class="q-opt" onclick="ans(5,'d')">Билет</button></div><div class="q-feedback" id="q5-fb"></div></div>
+
+    <div class="q-item" id="q6"><div class="q-num">Вопрос 6 из 6</div><div class="q-text-ar">أُسَافِرُ لِلْعُمْرَةِ إِنْ شَاءَ اللهُ</div><div class="q-text">Переведи:</div><div class="q-options"><button class="q-opt" onclick="ans(6,'a')">Я вернулся с умры</button><button class="q-opt" onclick="ans(6,'b')">Еду на умру иншааллах</button><button class="q-opt" onclick="ans(6,'c')">Я хочу поехать на хадж</button><button class="q-opt" onclick="ans(6,'d')">Умра обязательна</button></div><div class="q-feedback" id="q6-fb"></div></div>
+
+    <div class="quiz-result" id="quiz-result">
+      <div class="qr-score" id="qr-score">0/6</div>
+      <div class="qr-label">правильных ответов</div>
+      <div class="qr-ar" id="qr-ar"></div>
+      <div><span class="qr-badge" id="qr-badge"></span></div><br>
+      <button class="qr-btn sec" onclick="resetQuiz()">↺ Ещё раз</button>
+      <button class="qr-btn" onclick="tab('result',document.querySelectorAll('.tab')[7])">Итог →</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div class="section" id="result">
+  <div class="card">
+    <div class="card-title"><span class="card-title-ar">نتيجة الدرس —</span> Итог урока</div>
+    <div class="result-grid">
+      <div class="ri"><div class="ri-lbl">Словарный запас</div><div class="ri-val">14 слов </div></div>
+      <div class="ri"><div class="ri-lbl">Диалог</div><div class="ri-val">Путешествие </div></div>
+      <div class="ri"><div class="ri-lbl">Игры</div><div class="ri-val">3 игры </div></div>
+      <div class="ri"><div class="ri-lbl">Повторение</div><div class="ri-val">Уроки 1-2 </div></div>
+    </div>
+    <div class="hw">
+      <div class="hw-lbl">Домашнее задание</div>
+      <div class="hw-item"><span class="hw-dot">١</span>Пройди карточки пока не запомнишь все</div>
+      <div class="hw-item"><span class="hw-dot">٢</span>Набери 8/10 в быстром огне</div>
+      <div class="hw-item"><span class="hw-dot">٣</span>Запомни: مَعَ السَّلَامَةِ и إِنْ شَاءَ اللهُ</div>
+      <div class="hw-item"><span class="hw-dot">٤</span>Озвучь аудио текст своим голосом</div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+// ===== TABS =====
+function tab(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(btn)btn.classList.add('active');
+  window.scrollTo(0,0);
+}
+function tog(id){document.getElementById(id).classList.toggle('show');}
+
+// ===== FLASHCARDS =====
+const cards = [
+  // Урок 1
+  {ar:'اِسْمٌ',ru:'имя',lesson:'Урок 1'},
+  {ar:'بَلَدٌ',ru:'страна',lesson:'Урок 1'},
+  {ar:'مَدِينَةٌ',ru:'город',lesson:'Урок 1'},
+  {ar:'طَالِبٌ',ru:'студент',lesson:'Урок 1'},
+  {ar:'مُعَلِّمٌ',ru:'учитель',lesson:'Урок 1'},
+  {ar:'أَهْلاً',ru:'привет',lesson:'Урок 1'},
+  {ar:'شُكْراً',ru:'спасибо',lesson:'Урок 1'},
+  {ar:'مِنْ أَيْنَ؟',ru:'откуда?',lesson:'Урок 1'},
+  {ar:'كَيْفَ حَالُكَ؟',ru:'как дела?',lesson:'Урок 1'},
+  {ar:'بِخَيْرٍ',ru:'хорошо',lesson:'Урок 1'},
+  // Урок 2
+  {ar:'أُسْرَةٌ',ru:'семья',lesson:'Урок 2'},
+  {ar:'أَبٌ',ru:'отец',lesson:'Урок 2'},
+  {ar:'أُمٌّ',ru:'мать',lesson:'Урок 2'},
+  {ar:'أَخٌ',ru:'брат',lesson:'Урок 2'},
+  {ar:'أُخْتٌ',ru:'сестра',lesson:'Урок 2'},
+  {ar:'اِبْنٌ',ru:'сын',lesson:'Урок 2'},
+  {ar:'بِنْتٌ',ru:'дочь',lesson:'Урок 2'},
+  {ar:'زَوْجٌ',ru:'муж',lesson:'Урок 2'},
+  {ar:'زَوْجَةٌ',ru:'жена',lesson:'Урок 2'},
+  {ar:'عِنْدِي',ru:'у меня есть',lesson:'Урок 2'},
+  {ar:'كَبِيرٌ',ru:'большой',lesson:'Урок 2'},
+  {ar:'صَغِيرٌ',ru:'маленький',lesson:'Урок 2'},
+  {ar:'جَمِيلٌ',ru:'красивый',lesson:'Урок 2'},
+  {ar:'طَيِّبٌ',ru:'добрый',lesson:'Урок 2'},
+  // Урок 8 (новые)
+  {ar:'سَفَرٌ',ru:'путешествие',lesson:'Урок 8'},
+  {ar:'مَطَارٌ',ru:'аэропорт',lesson:'Урок 8'},
+  {ar:'تَذْكِرَةٌ',ru:'билет',lesson:'Урок 8'},
+  {ar:'مَعَ السَّلَامَةِ',ru:'счастливого пути',lesson:'Урок 8'},
+];
+
+let fcIndex = 0;
+let fcFlipped = false;
+
+function renderCard(){
+  fcFlipped = false;
+  document.getElementById('fc').classList.remove('flipped');
+  document.getElementById('fc-ar').textContent = cards[fcIndex].ar;
+  document.getElementById('fc-ru').textContent = cards[fcIndex].ru;
+  document.getElementById('fc-lesson').textContent = cards[fcIndex].lesson;
+  document.getElementById('fc-counter').textContent = (fcIndex+1) + ' / ' + cards.length;
+}
+
+function flipCard(){ document.getElementById('fc').classList.toggle('flipped'); fcFlipped=!fcFlipped; }
+function fcNext(){ fcIndex=(fcIndex+1)%cards.length; renderCard(); }
+function fcPrev(){ fcIndex=(fcIndex-1+cards.length)%cards.length; renderCard(); }
+
+// ===== MATCH GAME =====
+const matchWords = cards.slice(0,20);
+let mgIndex = 0;
+let mgScore = 0;
+
+function shuffleArr(arr){ return [...arr].sort(()=>Math.random()-0.5); }
+
+function renderMatch(){
+  const correct = matchWords[mgIndex % matchWords.length];
+  const wrong = shuffleArr(matchWords.filter(w=>w.ar!==correct.ar)).slice(0,3);
+  const opts = shuffleArr([correct,...wrong]);
+  document.getElementById('mg-word').textContent = correct.ar;
+  const container = document.getElementById('mg-opts');
+  container.innerHTML = opts.map(o=>`
+    <button class="mo-btn" onclick="matchAns(this,'${o.ru}','${correct.ru}')">
+      ${o.ru}
+    </button>`).join('');
+}
+
+function matchAns(btn, chosen, correct){
+  document.querySelectorAll('.mo-btn').forEach(b=>b.classList.add('disabled'));
+  if(chosen===correct){
+    btn.classList.add('correct');
+    mgScore++;
+    document.getElementById('mg-score').textContent = mgScore;
+    setTimeout(()=>{ mgIndex++; renderMatch(); }, 900);
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('.mo-btn').forEach(b=>{
+      if(b.textContent.trim()===correct) b.classList.add('correct');
+    });
+    setTimeout(()=>{ mgIndex++; renderMatch(); }, 1200);
+  }
+}
+
+// ===== FAST FIRE =====
+const fireWords = shuffleArr(matchWords).slice(0,10);
+let fireIndex=0, fireScore=0, fireTimer=60, fireInterval=null;
+let fireDots=[];
+
+function startFire(){
+  fireIndex=0; fireScore=0; fireTimer=60;
+  document.getElementById('fire-start').style.display='none';
+  document.getElementById('fire-game').style.display='block';
+  document.getElementById('fire-result').classList.remove('show');
+
+  // dots
+  const dp = document.getElementById('fire-progress');
+  dp.innerHTML = Array(10).fill(0).map((_,i)=>`<div class="fp-dot" id="fdot-${i}"></div>`).join('');
+  document.getElementById('fdot-0').classList.add('current');
+
+  renderFireQ();
+  fireInterval = setInterval(()=>{
+    fireTimer--;
+    const tel = document.getElementById('fire-timer');
+    tel.textContent = fireTimer;
+    tel.className = 'fire-timer' + (fireTimer<=10?' low':'');
+    if(fireTimer<=0){ endFire(); }
+  },1000);
+}
+
+function renderFireQ(){
+  if(fireIndex>=10){ endFire(); return; }
+  const correct = fireWords[fireIndex];
+  const wrong = shuffleArr(matchWords.filter(w=>w.ar!==correct.ar)).slice(0,3);
+  const opts = shuffleArr([correct,...wrong]);
+  document.getElementById('fire-q').textContent = correct.ar;
+  const container = document.getElementById('fire-opts');
+  container.innerHTML = opts.map(o=>`
+    <button class="fo-btn" onclick="fireAns(this,'${o.ru}','${correct.ru}')">
+      ${o.ru}
+    </button>`).join('');
+}
+
+function fireAns(btn, chosen, correct){
+  document.querySelectorAll('.fo-btn').forEach(b=>b.classList.add('disabled'));
+  const dot = document.getElementById('fdot-'+fireIndex);
+  if(chosen===correct){
+    btn.classList.add('correct');
+    fireScore++;
+    if(dot) { dot.classList.remove('current'); dot.classList.add('done-ok'); }
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('.fo-btn').forEach(b=>{
+      if(b.textContent.trim()===correct) b.classList.add('correct');
+    });
+    if(dot) { dot.classList.remove('current'); dot.classList.add('done-no'); }
+  }
+  fireIndex++;
+  if(fireIndex<10){
+    const nextDot = document.getElementById('fdot-'+fireIndex);
+    if(nextDot) nextDot.classList.add('current');
+    setTimeout(renderFireQ, 700);
+  } else { setTimeout(endFire, 700); }
+}
+
+function endFire(){
+  clearInterval(fireInterval);
+  document.getElementById('fire-game').style.display='none';
+  const res = document.getElementById('fire-result');
+  res.classList.add('show');
+  document.getElementById('fr-score').textContent = fireScore+'/10';
+  const pct = fireScore*10;
+  let ar='';
+  if(pct>=80) ar='ماشاء الله! ممتاز! ';
+  else if(pct>=60) ar='أحسنت! بارك الله فيك ';
+  else ar='حاول مرة أخرى بإذن الله ';
+  document.getElementById('fr-ar').textContent=ar;
+}
+
+function restartFire(){
+  document.getElementById('fire-result').classList.remove('show');
+  document.getElementById('fire-start').style.display='block';
+}
+
+// ===== QUIZ =====
+const correct={1:'b',2:'b',3:'c',4:'c',5:'d',6:'b'};
+const fb={
+  1:{b:' سَفَرٌ = путешествие',a:' مَطَارٌ = аэропорт. سَفَرٌ = путешествие'},
+  2:{b:' مَعَ السَّلَامَةِ = Счастливого пути!',a:' أَهْلاً وَسَهْلاً = добро пожаловать'},
+  3:{c:' سَـ = будущее | سَأُسَافِرُ = я поеду | غَداً = завтра',a:' اليَوْمَ = сегодня. غَداً = завтра'},
+  4:{c:' لِمَاذَا؟ = Зачем? Почему?',a:' مَتَى = когда. لِمَاذَا = зачем'},
+  5:{d:' تَذْكِرَةٌ = билет',a:' حَقِيبَةٌ = чемодан. تَذْكِرَةٌ = билет'},
+  6:{b:' أُسَافِرُ = я еду | لِلْعُمْرَةِ = ради умры',a:' Неверно. Правильно: Еду на умру иншааллах'}
+};
+let qscore=0,qanswered=0;
+
+function ans(qnum,chosen){
+  const q=document.getElementById('q'+qnum);
+  if(q.classList.contains('answered'))return;
+  q.classList.add('answered');qanswered++;
+  const opts=q.querySelectorAll('.q-opt');
+  const letters=['a','b','c','d'];
+  opts.forEach((o,i)=>{o.classList.add('disabled');if(letters[i]===correct[qnum])o.classList.add('show-correct');});
+  opts[letters.indexOf(chosen)].classList.remove('show-correct');
+  if(chosen===correct[qnum]){opts[letters.indexOf(chosen)].classList.add('selected-correct');qscore++;}
+  else opts[letters.indexOf(chosen)].classList.add('selected-wrong');
+  const f=document.getElementById('q'+qnum+'-fb');
+  f.textContent=fb[qnum][chosen]||'';
+  f.className='q-feedback show '+(chosen===correct[qnum]?'ok':'no');
+  if(qanswered===6)showQuizResult();
+}
+
+function showQuizResult(){
+  const r=document.getElementById('quiz-result');r.classList.add('show');
+  document.getElementById('qr-score').textContent=qscore+'/6';
+  const p=Math.round(qscore/6*100);
+  let ar='',cls='',txt='';
+  if(p>=85){ar='ماشاء الله! ممتاز! ';cls='excellent';txt='Отлично — '+p+'%';}
+  else if(p>=60){ar='أحسنت! بارك الله فيك';cls='good';txt='Хорошо — '+p+'%';}
+  else{ar='حاول مرة أخرى بإذن الله ';cls='retry';txt='Повтори урок — '+p+'%';}
+  document.getElementById('qr-ar').textContent=ar;
+  const b=document.getElementById('qr-badge');b.textContent=txt;b.className='qr-badge '+cls;
+  r.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function resetQuiz(){
+  qscore=0;qanswered=0;
+  for(let i=1;i<=6;i++){
+    const q=document.getElementById('q'+i);
+    q.classList.remove('answered');
+    q.querySelectorAll('.q-opt').forEach(o=>o.className='q-opt');
+    const f=document.getElementById('q'+i+'-fb');f.className='q-feedback';f.textContent='';
+  }
+  document.getElementById('quiz-result').classList.remove('show');
+  window.scrollTo(0,0);
+}
+
+// Init
+renderCard();
+renderMatch();
+</script>
+
+
+
+
+
+<script>
+var _ca = null, _cb = null;
+function playD(btn, src) {
+  if (_ca) { _ca.pause(); _ca.currentTime = 0; }
+  if (_cb) { _cb.textContent = '▶'; _cb.classList.remove('playing'); }
+  if (_cb === btn) { _ca = null; _cb = null; return; }
+  var a = new Audio(src);
+  _ca = a; _cb = btn;
+  btn.textContent = '■';
+  btn.classList.add('playing');
+  a.play().catch(function(){ btn.textContent = '▶'; btn.classList.remove('playing'); });
+  a.onended = function(){ btn.textContent = '▶'; btn.classList.remove('playing'); _ca = null; _cb = null; };
+}
+</script>
+</body>
+</html>

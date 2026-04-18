@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التكرار أم العلم — الاختبار الأول</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Merriweather:wght@300;400;700&family=Noto+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8860b;--gold-light:#d4a017;--gold-pale:#fdf6e3;--bg:#fafaf8;--bg2:#fff;--bg3:#f5f2eb;--text:#1a1a1a;--muted:#6b6560;--border:#e8e0d0;--green:#2d6a4f;--green-light:#52b788;--blue:#1d4e89;--red:#8b1a1a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans',sans-serif;font-size:14px;line-height:1.6;}
+
+.top-bar{background:linear-gradient(135deg,#1a1208,#2c1f08);padding:10px 20px;text-align:center;}
+.top-bismillah{font-family:'Scheherazade New',serif;font-size:18px;color:#d4a017;direction:rtl;}
+.top-site{font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:2px;margin-top:2px;}
+
+.site-nav{background:var(--bg2);border-bottom:3px solid var(--gold);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.06);}
+.sn-logo-ar{font-family:'Amiri',serif;font-size:20px;color:var(--gold);direction:rtl;}
+
+/* HERO */
+.exam-hero{background:linear-gradient(135deg,#0d1a0d,#1a2e1a);padding:50px 20px;text-align:center;position:relative;overflow:hidden;border-bottom:3px solid var(--green-light);}
+.exam-hero::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(82,183,120,0.04) 30px,rgba(82,183,120,0.04) 31px);}
+.eh-content{position:relative;z-index:1;max-width:600px;margin:0 auto;}
+.eh-icon{font-size:48px;margin-bottom:12px;display:block;}
+.eh-badge{display:inline-block;background:rgba(82,183,120,0.2);border:1px solid rgba(82,183,120,0.4);color:#52b788;padding:4px 16px;border-radius:20px;font-size:10px;letter-spacing:2px;font-weight:700;margin-bottom:12px;}
+.eh-ar{font-family:'Amiri',serif;font-size:30px;color:#52b788;direction:rtl;margin-bottom:6px;}
+.eh-title{font-family:'Merriweather',serif;font-size:24px;color:white;margin-bottom:8px;}
+.eh-sub{font-size:12px;color:rgba(255,255,255,0.5);letter-spacing:1px;}
+
+/* EXAM INFO */
+.exam-info{background:var(--bg2);border-bottom:1px solid var(--border);padding:14px 20px;}
+.ei-inner{max-width:800px;margin:0 auto;display:flex;gap:20px;flex-wrap:wrap;justify-content:center;}
+.ei-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);}
+.ei-icon{font-size:18px;}
+.ei-val{font-weight:700;color:var(--text);}
+
+/* MAIN */
+.main{max-width:800px;margin:0 auto;padding:28px 20px 60px;}
+
+/* SECTION */
+.section{display:none;}
+.section.active{display:block;}
+
+/* INTRO */
+.intro-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:20px;text-align:center;}
+.ic-ar{font-family:'Scheherazade New',serif;font-size:22px;color:var(--gold);direction:rtl;margin-bottom:8px;}
+.ic-ru{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6;}
+.topics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:24px;text-align:left;}
+.topic-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;align-items:center;gap:10px;}
+.tc-icon{font-size:20px;flex-shrink:0;}
+.tc-text{font-size:12px;}
+.tc-ar{font-family:'Amiri',serif;font-size:15px;color:var(--gold);direction:rtl;display:block;}
+.tc-ru{color:var(--muted);font-size:10px;}
+.start-btn{padding:14px 40px;background:var(--green);color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Noto Sans',sans-serif;transition:all 0.2s;}
+.start-btn:hover{background:var(--green-light);transform:translateY(-1px);}
+
+/* PROGRESS */
+.exam-progress{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:20px;}
+.ep-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.ep-label{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+.ep-num{font-size:12px;font-weight:700;color:var(--green);}
+.ep-track{height:8px;background:var(--bg3);border-radius:4px;overflow:hidden;}
+.ep-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--green-light));border-radius:4px;transition:width 0.4s ease;}
+
+/* QUESTION */
+.q-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px;}
+.qc-topic{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:600;}
+.qc-ar{font-family:'Scheherazade New',serif;font-size:22px;direction:rtl;text-align:right;line-height:1.9;margin-bottom:8px;color:var(--text);}
+.qc-text{font-size:14px;font-weight:600;margin-bottom:14px;color:var(--text);}
+.qc-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.qc-opt{padding:12px 16px;border:2px solid var(--border);border-radius:10px;background:white;cursor:pointer;font-size:13px;text-align:center;transition:all 0.2s;font-family:'Noto Sans',sans-serif;font-weight:500;}
+.qc-opt:hover:not(.disabled){border-color:var(--green);background:#f0f8f0;color:var(--green);}
+.qc-opt.correct{background:#e8f5e9;border-color:var(--green);color:var(--green);font-weight:700;}
+.qc-opt.wrong{background:#ffebee;border-color:#e57373;color:#c62828;font-weight:700;}
+.qc-opt.show-ans{background:#e8f5e9;border-color:var(--green);color:var(--green);}
+.qc-opt.disabled{pointer-events:none;}
+.qc-feedback{margin-top:12px;padding:10px 14px;border-radius:8px;font-size:12px;font-weight:600;display:none;}
+.qc-feedback.show{display:block;}
+.qc-feedback.ok{background:#e8f5e9;color:var(--green);border:1px solid #a0c8b0;}
+.qc-feedback.no{background:#ffebee;color:#c62828;border:1px solid #e57373;}
+
+/* RESULT */
+.result-card{background:var(--bg2);border:2px solid var(--gold);border-radius:16px;padding:32px 24px;text-align:center;}
+.rc-score-wrap{margin-bottom:20px;}
+.rc-circle{width:120px;height:120px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;flex-direction:column;border:4px solid var(--gold);}
+.rc-circle.excellent{border-color:var(--green);background:#f0f8f0;}
+.rc-circle.good{border-color:var(--gold);background:var(--gold-pale);}
+.rc-circle.retry{border-color:#e57373;background:#ffebee;}
+.rc-pct{font-family:'Merriweather',serif;font-size:32px;font-weight:700;line-height:1;}
+.rc-circle.excellent .rc-pct{color:var(--green);}
+.rc-circle.good .rc-pct{color:var(--gold);}
+.rc-circle.retry .rc-pct{color:#c62828;}
+.rc-score-txt{font-size:12px;color:var(--muted);}
+.rc-ar{font-family:'Scheherazade New',serif;font-size:26px;color:var(--gold);direction:rtl;margin-bottom:8px;}
+.rc-badge{display:inline-block;padding:6px 20px;border-radius:20px;font-size:13px;font-weight:700;margin-bottom:20px;}
+.rc-badge.excellent{background:#e8f5e9;color:var(--green);border:1px solid var(--green-light);}
+.rc-badge.good{background:var(--gold-pale);color:var(--gold);border:1px solid #e8d5a0;}
+.rc-badge.retry{background:#ffebee;color:#c62828;border:1px solid #e57373;}
+
+.rc-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:20px 0;}
+.rs-item{background:var(--bg3);border-radius:8px;padding:12px 8px;text-align:center;}
+.rs-num{font-size:20px;font-weight:700;margin-bottom:3px;}
+.rs-num.green{color:var(--green);}
+.rs-num.red{color:#c62828;}
+.rs-num.gold{color:var(--gold);}
+.rs-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+
+.rc-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px;}
+.rc-btn{padding:10px 24px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans',sans-serif;transition:all 0.2s;border:none;}
+.rc-btn.primary{background:var(--green);color:white;}
+.rc-btn.primary:hover{background:var(--green-light);}
+.rc-btn.sec{background:white;color:var(--gold);border:1px solid var(--gold);}
+.rc-btn.sec:hover{background:var(--gold-pale);}
+
+/* WRONG REVIEW */
+.review-card{background:#fff5f5;border:1px solid #e57373;border-radius:10px;padding:14px 16px;margin-bottom:10px;}
+.rv-q{font-size:12px;font-weight:600;margin-bottom:6px;color:var(--text);}
+.rv-ar{font-family:'Scheherazade New',serif;font-size:18px;direction:rtl;text-align:right;margin-bottom:6px;color:var(--text);}
+.rv-wrong{font-size:11px;color:#c62828;margin-bottom:3px;}
+.rv-right{font-size:11px;color:var(--green);font-weight:600;}
+
+footer{background:#1a1208;color:rgba(255,255,255,0.5);text-align:center;padding:28px 20px;margin-top:40px;}
+.f-ar{font-family:'Scheherazade New',serif;font-size:20px;color:#d4a017;direction:rtl;margin-bottom:6px;}
+.f-ru{font-size:11px;margin-bottom:8px;}
+.f-copy{font-size:10px;opacity:0.3;}
+
+@media(max-width:550px){.qc-options{grid-template-columns:1fr;}.topics-grid{grid-template-columns:1fr 1fr;}.rc-stats{grid-template-columns:1fr;}.ei-inner{gap:10px;}}
+</style>
+
+<meta name="color-scheme" content="light only">
+<style>
+/* ===== iOS LIGHT OVERRIDE ===== */
+:root {
+  --bg: #f2f2f7 !important;
+  --bg2: #ffffff !important;
+  --bg3: #f2f2f7 !important;
+  --dark: #f2f2f7 !important;
+  --dark2: #ffffff !important;
+  --dark3: #f2f2f7 !important;
+  --text: #000000 !important;
+  --text-muted: #6c6c70 !important;
+  --muted: #6c6c70 !important;
+  --border: rgba(60,60,67,0.18) !important;
+  --gold: #b8860b !important;
+  --gold-pale: #fdf6e3 !important;
+  --gold-light: #d4a017 !important;
+  --green: #34c759 !important;
+  --green-light: #34c759 !important;
+  --blue: #007aff !important;
+  --blue-light: #007aff !important;
+  color-scheme: light only;
+}
+
+/* FORCE WHITE/GRAY EVERYWHERE */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #f2f2f7 !important;
+  color: #000000 !important;
+  font-family: -apple-system, 'Noto Sans', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+.site-nav, nav, .sn-logo, .sn-logo-ar, .nav, .nav-inner, .top-site {
+  background: rgba(242,242,247,0.95) !important;
+  border-bottom: 1px solid rgba(60,60,67,0.18) !important;
+  backdrop-filter: blur(20px) !important;
+  color: #000000 !important;
+}
+
+.top-bar {
+  background: rgba(242,242,247,0.95) !important;
+  border-bottom: 1px solid rgba(60,60,67,0.18) !important;
+}
+
+.top-bismillah {
+  color: #b8860b !important;
+}
+
+.top-site {
+  color: #6c6c70 !important;
+}
+
+/* HERO */
+.lesson-hero, .exam-hero, .hero {
+  background: #f2f2f7 !important;
+  color: #000000 !important;
+}
+
+.lesson-hero::before, .exam-hero::before, .hero::before {
+  display: none !important;
+}
+
+.lh-ar, .lh-title, .lh-sub, .lh-badge,
+.eh-ar, .eh-title, .eh-sub, .eh-badge, .eh-icon,
+.hero-ar, .hero-ru, .hero-sub {
+  color: #000000 !important;
+}
+
+.lh-badge, .eh-badge, .hero-eye {
+  background: rgba(0,122,255,0.1) !important;
+  border: 1px solid rgba(0,122,255,0.2) !important;
+  color: #007aff !important;
+}
+
+/* PROGRESS BAR */
+.lesson-nav-bar, .prog-bar, .lnb-inner, .prog, .prog-in {
+  background: #f2f2f7 !important;
+  border-bottom: 1px solid rgba(60,60,67,0.18) !important;
+}
+
+.lnb-label, .lnb-num, .pb-label, .pb-num, .prog-lbl {
+  color: #6c6c70 !important;
+}
+
+.lnb-link, .pb-link, .prog-a {
+  color: #007aff !important;
+  background: transparent !important;
+  border-color: rgba(60,60,67,0.18) !important;
+}
+
+.lnb-track, .pb-track, .prog-track {
+  background: #e5e5ea !important;
+}
+
+.lnb-fill, .pb-fill, .prog-fill {
+  background: #007aff !important;
+}
+
+/* TABS */
+.tabs, .tabs-bar {
+  background: #f2f2f7 !important;
+  border-bottom: 1px solid rgba(60,60,67,0.18) !important;
+}
+
+.tab {
+  color: #6c6c70 !important;
+  background: transparent !important;
+  border-bottom: 2px solid transparent !important;
+}
+
+.tab.active, .tab.on {
+  color: #007aff !important;
+  border-bottom-color: #007aff !important;
+  background: transparent !important;
+}
+
+/* MAIN CONTENT */
+.main, .wrap, .lesson-wrap, .adhkar-wrap {
+  background: transparent !important;
+}
+
+/* CARDS / BLOCKS */
+.card, .block, .rbox, .rule-box, .gram, .gram-block, .gb,
+.iblock, .audio-box, .audio-card,
+.etime, .dcard, .dcard.dm, .dcard.de,
+.score-item, .sitem, .rg-item, .ri,
+.result-card, .intro-card, .exam-info,
+.qi, .qc, .q-card, .quiz-intro,
+.type-card, .tcard, .gsec,
+.hw, .hw-card, .hw-box,
+.topic, .t1, .t2, .t3, .t4,
+.qblock, .quran-block,
+.iblock, .flashcard-wrap {
+  background: #ffffff !important;
+  border-color: rgba(60,60,67,0.18) !important;
+  color: #000000 !important;
+}
+
+/* SECTION TITLES */
+.stitle, .sec-title, .sh-ru, .sh-ar,
+.card-title, .card-name, .card-name-ar,
+.block-title, .block-name {
+  color: #000000 !important;
+  border-bottom-color: #007aff !important;
+}
+
+.sg, .sb, .sp, .so, .gold-title, .blue-title, .purple-title, .orange-title {
+  color: #007aff !important;
+}
+
+/* ARABIC TEXT */
+.ar, .ar-c, .ar-td, .gram-ar, .g-ar, .rule-ar, .rar,
+.gram-block .gram-ar, .quran-ar, .q-ar,
+.d-ar, .abox-ar, .ans-ar, .a-ar,
+.audio-ar, .aud-ar,
+.fc-ar, .mq-ar, .match-word, .mw, .fire-q, .f-word,
+.dialog-item .d-ar,
+.d-text, .dtext,
+.iayah, .i-ayah,
+.quiz-intro-ar, .qr-ar, .lh-ar,
+.bismillah, .top-bismillah, .bismillah-header,
+.hero-ar, .hero-bismillah,
+.hero-quote, .logo-ar, .sn-logo-ar, .logo,
+.type-example, .tex, .tc-ex,
+.footer-ar, .pfar, .f-ar, .far,
+.abox-ar, .a-ar, .ans-ar,
+.gram-ar, .g-ar {
+  color: #000000 !important;
+  background: transparent !important;
+}
+
+/* GOLD COLOR ACCENTS — keep them visible */
+.ar-td, .ar, .ar-c {
+  color: #8b6508 !important;
+}
+
+/* TABLE */
+.vtbl, .gtbl, .gram-table, .tbl {
+  background: #ffffff !important;
+}
+
+.vtbl th, .gtbl th, .gram-table th, .tbl th {
+  background: #007aff !important;
+  color: #ffffff !important;
+}
+
+.vtbl td, .gtbl td, .gram-table td, .tbl td {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border-bottom: 1px solid rgba(60,60,67,0.12) !important;
+}
+
+.vtbl tr:nth-child(even) td, .gtbl tr:nth-child(even) td,
+.gram-table tr:nth-child(even) td {
+  background: #f9f9fb !important;
+}
+
+.vtbl tr:hover td, .gtbl tr:hover td {
+  background: #f2f2f7 !important;
+}
+
+.ar-td, .ard, .ar {
+  color: #8b6508 !important;
+}
+
+.it-c, .tr, .tr-td {
+  color: #8e8e93 !important;
+  font-style: italic !important;
+}
+
+/* DIALOG */
+.d-box-y, .db, .d-box-l {
+  background: #f2f2f7 !important;
+  border-color: rgba(60,60,67,0.15) !important;
+}
+
+.d-box-a, .d-box-r, .db-r {
+  background: #e5f0ff !important;
+  border-color: rgba(0,122,255,0.15) !important;
+}
+
+.d-ar, .d-ro, .d-ru, .d-name, .d-name-y, .d-name-a {
+  color: #000000 !important;
+  background: transparent !important;
+}
+
+.d-ro, .d-tr { color: #8e8e93 !important; }
+.d-ru { color: #3c3c43 !important; }
+
+.d-av, .d-avatar, .av {
+  background: #e5e5ea !important;
+  border: 1px solid rgba(60,60,67,0.18) !important;
+  color: #3c3c43 !important;
+}
+
+.d-av-y { background: #fff3d6 !important; color: #8b6508 !important; }
+.d-av-a { background: #e5f0ff !important; color: #007aff !important; }
+
+/* PRACTICE ITEMS */
+.pitem, .practice-item, .ex, .ex-item, .ei {
+  background: #ffffff !important;
+  border-color: rgba(60,60,67,0.18) !important;
+}
+
+.pitem:hover, .ei:hover { border-color: #007aff !important; }
+
+.par, .p-ar { color: #000000 !important; }
+.pnum, .p-num { color: #c7c7cc !important; }
+
+/* ANSWER BOXES */
+.abox, .answer-box, .ans-box, .ab {
+  background: #f0faf4 !important;
+  border-color: rgba(52,199,89,0.3) !important;
+}
+
+.abox-ru, .answer-content, .a-ru, .ans-ru {
+  color: #1a7a3a !important;
+}
+
+/* BUTTONS */
+.abtn, .answer-btn, .cbtn, .check-btn {
+  background: transparent !important;
+  border-color: #007aff !important;
+  color: #007aff !important;
+}
+
+.abtn:hover, .cbtn:hover { background: #007aff !important; color: #ffffff !important; }
+
+/* QUIZ OPTIONS */
+.q-opt, .qc-opt, .q-opt, .m-opt, .f-opt, .fo-btn, .mo-btn {
+  background: #ffffff !important;
+  border-color: rgba(60,60,67,0.18) !important;
+  color: #000000 !important;
+}
+
+.q-opt:hover:not(.disabled):not(.dis),
+.m-opt:hover:not(.disabled):not(.dis),
+.f-opt:hover:not(.disabled):not(.dis) {
+  border-color: #007aff !important;
+  background: #e5f0ff !important;
+  color: #007aff !important;
+}
+
+.q-opt.selected-correct, .q-opt.ok, .m-opt.ok, .f-opt.ok,
+.q-opt.show-correct, .q-opt.sh, .m-opt.sh, .f-opt.sh,
+.q-opt.selected-correct, .qc-opt.selected-correct {
+  background: #edfaf1 !important;
+  border-color: #34c759 !important;
+  color: #1a7a3a !important;
+}
+
+.q-opt.selected-wrong, .q-opt.no, .m-opt.no, .f-opt.no,
+.qc-opt.selected-wrong {
+  background: #fff0ef !important;
+  border-color: #ff3b30 !important;
+  color: #cc0000 !important;
+}
+
+/* QUIZ RESULT */
+.quiz-result, .qr, .result-card {
+  background: #ffffff !important;
+  border-color: rgba(60,60,67,0.18) !important;
+}
+
+.qr-score, .qr-pct, .fr-score, .gr-score, .gr-n {
+  color: #007aff !important;
+}
+
+.qr-label, .qr-lbl { color: #6c6c70 !important; }
+
+.qr-badge.excellent { background: #edfaf1 !important; color: #1a7a3a !important; border-color: #34c759 !important; }
+.qr-badge.good { background: #fdf6e3 !important; color: #8b6508 !important; border-color: #d4a017 !important; }
+.qr-badge.retry { background: #fff0ef !important; color: #cc0000 !important; border-color: #ff3b30 !important; }
+
+/* QR BUTTONS */
+.qr-btn, .start-btn, .start-game-btn, .rb-btn, .retry-btn, .qr-btn.sec {
+  background: #007aff !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+.qr-btn.sec, .retry-btn {
+  background: #ffffff !important;
+  color: #007aff !important;
+  border: 1px solid rgba(60,60,67,0.18) !important;
+}
+
+/* AUDIO */
+.audio-box, .audio-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(60,60,67,0.18) !important;
+}
+
+.audio-ar, .aud-ar, .audio-text {
+  color: #000000 !important;
+}
+
+.audio-tr, .aud-tr { color: #8e8e93 !important; }
+.audio-ru, .aud-ru { color: #3c3c43 !important; }
+.audio-qs-lbl, .aud-ql { color: #6c6c70 !important; }
+.audio-q, .aud-q { color: #3c3c43 !important; }
+.audio-q-n, .aud-qn { color: #007aff !important; }
+
+.play-info, .pi { color: #6c6c70 !important; }
+.play-info strong, .pi strong { color: #000000 !important; }
+
+/* ADHKAR */
+.etime.em { background: #fdf6e3 !important; border-color: #e8d5a0 !important; }
+.etime.ae { background: #e5f0ff !important; border-color: #b0c0e8 !important; }
+.dcard.dm { background: #ffffff !important; border-color: rgba(60,60,67,0.18) !important; border-right-color: #b8860b !important; }
+.dcard.de { background: #ffffff !important; border-color: rgba(60,60,67,0.18) !important; border-right-color: #007aff !important; }
+
+.dcard .d-text, .dtext { color: #000000 !important; }
+.dnum, .d-num { color: #8b6508 !important; opacity: 0.08 !important; }
+.rbadge, .d-badge { background: #fdf6e3 !important; color: #8b6508 !important; border-color: #e8d5a0 !important; }
+.dcard.de .rbadge, .dcard.de .d-badge { background: #e5f0ff !important; color: #007aff !important; border-color: #b0c0e8 !important; }
+.cbtn.dm, .d-cbtn { background: #fdf6e3 !important; color: #8b6508 !important; border: 1px solid #e8d5a0 !important; }
+.dcard.de .d-cbtn { background: #e5f0ff !important; color: #007aff !important; border-color: #b0c0e8 !important; }
+.cnum, .d-cnum { color: #8b6508 !important; }
+.dcard.de .d-cnum { color: #007aff !important; }
+.rbtn, .rst-btn { background: #f2f2f7 !important; border-color: rgba(60,60,67,0.18) !important; color: #6c6c70 !important; }
+
+/* FLASHCARDS */
+.fc-front, .fc-f { background: #f2f2f7 !important; border-color: rgba(60,60,67,0.18) !important; }
+.fc-back, .fc-b { background: #edfaf1 !important; border-color: rgba(52,199,89,0.2) !important; }
+.fc-ar { color: #000000 !important; }
+.fc-hint, .fc-lesson-tag, .fc-tag { color: #8e8e93 !important; }
+.fc-ru { color: #1a7a3a !important; }
+.fc-btn { background: #ffffff !important; border-color: rgba(60,60,67,0.18) !important; color: #3c3c43 !important; }
+
+/* GAME SCORES */
+.fire-timer, .f-timer { color: #007aff !important; }
+.fire-timer.low, .f-timer.low { color: #ff3b30 !important; }
+.fire-q, .f-word, .match-word, .mw { color: #000000 !important; }
+.match-hint, .mh { color: #8e8e93 !important; }
+
+/* DOTS */
+.fp-dot, .f-dot, .ms-dot { background: #e5e5ea !important; }
+.fp-dot.done-ok, .f-dot.ok { background: #34c759 !important; }
+.fp-dot.done-no, .f-dot.no { background: #ff3b30 !important; }
+.fp-dot.current, .f-dot.cur { background: #007aff !important; }
+
+/* TIP BOX */
+.tip { background: #edfaf1 !important; border-color: rgba(52,199,89,0.3) !important; color: #1a7a3a !important; }
+.note { background: #e5f0ff !important; color: #007aff !important; }
+
+/* RESULT GRID */
+.result-grid, .rg, .sgrid, .score-grid {
+  background: transparent !important;
+}
+
+.score-item, .sitem, .ri, .rg-item {
+  background: #ffffff !important;
+  border-color: rgba(60,60,67,0.18) !important;
+}
+
+.score-label, .slbl, .rl, .ri-lbl { color: #6c6c70 !important; }
+.score-val, .sval, .rv, .ri-val { color: #000000 !important; }
+
+/* HW */
+.hw, .hw-card, .hw-box {
+  background: #ffffff !important;
+  border-color: rgba(52,199,89,0.3) !important;
+}
+.hw-lbl, .hwl { color: #6c6c70 !important; }
+.hw-item, .hwi { color: #3c3c43 !important; }
+.hw-dot, .hwn { color: #007aff !important; }
+
+/* FOOTER */
+footer, .footer, .pfooter {
+  background: #f2f2f7 !important;
+  border-top: 1px solid rgba(60,60,67,0.18) !important;
+}
+
+.footer-ar, .pfar, .f-ar, .far {
+  color: #8b6508 !important;
+}
+
+.footer-ru, .pfru, .f-ru { color: #6c6c70 !important; }
+.footer-copy, .f-copy, .f-cp { color: #aeaeb2 !important; }
+
+/* EXAM */
+.exam-hero { background: #f2f2f7 !important; border-bottom: 2px solid #34c759 !important; }
+.exam-info { background: #ffffff !important; border-bottom: 1px solid rgba(60,60,67,0.18) !important; }
+.ei-val { color: #000000 !important; font-weight: 600 !important; }
+.ei-item { color: #6c6c70 !important; }
+.exam-progress, .prog-bar-inner { background: #ffffff !important; }
+.ep-track { background: #e5e5ea !important; }
+.ep-fill { background: #34c759 !important; }
+.q-num, .q-label, .ql { color: #8e8e93 !important; }
+.q-text, .qt { color: #000000 !important; font-weight: 600 !important; }
+.q-text-ar, .q-ar, .qc-ar { color: #000000 !important; }
+.q-feedback.ok, .q-fb.ok { color: #1a7a3a !important; }
+.q-feedback.no, .q-fb.no { color: #cc0000 !important; }
+.topic-card, .tc { background: #f2f2f7 !important; border-color: rgba(60,60,67,0.18) !important; }
+.tc-ar { color: #8b6508 !important; }
+.tc-ru { color: #6c6c70 !important; }
+.start-game-btn { background: #34c759 !important; }
+.review-card { background: #fff0ef !important; border-color: #ff3b30 !important; }
+.rv-right { color: #1a7a3a !important; }
+.rv-wrong { color: #cc0000 !important; }
+.rc-circle.excellent { border-color: #34c759 !important; background: #edfaf1 !important; }
+.rc-circle.good { border-color: #b8860b !important; background: #fdf6e3 !important; }
+.rc-circle.retry { border-color: #ff3b30 !important; background: #fff0ef !important; }
+.rc-circle.excellent .rc-pct { color: #1a7a3a !important; }
+.rc-circle.good .rc-pct { color: #8b6508 !important; }
+.rc-circle.retry .rc-pct { color: #cc0000 !important; }
+.rc-btn.primary { background: #34c759 !important; color: #ffffff !important; }
+.rc-btn.sec { background: #ffffff !important; color: #007aff !important; border-color: rgba(60,60,67,0.18) !important; }
+.rs-num.green { color: #34c759 !important; }
+.rs-num.red { color: #ff3b30 !important; }
+.rs-num.gold { color: #8b6508 !important; }
+
+/* DARK MODE FORCE OVERRIDE */
+@media (prefers-color-scheme: dark) {
+  html, body { background: #f2f2f7 !important; color: #000000 !important; }
+  * { color-scheme: light !important; }
+}
+</style>
+</head>
+<body>
+
+</div>
+</div>
+
+<div class="exam-hero">
+  <div class="eh-content">
+    <span class="eh-icon"></span>
+    <div class="eh-badge">Уровень 1 · Экзамен 1 из 2</div>
+    <div class="eh-ar">الاختبار الأول — المستوى الأول</div>
+    <div class="eh-title">Первый Экзамен</div>
+    
+  </div>
+</div>
+
+<div class="exam-info">
+  <div class="ei-inner">
+    <div class="ei-item"><span class="ei-icon"></span><span>Вопросов: <span class="ei-val">20</span></span></div>
+    <div class="ei-item"><span class="ei-icon"></span><span>Уроки: <span class="ei-val">1–7</span></span></div>
+    <div class="ei-item"><span class="ei-icon"></span><span>Проходной балл: <span class="ei-val">70%</span></span></div>
+    <div class="ei-item"><span class="ei-icon"></span><span>Отлично: <span class="ei-val">90%+</span></span></div>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- INTRO -->
+<div class="section active" id="intro">
+  <div class="intro-card">
+    <div class="ic-ru">Ты прошёл 7 уроков! Пришло время проверить знания.<br>20 вопросов по всем темам уроков 1–7.</div>
+    <div class="topics-grid">
+      <div class="topic-card"><span class="tc-icon"></span><div class="tc-text"><span class="tc-ar">التعارف</span><span class="tc-ru">Урок 1 — Знакомство</span></div></div>
+      <div class="topic-card"><span class="tc-icon"></span><div class="tc-text"><span class="tc-ar">الأسرة</span><span class="tc-ru">Урок 2 — Семья</span></div></div>
+      <div class="topic-card"><span class="tc-icon"></span><div class="tc-text"><span class="tc-ar">البيت</span><span class="tc-ru">Урок 3 — Дом</span></div></div>
+      <div class="topic-card"><span class="tc-icon"></span><div class="tc-text"><span class="tc-ar">الطعام</span><span class="tc-ru">Урок 4 — Еда</span></div></div>
+      <div class="topic-card"><span class="tc-icon"></span><div class="tc-text"><span class="tc-ar">المدرسة</span><span class="tc-ru">Урок 5 — Учёба</span></div></div>
+      <div class="topic-card"><span class="tc-icon"></span><div class="tc-text"><span class="tc-ar">العمل</span><span class="tc-ru">Урок 6 — Работа</span></div></div>
+      <div class="topic-card"><span class="tc-icon"></span><div class="tc-text"><span class="tc-ar">الصحة</span><span class="tc-ru">Урок 7 — Здоровье</span></div></div>
+    </div>
+    <button class="start-btn" onclick="startExam()"> Начать экзамен</button>
+  </div>
+</div>
+
+<!-- EXAM -->
+<div class="section" id="exam">
+  <div class="exam-progress">
+    <div class="ep-top">
+      <span class="ep-label">Прогресс экзамена</span>
+      <span class="ep-num" id="ep-num">0 / 20</span>
+    </div>
+    <div class="ep-track"><div class="ep-fill" id="ep-fill" style="width:0%"></div></div>
+  </div>
+  <div id="q-container"></div>
+</div>
+
+<!-- RESULT -->
+<div class="section" id="result">
+  <div class="result-card">
+    <div class="rc-score-wrap">
+      <div class="rc-circle" id="rc-circle">
+        <div class="rc-pct" id="rc-pct">0%</div>
+      </div>
+    </div>
+    <div class="rc-ar" id="rc-ar"></div>
+    <div><span class="rc-badge" id="rc-badge"></span></div>
+    <div class="rc-stats">
+      <div class="rs-item"><div class="rs-num green" id="rs-correct">0</div><div class="rs-lbl">Правильно</div></div>
+      <div class="rs-item"><div class="rs-num red" id="rs-wrong">0</div><div class="rs-lbl">Неверно</div></div>
+      <div class="rs-item"><div class="rs-num gold">20</div><div class="rs-lbl">Всего</div></div>
+    </div>
+    <div id="review-section"></div>
+    <div class="rc-btns">
+      <button class="rc-btn sec" onclick="restartExam()">↺ Пройти снова</button>
+      <a class="rc-btn primary" href="takrar-level1-lesson8.html">Урок 8 →</a>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const questions = [
+  // Урок 1 — Знакомство
+  {topic:'Урок 1 — التعارف', q:'Как спросить «Как тебя зовут?»', ar:'', opts:['مَا اسْمُكَ؟','كَيْفَ حَالُكَ؟','مِنْ أَيْنَ أَنْتَ؟','مَاذَا تَعْمَلُ؟'], ans:0},
+  {topic:'Урок 1 — التعارف', q:'Что означает أَهْلاً?', ar:'', opts:['Спасибо','Как дела?','Привет','До свидания'], ans:2},
+  {topic:'Урок 1 — التعارف', q:'Переведи:', ar:'أَنَا مِنْ كَازَاخِسْتَان', opts:['Я студент','Я из Казахстана','Я учитель','Меня зовут Казахстан'], ans:1},
+
+  // Урок 2 — Семья
+  {topic:'Урок 2 — الأسرة', q:'Что означает عِنْدِي?', ar:'', opts:['Я студент','У меня есть','Откуда я','Моё имя'], ans:1},
+  {topic:'Урок 2 — الأسرة', q:'Женский род от كَبِيرٌ?', ar:'', opts:['كَبِيرٌ','كَبِيرَةٌ','كَبِيرُونَ','كَبِيرَانِ'], ans:1},
+  {topic:'Урок 2 — الأسرة', q:'Переведи:', ar:'بَارَكَ اللهُ فِي أُسْرَتِكَ', opts:['Хвала Аллаху','Да благословит Аллах твою семью','Как дела?','Спасибо'], ans:1},
+
+  // Урок 3 — Дом
+  {topic:'Урок 3 — البيت', q:'«Мой дом» по-арабски?', ar:'', opts:['بَيْتُهُ','بَيْتُكَ','بَيْتِي','بَيْتُهَا'], ans:2},
+  {topic:'Урок 3 — البيت', q:'Что означает نَظِيفٌ?', ar:'', opts:['Красивый','Большой','Чистый','Маленький'], ans:2},
+  {topic:'Урок 3 — البيت', q:'Как пригласить в гости?', ar:'', opts:['جَزَاكَ اللهُ خَيْراً','تَعَالَ وَزُرْنَا','بَارَكَ اللهُ فِيكَ','إِنْ شَاءَ اللهُ'], ans:1},
+
+  // Урок 4 — Еда
+  {topic:'Урок 4 — الطعام', q:'Что говорят перед едой по Сунне?', ar:'', opts:['الحَمْدُ لِلهِ','بِسْمِ اللهِ','إِنْ شَاءَ اللهُ','جَزَاكَ اللهُ'], ans:1},
+  {topic:'Урок 4 — الطعام', q:'«Он ест» по-арабски?', ar:'', opts:['أَكَلْتُ','آكُلُ','يَأْكُلُ','أَكَلَ'], ans:2},
+  {topic:'Урок 4 — الطعام', q:'Что означает لَذِيذٌ?', ar:'', opts:['Халяльный','Чистый','Вкусный','Большой'], ans:2},
+
+  // Урок 5 — Учёба
+  {topic:'Урок 5 — المدرسة', q:'«Он читает» по-арабски?', ar:'', opts:['قَرَأَ','يَقْرَأُ','يَكْتُبُ','يَدْرُسُ'], ans:1},
+  {topic:'Урок 5 — المدرسة', q:'Переведи хадис:', ar:'طَلَبُ العِلْمِ فَرِيضَةٌ عَلَى كُلِّ مُسْلِمٍ', opts:['Знание — свет','Требование знания — обязанность для каждого мусульманина','Учись с рождения до смерти','Ищи знание везде'], ans:1},
+  {topic:'Урок 5 — المدرسة', q:'Как спросить «Что ты изучаешь?»', ar:'', opts:['أَيْنَ تَدْرُسُ؟','كَيْفَ تَدْرُسُ؟','مَاذَا تَدْرُسُ؟','مَتَى تَدْرُسُ؟'], ans:2},
+
+  // Урок 6 — Работа
+  {topic:'Урок 6 — العمل', q:'«Я работаю» по-арабски?', ar:'', opts:['عَمِلَ','يَعْمَلُ','أَعْمَلُ','عَمِلْتُ'], ans:2},
+  {topic:'Урок 6 — العمل', q:'Что означает الرَّزَّاقُ?', ar:'', opts:['Всезнающий','Милосердный','Дающий пропитание','Прощающий'], ans:2},
+  {topic:'Урок 6 — العمل', q:'Переведи:', ar:'الرِّزْقُ مِنَ اللهِ', opts:['Работа от Аллаха','Пропитание от Аллаха','Знание от Аллаха','Помощь от Аллаха'], ans:1},
+
+  // Урок 7 — Здоровье
+  {topic:'Урок 7 — الصحة', q:'Что говорят больному?', ar:'', opts:['بَارَكَ اللهُ فِيكَ','شَفَاكَ اللهُ','جَزَاكَ اللهُ خَيْراً','تَفَضَّلْ'], ans:1},
+  {topic:'Урок 7 — الصحة', q:'«Я был болен» по-арабски?', ar:'', opts:['أَنَا مَرِيضٌ','كُنْتُ مَرِيضاً','كَانَ مَرِيضاً','سَأَكُونُ مَرِيضاً'], ans:1},
+  {topic:'Урок 7 — الصحة', q:'Переведи:', ar:'الشِّفَاءُ مِنَ اللهِ وَحْدَهُ', opts:['Здоровье от Аллаха','Лекарство от Аллаха','Исцеление только от Аллаха','Помощь от Аллаха'], ans:2},
+];
+
+let current = 0;
+let score = 0;
+let wrongList = [];
+let userAnswers = [];
+
+function startExam() {
+  current = 0; score = 0; wrongList = []; userAnswers = [];
+  showSection('exam');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  updateProgress();
+  const q = questions[current];
+  const letters = ['أ','ب','ج','د'];
+  let html = `
+    <div class="q-card">
+      <div class="qc-topic">${q.topic} · Вопрос ${current+1} из ${questions.length}</div>
+      ${q.ar ? `<div class="qc-ar">${q.ar}</div>` : ''}
+      <div class="qc-text">${q.q}</div>
+      <div class="qc-options">
+        ${q.opts.map((opt,i) => `
+          <button class="qc-opt" onclick="answer(${i})" id="opt-${i}">
+            <span style="font-family:'Scheherazade New',serif;font-size:16px;color:var(--gold);margin-left:6px">${letters[i]}</span> ${opt}
+          </button>
+        `).join('')}
+      </div>
+      <div class="qc-feedback" id="qfb"></div>
+    </div>`;
+  document.getElementById('q-container').innerHTML = html;
+}
+
+function answer(chosen) {
+  const q = questions[current];
+  const opts = document.querySelectorAll('.qc-opt');
+  opts.forEach(o => o.classList.add('disabled'));
+  opts[q.ans].classList.add('show-ans');
+
+  const fb = document.getElementById('qfb');
+  if (chosen === q.ans) {
+    opts[chosen].classList.add('correct');
+    score++;
+    fb.textContent = ' Правильно! أحسنت!';
+    fb.className = 'qc-feedback show ok';
+  } else {
+    opts[chosen].classList.add('wrong');
+    wrongList.push({q, chosen});
+    fb.textContent = ` Неверно. Правильный ответ: ${q.opts[q.ans]}`;
+    fb.className = 'qc-feedback show no';
+  }
+  userAnswers.push(chosen);
+
+  setTimeout(() => {
+    current++;
+    if (current < questions.length) {
+      renderQuestion();
+    } else {
+      showResult();
+    }
+  }, 1400);
+}
+
+function updateProgress() {
+  const pct = Math.round(current / questions.length * 100);
+  document.getElementById('ep-fill').style.width = pct + '%';
+  document.getElementById('ep-num').textContent = current + ' / ' + questions.length;
+}
+
+function showResult() {
+  showSection('result');
+  const pct = Math.round(score / questions.length * 100);
+  document.getElementById('rc-pct').textContent = pct + '%';
+  document.getElementById('rs-correct').textContent = score;
+  document.getElementById('rs-wrong').textContent = questions.length - score;
+
+  const circle = document.getElementById('rc-circle');
+  const ar = document.getElementById('rc-ar');
+  const badge = document.getElementById('rc-badge');
+
+  if (pct >= 90) {
+    circle.className = 'rc-circle excellent';
+    ar.textContent = 'ماشاء الله! ممتاز جداً! أنت نجحت! ';
+    badge.textContent = 'Отлично — ' + pct + '%';
+    badge.className = 'rc-badge excellent';
+  } else if (pct >= 70) {
+    circle.className = 'rc-circle good';
+    ar.textContent = 'أحسنت! نجحت بإذن الله ';
+    badge.textContent = 'Хорошо — ' + pct + '%';
+    badge.className = 'rc-badge good';
+  } else {
+    circle.className = 'rc-circle retry';
+    ar.textContent = 'حاول مرة أخرى بإذن الله ';
+    badge.textContent = 'Повтори уроки — ' + pct + '%';
+    badge.className = 'rc-badge retry';
+  }
+
+  // Wrong answers review
+  if (wrongList.length > 0) {
+    let html = `<div style="margin-top:20px;text-align:left">
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:600">Разбор ошибок</div>`;
+    wrongList.forEach(({q, chosen}) => {
+      html += `<div class="review-card">
+        <div class="rv-q">${q.topic}</div>
+        ${q.ar ? `<div class="rv-ar">${q.ar}</div>` : ''}
+        <div class="rv-q" style="margin-bottom:4px">${q.q}</div>
+        <div class="rv-wrong"> Твой ответ: ${q.opts[chosen]}</div>
+        <div class="rv-right"> Правильно: ${q.opts[q.ans]}</div>
+      </div>`;
+    });
+    html += '</div>';
+    document.getElementById('review-section').innerHTML = html;
+  }
+}
+
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function restartExam() {
+  startExam();
+}
+</script>
+</body>
+</html>
