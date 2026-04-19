@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Истории Пророков</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:           #FFFFFF;
+      --bg-2:         #F2F2F7;
+      --label:        #000000;
+      --label-2:      rgba(60,60,67,0.60);
+      --label-3:      rgba(60,60,67,0.30);
+      --sep:          rgba(60,60,67,0.12);
+      --accent:       #007AFF;
+      --fill:         rgba(120,120,128,0.08);
+      --font:         -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+      --font-ar:      'Amiri', Georgia, serif;
+      --r:            13px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--font);
+      background: var(--bg-2);
+      color: var(--label);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    .page { max-width: 580px; margin: 0 auto; padding-bottom: 60px; }
+
+    /* Header */
+    .header { background: var(--bg); padding: 56px 20px 20px; border-bottom: 1px solid var(--sep); }
+    .eyebrow { font-size: 13px; font-weight: 400; color: var(--accent); margin-bottom: 8px; letter-spacing: 0.1px; }
+    .h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.1; color: var(--label); margin-bottom: 10px; }
+    .h1-ar { font-family: var(--font-ar); font-size: 20px; color: var(--label-2); line-height: 1.6; margin-bottom: 12px; }
+    .body-text { font-size: 15px; color: var(--label-2); line-height: 1.5; }
+
+    /* Stats */
+    .stats { display: flex; background: var(--bg); border-bottom: 1px solid var(--sep); }
+    .stat { flex: 1; padding: 14px 0; text-align: center; }
+    .stat + .stat { border-left: 1px solid var(--sep); }
+    .stat-n { font-size: 20px; font-weight: 600; color: var(--label); }
+    .stat-l { font-size: 12px; color: var(--label-2); margin-top: 2px; }
+
+    /* Section label */
+    .sec-label {
+      font-size: 13px; font-weight: 400; color: var(--label-2);
+      text-transform: uppercase; letter-spacing: 0.4px;
+      padding: 20px 20px 7px;
+    }
+
+    /* Prophet card */
+    .card {
+      display: block; background: var(--bg); border-radius: var(--r);
+      margin: 0 16px; overflow: hidden;
+      text-decoration: none; color: inherit;
+      border: 1px solid var(--sep);
+      transition: background 0.12s;
+    }
+    .card:active, .card:hover { background: var(--fill); }
+    .card-body { padding: 16px; }
+    .card-badge { font-size: 12px; font-weight: 500; color: var(--accent); margin-bottom: 8px; }
+    .card-ar { font-family: var(--font-ar); font-size: 26px; color: var(--label); direction: rtl; line-height: 1.4; margin-bottom: 5px; }
+    .card-title { font-size: 20px; font-weight: 600; letter-spacing: -0.3px; color: var(--label); margin-bottom: 8px; }
+    .card-desc { font-size: 15px; color: var(--label-2); line-height: 1.55; margin-bottom: 14px; }
+    .card-chips { display: flex; flex-wrap: wrap; gap: 12px; padding-top: 12px; border-top: 1px solid var(--sep); margin-bottom: 14px; }
+    .chip { font-size: 13px; color: var(--label-2); }
+    .cta {
+      display: block; width: 100%; background: var(--accent); color: #fff;
+      border: none; border-radius: 10px; padding: 13px;
+      font-family: var(--font); font-size: 17px; font-weight: 600;
+      text-align: center; text-decoration: none; letter-spacing: -0.2px;
+      cursor: pointer; transition: opacity 0.15s;
+    }
+    .cta:hover { opacity: 0.88; }
+    .cta:active { opacity: 0.72; }
+
+    /* List group */
+    .list { background: var(--bg); border-radius: var(--r); margin: 0 16px; border: 1px solid var(--sep); overflow: hidden; }
+    .row {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 16px; border-bottom: 1px solid var(--sep);
+      opacity: 0.5;
+    }
+    .row:last-child { border-bottom: none; }
+    .row-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      border: 1.5px solid var(--label-3); flex-shrink: 0;
+    }
+    .row-body { flex: 1; min-width: 0; }
+    .row-title { font-size: 16px; font-weight: 400; color: var(--label); }
+    .row-ar { font-family: var(--font-ar); font-size: 15px; color: var(--label-2); direction: rtl; margin-top: 2px; }
+    .row-tag { font-size: 12px; color: var(--label-3); flex-shrink: 0; }
+
+    /* Footer */
+    .footer { margin: 28px 16px 0; padding: 20px; background: var(--bg); border-radius: var(--r); border: 1px solid var(--sep); }
+    .footer-ar { font-family: var(--font-ar); font-size: 20px; color: var(--label); direction: rtl; text-align: right; line-height: 1.8; margin-bottom: 10px; }
+    .footer-tr { font-size: 14px; color: var(--label-2); line-height: 1.5; font-style: italic; }
+    .footer-ref { font-size: 12px; color: var(--label-3); margin-top: 4px; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="eyebrow">قِصَصُ الأَنْبِيَاءِ · Образование</div>
+    <div class="h1">Истории<br>Пророков</div>
+    <div class="h1-ar">قِصَصُ الأَنْبِيَاءِ عَلَيْهِمُ السَّلَامُ</div>
+    <div class="body-text">Достоверные истории пророков Аллаха — читай, слушай, проверяй свои знания</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-n">25</div><div class="stat-l">пророков</div></div>
+    <div class="stat"><div class="stat-n">10+</div><div class="stat-l">языков</div></div>
+    <div class="stat"><div class="stat-n">0</div><div class="stat-l">рекламы</div></div>
+  </div>
+
+  <div class="sec-label">Доступно сейчас</div>
+
+  <a href="adam-story.html" class="card">
+    <div class="card-body">
+      <div class="card-badge">Пророк № 1 · Открыто</div>
+      <div class="card-ar">آدَمُ عَلَيْهِ السَّلَامُ</div>
+      <div class="card-title">Адам (мир ему)</div>
+      <div class="card-desc">Первый человек и первый пророк. История его сотворения, испытания в Раю, отказ Иблиса и урок покаяния — на основе Корана и достоверных источников.</div>
+      <div class="card-chips">
+        <span class="chip">Озвучка</span>
+        <span class="chip">6 частей</span>
+        <span class="chip">12 вопросов</span>
+        <span class="chip">15 мин</span>
+      </div>
+      <div class="cta">Начать изучение</div>
+    </div>
+  </a>
+
+  <div class="sec-label">Скоро</div>
+
+  <div class="list">
+    <div class="row"><div class="row-dot"></div><div class="row-body"><div class="row-title">Нух (мир ему)</div><div class="row-ar">نُوحٌ عَلَيْهِ السَّلَامُ</div></div><div class="row-tag">Скоро</div></div>
+    <div class="row"><div class="row-dot"></div><div class="row-body"><div class="row-title">Ибрахим (мир ему)</div><div class="row-ar">إِبْرَاهِيمُ عَلَيْهِ السَّلَامُ</div></div><div class="row-tag">Скоро</div></div>
+    <div class="row"><div class="row-dot"></div><div class="row-body"><div class="row-title">Юсуф (мир ему)</div><div class="row-ar">يُوسُفُ عَلَيْهِ السَّلَامُ</div></div><div class="row-tag">Скоро</div></div>
+    <div class="row"><div class="row-dot"></div><div class="row-body"><div class="row-title">Муса (мир ему)</div><div class="row-ar">مُوسَى عَلَيْهِ السَّلَامُ</div></div><div class="row-tag">Скоро</div></div>
+    <div class="row"><div class="row-dot"></div><div class="row-body"><div class="row-title">Мухаммад ﷺ</div><div class="row-ar">مُحَمَّدٌ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ</div></div><div class="row-tag">Скоро</div></div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-ar">وَكُلًّا نَّقُصُّ عَلَيْكَ مِنْ أَنبَاءِ الرُّسُلِ</div>
+    <div class="footer-tr">«И всё это Мы рассказываем тебе из историй посланников»</div>
+    <div class="footer-ref">Коран, Худ 11:120</div>
+  </div>
+
+</div>
+</body>
+</html>
