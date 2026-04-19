@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Худ (мир ему) — История</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--bg2:#f2f2f7;--label:#000;--label2:rgba(60,60,67,.6);--label3:rgba(60,60,67,.3);--sep:rgba(60,60,67,.12);--accent:#007aff;--green:#34c759;--red:#ff3b30;--fill:rgba(120,120,128,.08);--font:-apple-system,BlinkMacSystemFont,'SF Pro Text','Helvetica Neue',sans-serif;--ar:'Amiri',Georgia,serif;--r:13px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;}
+body{font-family:var(--font);background:var(--bg2);color:var(--label);-webkit-font-smoothing:antialiased;min-height:100vh;}
+.page{max-width:580px;margin:0 auto;padding-bottom:60px;}
+.nav{position:sticky;top:0;z-index:100;background:rgba(242,242,247,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--sep);display:flex;align-items:center;padding:12px 16px;gap:12px;}
+.nav-back{display:flex;align-items:center;gap:4px;background:none;border:none;cursor:pointer;font-family:var(--font);font-size:17px;color:var(--accent);padding:0;flex-shrink:0;}
+.nav-center{flex:1;text-align:center;min-width:0;}
+.nav-title{font-size:13px;font-weight:600;color:var(--label);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.nav-sub{font-size:11px;color:var(--label2);margin-top:1px;}
+.nav-count{font-size:13px;font-weight:500;color:var(--label2);flex-shrink:0;}
+.progress{height:2px;background:var(--sep);}
+.progress-bar{height:100%;background:var(--accent);transition:width .4s;}
+.screen{display:none;}.screen.on{display:block;}
+.wrap{padding:20px 16px 60px;}
+.home-card{background:var(--bg);border-radius:var(--r);padding:20px;margin-bottom:12px;}
+.home-label{font-size:12px;font-weight:500;color:var(--accent);margin-bottom:6px;}
+.home-ar{font-family:var(--ar);font-size:28px;color:var(--label);direction:rtl;line-height:1.4;margin-bottom:6px;}
+.home-title{font-size:22px;font-weight:700;letter-spacing:-.3px;color:var(--label);margin-bottom:8px;}
+.home-desc{font-size:15px;color:var(--label2);line-height:1.5;}
+.stats{display:flex;background:var(--bg);border-radius:var(--r);overflow:hidden;margin-bottom:20px;}
+.stat{flex:1;padding:14px 0;text-align:center;}
+.stat+.stat{border-left:1px solid var(--sep);}
+.stat-n{font-size:20px;font-weight:600;}
+.stat-l{font-size:12px;color:var(--label2);margin-top:2px;}
+.sec-lbl{font-size:13px;color:var(--label2);text-transform:uppercase;letter-spacing:.4px;padding:0 4px 8px;}
+.parts-list{background:var(--bg);border-radius:var(--r);overflow:hidden;}
+.part-row{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid var(--sep);cursor:pointer;transition:background .1s;}
+.part-row:last-child{border-bottom:none;}
+.part-row:active{background:var(--fill);}
+.pr-num{font-size:13px;font-weight:600;color:var(--accent);width:20px;flex-shrink:0;}
+.pr-body{flex:1;min-width:0;}
+.pr-title{font-size:16px;font-weight:400;color:var(--label);}
+.pr-sub{font-size:13px;color:var(--label2);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pr-right{font-size:18px;color:var(--label3);flex-shrink:0;}
+.pr-done{width:20px;height:20px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:#fff;font-weight:700;}
+.btn-primary{width:100%;background:var(--accent);color:#fff;border:none;border-radius:var(--r);padding:15px;font-family:var(--font);font-size:17px;font-weight:600;cursor:pointer;margin-top:12px;transition:opacity .15s;}
+.btn-primary:active{opacity:.75;}
+.audio-bar{background:var(--bg);border-radius:var(--r);padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+.audio-btn{width:36px;height:36px;border-radius:50%;border:none;background:var(--accent);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;color:#fff;transition:opacity .15s;}
+.audio-btn:active{opacity:.75;}
+.audio-info{flex:1;}
+.audio-lbl{font-size:14px;font-weight:500;color:var(--label);}
+.audio-sub{font-size:12px;color:var(--label2);margin-top:2px;}
+.story-block{background:var(--bg);border-radius:var(--r);padding:20px;margin-bottom:12px;}
+.story-eye{font-size:12px;font-weight:500;color:var(--accent);margin-bottom:12px;}
+.story-text{font-size:17px;line-height:1.75;color:var(--label);white-space:pre-line;letter-spacing:-.1px;}
+.q-block{background:var(--bg);border-radius:var(--r);padding:20px;margin-bottom:12px;}
+.q-eye{font-size:12px;font-weight:500;color:var(--label2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px;}
+.q-text{font-size:19px;font-weight:400;line-height:1.45;color:var(--label);letter-spacing:-.2px;}
+.opts{display:flex;flex-direction:column;gap:8px;margin-bottom:12px;}
+.opt{display:flex;align-items:flex-start;gap:12px;background:var(--bg);border-radius:var(--r);padding:14px 16px;border:none;text-align:left;font-family:var(--font);font-size:16px;font-weight:400;color:var(--label);cursor:pointer;line-height:1.4;border:1px solid var(--sep);width:100%;transition:background .1s;}
+.opt:active{background:var(--fill);}
+.opt.correct{border-color:var(--green);background:rgba(52,199,89,.06);}
+.opt.wrong{border-color:var(--red);background:rgba(255,59,48,.05);}
+.opt.dim{opacity:.35;}
+.opt-badge{width:24px;height:24px;border-radius:6px;background:var(--fill);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--label2);flex-shrink:0;margin-top:1px;}
+.opt.correct .opt-badge{background:var(--green);color:#fff;}
+.opt.wrong .opt-badge{background:var(--red);color:#fff;}
+.exp{background:var(--bg);border-radius:var(--r);padding:18px 16px;margin-bottom:12px;}
+.exp-status{font-size:14px;font-weight:600;margin-bottom:10px;}
+.exp-status.ok{color:var(--green);}
+.exp-status.err{color:var(--red);}
+.exp-text{font-size:15px;color:var(--label2);line-height:1.6;margin-bottom:14px;}
+.exp-ayah{border-left:2px solid var(--sep);padding-left:14px;}
+.ayah-ar{font-family:var(--ar);font-size:20px;color:var(--label);direction:rtl;text-align:right;line-height:1.9;margin-bottom:5px;}
+.ayah-ref{font-size:12px;color:var(--label3);}
+.result-wrap{padding:48px 16px 60px;display:flex;flex-direction:column;align-items:center;text-align:center;}
+.result-lbl{font-size:13px;font-weight:500;color:var(--label2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:12px;}
+.result-score{font-size:64px;font-weight:700;letter-spacing:-2px;color:var(--label);line-height:1;}
+.result-denom{font-size:24px;font-weight:400;color:var(--label2);}
+.result-msg{font-size:17px;color:var(--label2);line-height:1.55;max-width:320px;margin:16px auto 28px;}
+.result-hadith{background:var(--bg);border-radius:var(--r);padding:18px;width:100%;margin-bottom:24px;border-left:2px solid var(--sep);text-align:right;}
+.rh-ar{font-family:var(--ar);font-size:18px;direction:rtl;line-height:1.8;color:var(--label);margin-bottom:8px;}
+.rh-tr{font-size:13px;color:var(--label2);font-style:italic;text-align:left;direction:ltr;line-height:1.5;}
+.rh-ref{font-size:12px;color:var(--label3);text-align:left;direction:ltr;margin-top:3px;}
+.result-btns{width:100%;display:flex;flex-direction:column;gap:10px;}
+.btn-outline{width:100%;background:var(--bg);border:1px solid var(--sep);border-radius:var(--r);padding:15px;font-family:var(--font);font-size:17px;font-weight:400;color:var(--accent);cursor:pointer;}
+.btn-link{display:block;width:100%;text-align:center;color:var(--label2);font-size:15px;padding:8px;text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="screen on" id="s-home">
+<div class="wrap">
+  <div class="home-card">
+    <div class="home-label">Пророк № 4</div>
+    <div class="home-ar">هُودٌ عَلَيْهِ السَّلَامُ</div>
+    <div class="home-title">Худ (мир ему)</div>
+    <div class="home-desc">Пророк народа Ад — самого сильного народа своего времени. История гордыни, которая привела к гибели, и смелости одного человека против целого народа.</div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-n">6</div><div class="stat-l">частей</div></div>
+    <div class="stat"><div class="stat-n">12</div><div class="stat-l">вопросов</div></div>
+    <div class="stat"><div class="stat-n">15</div><div class="stat-l">минут</div></div>
+  </div>
+  <div class="sec-lbl">Содержание</div>
+  <div class="parts-list" id="parts-list"></div>
+  <button class="btn-primary" onclick="startFrom(0)">Начать с начала</button>
+</div>
+</div>
+
+<div class="screen" id="s-story">
+<div class="nav">
+  <button class="nav-back" onclick="goHome()">‹ Главная</button>
+  <div class="nav-center">
+    <div class="nav-title" id="story-title"></div>
+  </div>
+  <div class="nav-count" id="story-count"></div>
+</div>
+<div class="progress"><div class="progress-bar" id="prog-bar" style="width:0%"></div></div>
+<div class="wrap">
+  <div class="audio-bar">
+    <button class="audio-btn" id="tts-btn" onclick="toggleTTS()">▶</button>
+    <div class="audio-info">
+      <div class="audio-lbl" id="tts-lbl">Прослушать</div>
+      <div class="audio-sub" id="tts-sub">Нажмите ▶ чтобы начать</div>
+    </div>
+  </div>
+  <div class="story-block">
+    <div class="story-eye" id="story-eye"></div>
+    <div class="story-text" id="story-text"></div>
+  </div>
+  <button class="btn-primary" onclick="goQuestion()">Перейти к вопросам</button>
+</div>
+</div>
+
+<div class="screen" id="s-question">
+<div class="nav">
+  <button class="nav-back" onclick="backToStory()">‹ К тексту</button>
+  <div class="nav-center">
+    <div class="nav-title" id="q-title"></div>
+    <div class="nav-sub" id="q-sub"></div>
+  </div>
+  <div class="nav-count" id="q-count"></div>
+</div>
+<div class="progress"><div class="progress-bar" id="prog-bar2" style="width:0%"></div></div>
+<div class="wrap">
+  <div class="q-block">
+    <div class="q-eye">Вопрос</div>
+    <div class="q-text" id="q-text"></div>
+  </div>
+  <div class="opts" id="opts"></div>
+  <div class="exp" id="exp" style="display:none">
+    <div class="exp-status" id="exp-status"></div>
+    <div class="exp-text" id="exp-text"></div>
+    <div class="exp-ayah">
+      <div class="ayah-ar" id="exp-ayah"></div>
+      <div class="ayah-ref" id="exp-ref"></div>
+    </div>
+  </div>
+  <button class="btn-primary" id="next-btn" style="display:none" onclick="nextQ()">Далее</button>
+</div>
+</div>
+
+<div class="screen" id="s-result">
+<div class="result-wrap">
+  <div class="result-lbl">Результат</div>
+  <div class="result-score" id="r-score">0<span class="result-denom"> / 12</span></div>
+  <div class="result-msg" id="r-msg"></div>
+  <div class="result-hadith">
+    <div class="rh-ar">أَلَا بُعْدًا لِّعَادٍ قَوْمِ هُودٍ</div>
+    <div class="rh-tr">«Да сгинут адиты, народ Худа!»</div>
+    <div class="rh-ref">Худ, 11:60</div>
+  </div>
+  <div class="result-btns">
+    <button class="btn-primary" onclick="startFrom(0)">Пройти ещё раз</button>
+    <button class="btn-outline" onclick="goHome()">К содержанию</button>
+    <a href="index.html" class="btn-link">На главную</a>
+  </div>
+</div>
+</div>
+
+</div>
+
+<script>
+var PARTS=[
+{id:1,title:"Народ Ад и их гордыня",sub:"Самый сильный народ своего времени",
+text:"Аллах послал Худа (мир ему) к народу Ад — первому народу адитов, которые проживали на песчаных холмах среди песков Хадрамаута. Это был очень сильный и могущественный народ. Когда их зло распространилось и они стали превозноситься над остальными рабами Аллаха, они говорили: «Кто может превзойти нас силой?»\n\nОни строили на каждом холме высокие строения из гордыни и кичливости. Им были дарованы сады, изобилие пропитания и огромная физическая мощь. Им подчинялись близлежащие территории и племена.\n\nНо всё это богатство и сила не сделали их благодарными Аллаху. Напротив — они придали Аллаху сотоварищей и не уверовали в Его посланников. Тогда Аллах послал к ним Худа (мир ему), чтобы он призвал их к поклонению Одному Аллаху и предостерёг от многобожия и высокомерия.",
+questions:[
+{q:"Где проживал народ Ад?",opts:["В горах Сирии","На песчаных холмах Хадрамаута","На берегах Нила","В долинах Ирака"],c:1,
+exp:"Народ Ад проживал на песчаных холмах среди песков Хадрамаута — на Аравийском полуострове. Аллах упоминает их в Коране, чтобы арабы, знавшие эти места, извлекали урок из судьбы своих соседей.",
+ayah:"إِرَمَ ذَاتِ الْعِمَادِ الَّتِي لَمْ يُخْلَقْ مِثْلُهَا فِي الْبِلَادِ",ref:"Аль-Фаджр, 89:7-8"},
+{q:"Какими словами народ Ад выражал свою гордыню?",opts:["«Мы богаче всех»","«Кто может превзойти нас силой?»","«Наши боги защитят нас»","«Мы построим самые высокие здания»"],c:1,
+exp:"Народ Ад говорил: «Кто может превзойти нас силой?» — это была их главная гордость. Но именно эта гордыня стала причиной их гибели. Сила без веры не защищает от наказания Аллаха.",
+ayah:"وَقَالُوا مَنْ أَشَدُّ مِنَّا قُوَّةً",ref:"Фуссылят, 41:15"}
+]},
+
+{id:2,title:"Призыв Худа и отказ народа",sub:"Когда правду называют колдовством",
+text:"Худ (мир ему) призывал свой народ всеми допустимыми способами. Он напоминал им о благах, которыми Аллах наделил их — о садах, переполненных пропитанием, о силе, которую Он им даровал. Он указывал им на их неблагодарность и предостерегал от последствий.\n\nНо они не приняли его призыв. Гордыня не позволила им ответить на него. Они сказали:\n\n«Ты — всего лишь один из околдованных. Ты — всего лишь такой же человек, как и мы. Покажи нам знамение, если ты — один из тех, кто говорит правду».\n\nЭти слова — ложь. Поистине, нет ни одного посланника, которому Аллах не даровал бы знамений. Но даже если бы посланники не показывали знамений — разве сама религия, с которой они были посланы, не является наибольшим доказательством? Её положения упорядочены на благо всего человечества, она призывает ко всякому благу и запрещает всё дурное, она достаточна во все времена.",
+questions:[
+{q:"Как народ Ад назвал Худа, когда он начал призывать их?",opts:["Лжецом и вором","Одним из околдованных и обычным человеком","Безумцем и злодеем","Чужеземцем и врагом"],c:1,
+exp:"Они сказали: «Ты один из околдованных» и «ты такой же человек, как мы». Это те же слова, которые неверующие говорили всем пророкам. Отрицание пророчества человека — давний приём шайтана.",
+ayah:"إِنَّمَا أَنتَ مِنَ الْمُسَحَّرِينَ مَا أَنتَ إِلَّا بَشَرٌ مِّثْلُنَا",ref:"Аш-Шуара, 26:153-154"},
+{q:"Что является доказательством истинности послания пророков, даже без явных чудес?",opts:["Их красивая внешность и богатство","Сама религия — её мудрость, польза для людей и призыв к добру","Большое количество последователей","Их победы в сражениях"],c:1,
+exp:"Ас-Саади объясняет: сама религия, с которой пришли посланники, является величайшим доказательством. Её положения упорядочены на благо человечества, она призывает ко всякому добру, запрещает зло и достаточна во все времена.",
+ayah:"يَأْمُرُهُم بِالْمَعْرُوفِ وَيَنْهَاهُمْ عَنِ الْمُنكَرِ",ref:"Аль-Аъраф, 7:157"}
+]},
+
+{id:3,title:"Смелость Худа и его упование",sub:"Один против целого народа",
+text:"Отличительным знамением Худа (мир ему) является то, что он в одиночку призывал свой народ, порицал их необоснованные заблуждения и идолов, которым они поклонялись — несмотря на то, что они были очень могущественным и гордым народом.\n\nОни запугивали его: если он не прекратит, то они нашлют на него сумасшествие или беду. Их идолы, по их словам, уже навредили ему. Но Худ открыто и публично заявил им:\n\n«Воистину, я призываю Аллаха в свидетели и прошу вас засвидетельствовать, что я непричастен к тому, чему вы поклоняетесь вместо Него. Стройте свои козни против меня все вместе и не предоставляйте мне отсрочки. Воистину, я уповаю на Аллаха, моего Господа и вашего Господа. Нет ни одного живого существа, которого бы Он не держал за хохол. Воистину, мой Господь — на прямом пути».\n\nРазве может быть знамение больше этого вызова? Один человек бросает вызов целому народу, жаждущему его уничтожить — и не боится. Это и есть истинное упование на Аллаха.",
+questions:[
+{q:"Чем угрожал народ Ад пророку Худу?",opts:["Изгнанием из города","Что их идолы нашлют на него сумасшествие или беду","Тюремным заключением","Лишением имущества"],c:1,
+exp:"Народ Ад угрожал Худу, что их идолы нашлют на него сумасшествие или беду за то, что он порицает их. Худ ответил открытым вызовом — он объявил о своей непричастности к их идолам и призвал их строить козни против него все вместе.",
+ayah:"إِنِّي أُشْهِدُ اللَّهَ وَاشْهَدُوا أَنِّي بَرِيءٌ مِّمَّا تُشْرِكُونَ",ref:"Худ, 11:54"},
+{q:"На что указывает смелость Худа перед лицом угроз целого народа?",opts:["На то, что у него было тайное войско","На истинное упование на Аллаха — он знал, что Аллах держит всё","На его физическую силу и бесстрашие","На то, что народ на самом деле не был таким сильным"],c:1,
+exp:"Худ сказал: «Я уповаю на Аллаха. Нет ни одного живого существа, которого бы Он не держал за хохол». Это и есть истинное упование (таваккуль) — когда человек делает своё дело и полностью полагается на Аллаха, не боясь никого кроме Него.",
+ayah:"إِنِّي تَوَكَّلْتُ عَلَى اللَّهِ رَبِّي وَرَبِّكُم",ref:"Худ, 11:56"}
+]},
+
+{id:4,title:"Наказание приходит как дождь",sub:"Они обрадовались — но напрасно",
+text:"Когда произвол народа Ад достиг пика и они отвергли всякое предостережение, Худ (мир ему) отвернулся от них и предупредил о грядущем наказании.\n\nНаказание появилось на горизонте в тяжёлое для них время — когда они очень нуждались в дожде. Они обрадовались, увидев тёмную тучу на горизонте, и сказали: «Это туча, которая прольёт на нас дождь».\n\nНо Аллах ответил им: «О нет! Это то, что вы торопили».\n\nЭто был не дождь. Это был ветер, несущий мучительные страдания. Он уничтожал всякую вещь, до которой достигал.\n\nОни сами торопили наказание, говоря Худу: «Яви же нам то, чем ты нам угрожаешь, если ты один из тех, кто говорит правду». И наказание пришло — именно тогда, когда они его не ждали, в форме того, чего они больше всего желали.",
+questions:[
+{q:"Как народ Ад отреагировал, увидев тёмную тучу на горизонте?",opts:["Испугались и побежали","Обрадовались, думая что это долгожданный дождь","Начали молиться своим идолам","Пришли к Худу просить помощи"],c:1,
+exp:"Они обрадовались, думая что это дождь — ведь они переживали засуху. Но Аллах ответил: «О нет! Это то, что вы торопили». Их радость мгновенно превратилась в гибель. Такова судьба тех, кто торопит наказание Аллаха.",
+ayah:"هَذَا عَارِضٌ مُّمْطِرُنَا بَلْ هُوَ مَا اسْتَعْجَلْتُم بِهِ",ref:"Аль-Ахкаф, 46:24"},
+{q:"В какой момент пришло наказание к народу Ад?",opts:["Когда они были на пике силы и богатства","Когда они переживали засуху и нуждались в дожде","Когда они напали на соседние народы","Когда Худ покинул их город"],c:1,
+exp:"Наказание пришло именно тогда, когда они больше всего нуждались в помощи — в период засухи. В этом мудрость Аллаха: наказание часто приходит в самый неожиданный момент, принимая форму того, на что люди больше всего надеялись.",
+ayah:"رِيحٌ فِيهَا عَذَابٌ أَلِيمٌ تُدَمِّرُ كُلَّ شَيْءٍ بِأَمْرِ رَبِّهَا",ref:"Аль-Ахкаф, 46:24-25"}
+]},
+
+{id:5,title:"Семь ночей и восемь дней",sub:"Конец самого сильного народа",
+text:"Аллах заставил ветер бушевать над ними семь ночей и восемь дней без перерыва. Ветер был таким мощным, что срывал людей с земли и бросал их, как пустые пальмовые стволы.\n\nАллах описал это в Коране: «Он заставил его бушевать над ними в течение семи ночей и восьми дней без перерыва, и ты мог бы увидеть людей, которые были повержены, словно рухнувшие сгнившие пальмовые стволы».\n\nА на утро от них остались видны только их жилища. Аллах стёр с лица земли самый сильный народ своего времени — тех, кто говорил «кто может превзойти нас силой?»\n\nВ то же время Аллах спас Худа и тех немногих верующих, которые были вместе с ним. Это знамение, указывающее на то, что Аллах способен на всякую вещь, и свидетельство того, как Он почитает посланников и их последователей.\n\nПроклятие преследует адитов как в этом мире, так и в День воскресения: «Да сгинут адиты, народ Худа!»",
+questions:[
+{q:"Сколько длилось наказание — ветер над народом Ад?",opts:["Один день и одну ночь","Три дня и три ночи","Семь ночей и восемь дней","Сорок дней"],c:2,
+exp:"Ветер бушевал семь ночей и восемь дней без перерыва. Аллах описывает погибших как пустые пальмовые стволы — люди, которые говорили «кто превзойдёт нас силой», стали беспомощны перед наказанием Аллаха.",
+ayah:"سَخَّرَهَا عَلَيْهِمْ سَبْعَ لَيَالٍ وَثَمَانِيَةَ أَيَّامٍ حُسُومًا",ref:"Аль-Хакка, 69:7"},
+{q:"Что осталось от народа Ад после наказания?",opts:["Они спаслись на горах","Только их жилища — сами люди были уничтожены","Они переселились в другую страну","Половина народа выжила"],c:1,
+exp:"Аллах сказал: «А на утро от них остались видны только их жилища». Весь народ Ад был уничтожен. Спасся только Худ и те, кто уверовал вместе с ним. Так Аллах воздаёт тем, кто отвергает Его посланников.",
+ayah:"فَأَصْبَحُوا لَا يُرَى إِلَّا مَسَاكِنُهُمْ كَذَلِكَ نَجْزِي الْقَوْمَ الْمُجْرِمِينَ",ref:"Аль-Ахкаф, 46:25"}
+]},
+
+{id:6,title:"Уроки для нас",sub:"Что история Худа говорит нам сегодня",
+text:"История пророка Худа (мир ему) и народа Ад — это наставление для каждого из нас.\n\nПервый урок: сила без веры не защищает. Народ Ад был самым сильным народом своего времени. Они говорили: «Кто превзойдёт нас силой?» Но их сила, разум, слух и зрение не помогли им, когда пришло наказание Аллаха. Как сказал Аллах: «Ни их слух, ни их зрение, ни их сердца нисколько не помогли им».\n\nВторой урок: гордыня — путь к погибели. Строить из гордости, кичиться своей мощью перед людьми — это качества преступных народов. Строения нужны либо для жизни, либо для защиты мусульман. Но строить из тщеславия и гордыни — запрещено.\n\nТретий урок: наказание приходит неожиданно. Они ждали дождя — получили ветер гибели. Аллах не торопится, но Его наказание обязательно приходит.\n\nЧетвёртый урок: упование на Аллаха даёт истинное бесстрашие. Худ один бросил вызов целому народу. Его сила была не в мышцах, а в словах: «Я уповаю на Аллаха».\n\nПятый урок: Аллах всегда спасает верующих. Худ и его немногочисленные последователи были спасены. Это закон Аллаха — Он не оставляет тех, кто уповает на Него.",
+questions:[
+{q:"Почему слух, зрение и разум народа Ад не помогли им?",opts:["Потому что они были слабее соседних народов","Потому что они отвергали знамения Аллаха и насмехались над ними","Потому что они не умели ими пользоваться","Потому что Аллах забрал у них эти способности заранее"],c:1,
+exp:"Аллах сказал: «Ни их слух, ни их зрение, ни их сердца нисколько не помогли им, поскольку они отвергали знамения Аллаха». Любые дары — ум, сила, богатство — не принесут пользы без веры и покорности Аллаху.",
+ayah:"فَمَا أَغْنَى عَنْهُمْ سَمْعُهُمْ وَلَا أَبْصَارُهُمْ وَلَا أَفْئِدَتُهُم",ref:"Аль-Ахкаф, 46:26"},
+{q:"Ради чего разрешено строить здания и крепости согласно урокам из истории Худа?",opts:["Ради красоты и демонстрации богатства","Ради жизни в них или защиты мусульман от врагов","Ради того чтобы прославиться среди людей","Ради хранения имущества"],c:1,
+exp:"Ас-Саади объясняет: строения дозволены либо для жизни, либо для защиты мусульман. Но строить из гордыни, кичливости и для демонстрации мощи — запрещено. Именно за это Аллах порицал народ Ад.",
+ayah:"أَتَبْنُونَ بِكُلِّ رِيعٍ آيَةً تَعْبَثُونَ",ref:"Аш-Шуара, 26:128"}
+]}
+];
+
+var LETTERS=['A','B','C','D'];
+var state={pIdx:0,qIdx:0,chosen:null,score:0,totalQ:0,done:[]};
+var ttsPlaying=false;
+
+function show(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on');});document.getElementById(id).classList.add('on');window.scrollTo(0,0);}
+
+function buildHome(){
+  var list=document.getElementById('parts-list');
+  list.innerHTML='';
+  PARTS.forEach(function(p,i){
+    var done=state.done.includes(i);
+    var row=document.createElement('div');
+    row.className='part-row';
+    row.onclick=function(){startFrom(i);};
+    row.innerHTML='<div class="pr-num">'+p.id+'</div><div class="pr-body"><div class="pr-title">'+p.title+'</div><div class="pr-sub">'+p.sub+'</div></div>'+(done?'<div class="pr-done">✓</div>':'<div class="pr-right">›</div>');
+    list.appendChild(row);
+  });
+}
+
+function goHome(){stopTTS();state.pIdx=0;state.qIdx=0;state.chosen=null;buildHome();show('s-home');}
+
+function startFrom(i){
+  stopTTS();
+  state.pIdx=i;state.qIdx=0;state.chosen=null;
+  renderStory();show('s-story');
+}
+
+function renderStory(){
+  var p=PARTS[state.pIdx];
+  document.getElementById('story-title').textContent=p.title;
+  document.getElementById('story-count').textContent=(state.pIdx+1)+' / '+PARTS.length;
+  document.getElementById('story-eye').textContent='Часть '+p.id+' · '+p.title;
+  document.getElementById('story-text').textContent=p.text;
+  document.getElementById('prog-bar').style.width=(state.pIdx/PARTS.length*100)+'%';
+  resetTTSBtn();
+}
+
+function goQuestion(){stopTTS();state.qIdx=0;state.chosen=null;renderQuestion();show('s-question');}
+function backToStory(){stopTTS();renderStory();show('s-story');}
+
+function renderQuestion(){
+  var p=PARTS[state.pIdx];
+  var q=p.questions[state.qIdx];
+  document.getElementById('q-title').textContent=p.title;
+  document.getElementById('q-sub').textContent='Вопрос '+(state.qIdx+1)+' из '+p.questions.length;
+  document.getElementById('q-count').textContent=(state.pIdx+1)+' / '+PARTS.length;
+  document.getElementById('q-text').textContent=q.q;
+  document.getElementById('prog-bar2').style.width=((state.pIdx+(state.qIdx/p.questions.length))/PARTS.length*100)+'%';
+  document.getElementById('exp').style.display='none';
+  document.getElementById('next-btn').style.display='none';
+  var opts=document.getElementById('opts');
+  opts.innerHTML='';
+  q.opts.forEach(function(o,i){
+    var btn=document.createElement('button');
+    btn.className='opt';
+    btn.onclick=function(){answer(i);};
+    btn.innerHTML='<span class="opt-badge">'+LETTERS[i]+'</span>'+o;
+    opts.appendChild(btn);
+  });
+}
+
+function answer(i){
+  if(state.chosen!==null)return;
+  state.chosen=i;
+  var p=PARTS[state.pIdx];
+  var q=p.questions[state.qIdx];
+  var correct=i===q.c;
+  if(correct)state.score++;
+  state.totalQ++;
+  document.querySelectorAll('.opt').forEach(function(btn,idx){
+    btn.disabled=true;btn.onclick=null;
+    if(idx===q.c)btn.classList.add('correct');
+    else if(idx===i)btn.classList.add('wrong');
+    else btn.classList.add('dim');
+  });
+  var status=document.getElementById('exp-status');
+  status.textContent=correct?'Правильно':'Неверно — запомни';
+  status.className='exp-status '+(correct?'ok':'err');
+  document.getElementById('exp-text').textContent=q.exp;
+  document.getElementById('exp-ayah').textContent=q.ayah;
+  document.getElementById('exp-ref').textContent=q.ref;
+  document.getElementById('exp').style.display='block';
+  var nxt=document.getElementById('next-btn');
+  nxt.style.display='block';
+  var np=state.pIdx+1;
+  var nq=state.qIdx+1;
+  if(nq<p.questions.length)nxt.textContent='Следующий вопрос';
+  else if(np<PARTS.length)nxt.textContent='Часть '+(np+1)+': '+PARTS[np].title;
+  else nxt.textContent='Посмотреть результат';
+}
+
+function nextQ(){
+  var p=PARTS[state.pIdx];
+  var nq=state.qIdx+1;
+  if(nq<p.questions.length){state.qIdx=nq;state.chosen=null;renderQuestion();}
+  else{
+    state.done.push(state.pIdx);
+    var np=state.pIdx+1;
+    if(np<PARTS.length){state.pIdx=np;state.qIdx=0;state.chosen=null;renderStory();show('s-story');}
+    else showResult();
+  }
+}
+
+function showResult(){
+  var total=state.totalQ;
+  document.getElementById('r-score').innerHTML=state.score+'<span class="result-denom"> / '+total+'</span>';
+  var pct=state.score/total;
+  document.getElementById('r-msg').textContent=pct>=0.9?'Машааллах. Вы глубоко усвоили историю Худа (мир ему).':pct>=0.7?'Хороший результат. Продолжайте изучать.':'Пройдите ещё раз. Знания о пророках — это нур для сердца.';
+  show('s-result');
+}
+
+function toggleTTS(){
+  if(!ttsPlaying){startTTS();}
+  else{
+    if(window.speechSynthesis.paused){window.speechSynthesis.resume();updateTTSBtn(true,false);}
+    else{window.speechSynthesis.pause();updateTTSBtn(true,true);}
+  }
+}
+
+function startTTS(){
+  stopTTS();
+  var p=PARTS[state.pIdx];
+  var utt=new SpeechSynthesisUtterance(p.text);
+  utt.lang='ru-RU';utt.rate=0.9;
+  var voices=window.speechSynthesis.getVoices();
+  var ru=voices.find(function(v){return v.lang.startsWith('ru')&&v.localService;})||voices.find(function(v){return v.lang.startsWith('ru');});
+  if(ru)utt.voice=ru;
+  utt.onstart=function(){ttsPlaying=true;updateTTSBtn(true,false);};
+  utt.onend=utt.onerror=function(){ttsPlaying=false;resetTTSBtn();};
+  window.speechSynthesis.speak(utt);
+}
+
+function stopTTS(){window.speechSynthesis.cancel();ttsPlaying=false;resetTTSBtn();}
+
+function resetTTSBtn(){
+  var btn=document.getElementById('tts-btn');
+  if(btn){btn.textContent='▶';}
+  document.getElementById('tts-lbl').textContent='Прослушать';
+  document.getElementById('tts-sub').textContent='Нажмите ▶ чтобы начать';
+}
+
+function updateTTSBtn(active,paused){
+  var btn=document.getElementById('tts-btn');
+  if(!btn)return;
+  if(active&&!paused){btn.textContent='⏸';document.getElementById('tts-lbl').textContent='Озвучка идёт';document.getElementById('tts-sub').textContent='Нажмите для паузы';}
+  else if(paused){btn.textContent='▶';document.getElementById('tts-lbl').textContent='Пауза';document.getElementById('tts-sub').textContent='Нажмите чтобы продолжить';}
+}
+
+buildHome();
+</script>
+</body>
+</html>
