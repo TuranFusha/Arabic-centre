@@ -54,7 +54,6 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans',-apple-syste
 .d-tr{font-size:11px;color:var(--text3);font-style:italic;margin-bottom:2px;}
 .d-ru{font-size:12px;color:var(--text2);font-weight:500;}
 .d-play{width:34px;height:34px;border-radius:50%;background:var(--accent);color:white;font-size:13px;flex-shrink:0;cursor:pointer;border:none;transition:all .15s;margin-top:2px;display:flex;align-items:center;justify-content:center;}
-.d-play:hover{opacity:.85;transform:scale(1.08);}
 .d-play.playing{background:var(--green);}
 .gb{background:var(--bg2);border-radius:var(--r);padding:16px;margin-bottom:10px;border:1px solid var(--border);}
 .gl{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
@@ -62,7 +61,6 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans',-apple-syste
 .g-ru{font-size:13px;color:var(--text2);line-height:1.6;}
 .note{background:var(--acc-bg);border-radius:var(--r-sm);padding:12px 14px;font-size:13px;color:var(--accent);margin-top:10px;border:1px solid rgba(0,122,255,.15);}
 .ei{border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:10px;background:var(--bg2);}
-.ei:hover{border-color:var(--accent);}
 .en{font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
 .eq{font-size:13px;color:var(--text);margin-bottom:10px;font-weight:500;}
 .cbtn{padding:6px 16px;border:1px solid var(--accent);border-radius:20px;background:transparent;color:var(--accent);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;}
@@ -97,7 +95,6 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans',-apple-syste
 .fc-ru{font-size:20px;font-weight:600;color:var(--green);margin-bottom:3px;}
 .fc-nav{display:flex;align-items:center;justify-content:center;gap:12px;}
 .fc-btn{padding:7px 18px;border:1px solid var(--border);border-radius:20px;background:var(--bg2);color:var(--text2);font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;}
-.fc-btn:hover{border-color:var(--accent);color:var(--accent);}
 .fc-cnt{font-size:12px;color:var(--text3);}
 .mw{font-family:'Scheherazade New',serif;font-size:36px;color:var(--text);direction:rtl;text-align:center;margin-bottom:4px;}
 .mh{font-size:12px;color:var(--text3);text-align:center;margin-bottom:16px;}
@@ -125,7 +122,6 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans',-apple-syste
 .gr-n{font-size:42px;font-weight:700;color:var(--accent);letter-spacing:-1px;margin-bottom:4px;}
 .gr-ar{font-family:'Scheherazade New',serif;font-size:18px;color:var(--text2);direction:rtl;margin-bottom:16px;}
 .retry-btn{padding:9px 22px;border:1.5px solid var(--border);border-radius:22px;background:var(--bg2);color:var(--text2);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;}
-.retry-btn:hover{border-color:var(--accent);color:var(--accent);}
 .qc{border:1.5px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:10px;background:var(--bg2);}
 .ql{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
 .qt{font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;}
@@ -150,65 +146,149 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans',-apple-syste
 .hwn{font-size:11px;font-weight:700;color:var(--accent);flex-shrink:0;margin-top:2px;}
 @media(max-width:540px){.q-opts,.m-opts,.f-opts{grid-template-columns:1fr;}.rg{grid-template-columns:1fr;}}
 </style>
-</head><body><nav class="nav"><div class="nav-in"><div class="logo">&#x627;&#x644;&#x062a;&#x651;&#x643;&#x652;&#x631;&#x627;&#x631;&#x64f; &#x623;&#x64f;&#x645;&#x651;&#x64f; &#x627;&#x644;&#x652;&#x639;&#x650;&#x644;&#x652;&#x645;&#x650;</div></div></nav>
+</head>
+<body>
+<nav class="nav"><div class="nav-in"><div class="logo">اَلتَّكْرَارُ أُمُّ الْعِلْمِ</div></div></nav>
 <div class="hero">
-  <div class="hero-eye">&#1059;&#1088;&#1086;&#1074;&#1077;&#1085;&#1100; 1 &middot; &#1059;&#1088;&#1086;&#1082; 12 &#1080;&#1079; 14</div>
+  <div class="hero-eye">Уровень 1 · Урок 12 из 14</div>
   <div class="hero-ar">الدرس الثاني عشر — الطقس</div>
   <div class="hero-ru">Погода и сезоны</div>
 </div>
 <div class="prog"><div class="prog-in">
-  <span class="prog-lbl">&#1055;&#1088;&#1086;&#1075;&#1088;&#1077;&#1089;&#1089;</span>
+  <span class="prog-lbl">Прогресс</span>
   <div class="prog-track"><div class="prog-fill" style="width:85%"></div></div>
   <span class="prog-lbl">12 / 14</span>
   <div class="prog-links">
-    <a class="prog-a" href="takrar-level1-lesson11.html">&larr; &#1059;&#1088;&#1086;&#1082; 11</a>
+    <a class="prog-a" href="takrar-level1-lesson11.html">← Урок 11</a>
     <a class="prog-a" href="takrar-level1-lesson13.html">Урок 13 →</a>
   </div>
-</div></div><div class="tabs-bar"><div class="tabs-in"><button class="tab on" onclick="tab('vocab',this)">&#1057;&#1083;&#1086;&#1074;&#1072;</button><button class="tab" onclick="tab('dialog',this)">&#1044;&#1080;&#1072;&#1083;&#1086;&#1075;</button><button class="tab" onclick="tab('grammar',this)">&#1043;&#1088;&#1072;&#1084;&#1084;&#1072;&#1090;&#1080;&#1082;&#1072;</button><button class="tab" onclick="tab('exercises',this)">&#1059;&#1087;&#1088;&#1072;&#1078;&#1085;&#1077;&#1085;&#1080;&#1103;</button><button class="tab" onclick="tab('audio',this)">&#1040;&#1091;&#1076;&#1080;&#1086;</button><button class="tab" onclick="tab('games',this)">&#1055;&#1086;&#1074;&#1090;&#1086;&#1088;&#1077;&#1085;&#1080;&#1077;</button><button class="tab" onclick="tab('quiz',this)">&#1058;&#1077;&#1089;&#1090;</button><button class="tab" onclick="tab('result',this)">&#1048;&#1090;&#1086;&#1075;</button></div></div><div class="main"><div class="section on" id="vocab">
-  <div class="sh"><span class="sh-ar">&#1575;&#1604;&#1605;&#1601;&#1585;&#1583;&#1575;&#1578; &#1575;&#1604;&#1580;&#1583;&#1610;&#1583;&#1577;</span><span class="sh-ru">&#1053;&#1086;&#1074;&#1099;&#1077; &#1089;&#1083;&#1086;&#1074;&#1072;</span></div>
-  <table class="tbl"><thead><tr><th>&#1040;&#1088;&#1072;&#1073;&#1089;&#1082;&#1080;&#1081;</th><th>&#1063;&#1090;&#1077;&#1085;&#1080;&#1077;</th><th>&#1055;&#1077;&#1088;&#1077;&#1074;&#1086;&#1076;</th></tr></thead><tbody><tr><td class="ar-c">طَقْسٌ</td><td class="it-c">такcун</td><td>погода</td></tr><tr><td class="ar-c">فَصْلٌ</td><td class="it-c">фаслун</td><td>время года</td></tr><tr><td class="ar-c">صَيْفٌ</td><td class="it-c">сайфун</td><td>лето</td></tr><tr><td class="ar-c">شِتَاءٌ</td><td class="it-c">шита'ун</td><td>зима</td></tr><tr><td class="ar-c">رَبِيعٌ</td><td class="it-c">раби'ун</td><td>весна</td></tr><tr><td class="ar-c">خَرِيفٌ</td><td class="it-c">харифун</td><td>осень</td></tr><tr><td class="ar-c">حَارٌّ</td><td class="it-c">харрун</td><td>жаркий</td></tr><tr><td class="ar-c">بَارِدٌ</td><td class="it-c">баридун</td><td>холодный</td></tr><tr><td class="ar-c">مُمْطِرٌ</td><td class="it-c">мумтирун</td><td>дождливый</td></tr><tr><td class="ar-c">شَمْسٌ</td><td class="it-c">шамсун</td><td>солнце</td></tr><tr><td class="ar-c">مَطَرٌ</td><td class="it-c">матарун</td><td>дождь</td></tr><tr><td class="ar-c">ثَلْجٌ</td><td class="it-c">сальджун</td><td>снег</td></tr><tr><td class="ar-c">رِيحٌ</td><td class="it-c">рихун</td><td>ветер</td></tr><tr><td class="ar-c">كَيْفَ الطَّقْسُ؟</td><td class="it-c">кайфа ат-такс?</td><td>какая погода?</td></tr></tbody></table>
-</div><div class="section" id="dialog"><div class="sh"><span class="sh-ar">الحوار</span><span class="sh-ru">Диалог</span></div><div class="dr"><div class="av">ي</div><button class="d-play" onclick="playD(this,'lesson12-y1.mp3')">&#9654;</button><div class="bub"><div class="dn">&#1070;&#1089;&#1091;&#1092;</div><div class="db"><div class="d-ar">كَيْفَ الطَّقْسُ عِنْدَكُمْ فِي كَازَاخِسْتَان؟</div><div class="d-tr">Кайфа ат-такcу 'индакум фи Казахстан?</div><div class="d-ru">«Какая погода у вас в Казахстане?»</div></div></div></div>
-<div class="dr r"><div class="av">آ</div><button class="d-play" onclick="playD(this,'lesson12-a1.mp3')">&#9654;</button><div class="bub"><div class="dn">&#1040;&#1076;&#1072;&#1084;</div><div class="db db-r"><div class="d-ar">فِي الشِّتَاءِ الطَّقْسُ بَارِدٌ جِدًّا وَيَنْزِلُ الثَّلْجُ كَثِيراً!</div><div class="d-tr">Фи ш-шита'и ат-такcу баридун джиддан!</div><div class="d-ru">«Зимой очень холодно и снег идёт много!»</div></div></div></div>
-<div class="dr"><div class="av">ي</div><button class="d-play" onclick="playD(this,'lesson12-y2.mp3')">&#9654;</button><div class="bub"><div class="dn">&#1070;&#1089;&#1091;&#1092;</div><div class="db"><div class="d-ar">وَفِي الصَّيْفِ؟</div><div class="d-tr">Ва фи с-сайфи?</div><div class="d-ru">«А летом?»</div></div></div></div>
-<div class="dr r"><div class="av">آ</div><button class="d-play" onclick="playD(this,'lesson12-a2.mp3')">&#9654;</button><div class="bub"><div class="dn">&#1040;&#1076;&#1072;&#1084;</div><div class="db db-r"><div class="d-ar">الصَّيْفُ حَارٌّ وَجَمِيلٌ. أُحِبُّ الصَّيْفَ!</div><div class="d-tr">Ас-сайфу харрун ва джамиль!</div><div class="d-ru">«Лето жаркое и красивое. Я люблю лето!»</div></div></div></div>
-<div class="dr"><div class="av">ي</div><button class="d-play" onclick="playD(this,'lesson12-y3.mp3')">&#9654;</button><div class="bub"><div class="dn">&#1070;&#1089;&#1091;&#1092;</div><div class="db"><div class="d-ar">وَأَنَا أُحِبُّ الرَّبِيعَ! الطَّقْسُ مُعْتَدِلٌ.</div><div class="d-tr">Ва ана ухиббу ар-раби'а!</div><div class="d-ru">«А я люблю весну! Погода умеренная.»</div></div></div></div>
-<div class="dr r"><div class="av">آ</div><button class="d-play" onclick="playD(this,'lesson12-a3.mp3')">&#9654;</button><div class="bub"><div class="dn">&#1040;&#1076;&#1072;&#1084;</div><div class="db db-r"><div class="d-ar">سُبْحَانَ اللهِ! كُلُّ الفُصُولِ جَمِيلَةٌ بِقُدْرَةِ اللهِ!</div><div class="d-tr">Субхана Ллах! Куллюль-фусули джамиля!</div><div class="d-ru">«Субханаллах! Все сезоны прекрасны силой Аллаха!»</div></div></div></div>
-</div><div class="section" id="grammar"><div class="sh"><span class="sh-ar">&#1575;&#1604;&#1602;&#1608;&#1575;&#1593;&#1583;</span><span class="sh-ru">&#1043;&#1088;&#1072;&#1084;&#1084;&#1072;&#1090;&#1080;&#1082;&#1072;</span></div><div class="gb"><div class="gl">Предлог فِي + время года</div><div class="g-ar">فِي الصَّيْفِ — فِي الشِّتَاءِ — فِي الرَّبِيعِ — فِي الخَرِيفِ</div><div class="g-ru">«Летом» — «Зимой» — «Весной» — «Осенью»</div></div><div class="gb"><div class="gl">Вопрос о погоде</div><div class="g-ar">كَيْفَ الطَّقْسُ؟ — الطَّقْسُ حَارٌّ / بَارِدٌ / مُمْطِرٌ</div><div class="g-ru">«Какая погода?» — «Жаркая / Холодная / Дождливая»</div></div><div class="gb"><div class="gl">Знамение Аллаха в природе</div><div class="g-ar">وَمِنْ آيَاتِهِ اللَّيْلُ وَالنَّهَارُ وَالشَّمْسُ وَالقَمَرُ</div><div class="g-ru">«Среди Его знамений — ночь и день, солнце и луна» — Фуссылят 37</div></div><div class="note">Природа — не просто погода, а знамения Всевышнего!</div></div><div class="section" id="exercises"><div class="sh"><span class="sh-ar">&#1575;&#1604;&#1578;&#1583;&#1585;&#1610;&#1576;&#1575;&#1578;</span><span class="sh-ru">&#1059;&#1087;&#1088;&#1072;&#1078;&#1085;&#1077;&#1085;&#1080;&#1103;</span></div><div class="ei"><div class="en">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 1</div><div class="eq">Как спросить «Какая погода?»</div><button class="cbtn" onclick="tog('e1')">&#1054;&#1090;&#1074;&#1077;&#1090;</button><div class="ab" id="e1"><div class="a-ar">كَيْفَ الطَّقْسُ؟</div><div class="a-ru">✓ كَيْفَ = как | الطَّقْسُ = погода</div></div></div><div class="ei"><div class="en">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 2</div><div class="eq">Переведи: «Зимой очень холодно»</div><button class="cbtn" onclick="tog('e2')">&#1054;&#1090;&#1074;&#1077;&#1090;</button><div class="ab" id="e2"><div class="a-ar">فِي الشِّتَاءِ الطَّقْسُ بَارِدٌ جِدًّا</div><div class="a-ru">✓ فِي الشِّتَاءِ = зимой</div></div></div><div class="ei"><div class="en">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 3</div><div class="eq">«Идёт снег» по-арабски</div><button class="cbtn" onclick="tog('e3')">&#1054;&#1090;&#1074;&#1077;&#1090;</button><div class="ab" id="e3"><div class="a-ar">يَنْزِلُ الثَّلْجُ</div><div class="a-ru">✓ يَنْزِلُ = идёт/опускается</div></div></div><div class="ei"><div class="en">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 4</div><div class="eq">Скажи «Я люблю лето»</div><button class="cbtn" onclick="tog('e4')">&#1054;&#1090;&#1074;&#1077;&#1090;</button><div class="ab" id="e4"><div class="a-ar">أُحِبُّ الصَّيْفَ</div><div class="a-ru">✓ الصَّيْفَ — после أُحِبُّ фатха</div></div></div><div class="ei"><div class="en">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 5</div><div class="eq">«Весна» по-арабски?</div><button class="cbtn" onclick="tog('e5')">&#1054;&#1090;&#1074;&#1077;&#1090;</button><div class="ab" id="e5"><div class="a-ar">الرَّبِيعُ</div><div class="a-ru">✓ Запомни все 4 сезона!</div></div></div></div><div class="section" id="audio">
-  <div class="sh"><span class="sh-ar">&#1575;&#1604;&#1606;&#1589; &#1575;&#1604;&#1589;&#1608;&#1578;&#1610;</span><span class="sh-ru">&#1040;&#1091;&#1076;&#1080;&#1086; &#1090;&#1077;&#1082;&#1089;&#1090;</span></div>
+</div></div>
+<div class="tabs-bar"><div class="tabs-in">
+  <button class="tab on" onclick="tab('vocab',this)">Слова</button>
+  <button class="tab" onclick="tab('dialog',this)">Диалог</button>
+  <button class="tab" onclick="tab('grammar',this)">Грамматика</button>
+  <button class="tab" onclick="tab('exercises',this)">Упражнения</button>
+  <button class="tab" onclick="tab('audio',this)">Аудио</button>
+  <button class="tab" onclick="tab('games',this)">Повторение</button>
+  <button class="tab" onclick="tab('quiz',this)">Тест</button>
+  <button class="tab" onclick="tab('result',this)">Итог</button>
+</div></div>
+<div class="main">
+
+<div class="section on" id="vocab">
+  <div class="sh"><span class="sh-ar">المفردات الجديدة</span><span class="sh-ru">Новые слова</span></div>
+  <table class="tbl"><thead><tr><th>Арабский</th><th>Чтение</th><th>Перевод</th></tr></thead><tbody>
+    <tr><td class="ar-c">طَقْسٌ</td><td class="it-c">такcун</td><td>погода</td></tr>
+    <tr><td class="ar-c">فَصْلٌ</td><td class="it-c">фаслун</td><td>время года</td></tr>
+    <tr><td class="ar-c">صَيْفٌ</td><td class="it-c">сайфун</td><td>лето</td></tr>
+    <tr><td class="ar-c">شِتَاءٌ</td><td class="it-c">шита'ун</td><td>зима</td></tr>
+    <tr><td class="ar-c">رَبِيعٌ</td><td class="it-c">раби'ун</td><td>весна</td></tr>
+    <tr><td class="ar-c">خَرِيفٌ</td><td class="it-c">харифун</td><td>осень</td></tr>
+    <tr><td class="ar-c">حَارٌّ</td><td class="it-c">харрун</td><td>жаркий</td></tr>
+    <tr><td class="ar-c">بَارِدٌ</td><td class="it-c">баридун</td><td>холодный</td></tr>
+    <tr><td class="ar-c">مُمْطِرٌ</td><td class="it-c">мумтирун</td><td>дождливый</td></tr>
+    <tr><td class="ar-c">شَمْسٌ</td><td class="it-c">шамсун</td><td>солнце</td></tr>
+    <tr><td class="ar-c">مَطَرٌ</td><td class="it-c">матарун</td><td>дождь</td></tr>
+    <tr><td class="ar-c">ثَلْجٌ</td><td class="it-c">сальджун</td><td>снег</td></tr>
+    <tr><td class="ar-c">رِيحٌ</td><td class="it-c">рихун</td><td>ветер</td></tr>
+    <tr><td class="ar-c">كَيْفَ الطَّقْسُ؟</td><td class="it-c">кайфа ат-такс?</td><td>какая погода?</td></tr>
+  </tbody></table>
+</div>
+
+<div class="section" id="dialog">
+  <div class="sh"><span class="sh-ar">الحوار</span><span class="sh-ru">Диалог</span></div>
+  <div class="dr"><div class="av">ي</div><button class="d-play" onclick="playD(this,'lesson12-y1.mp3')">▶</button><div class="bub"><div class="dn">Юсуф</div><div class="db"><div class="d-ar">كَيْفَ الطَّقْسُ عِنْدَكُمْ فِي كَازَاخِسْتَان؟</div><div class="d-tr">Кайфа ат-такcу 'индакум фи Казахстан?</div><div class="d-ru">«Какая погода у вас в Казахстане?»</div></div></div></div>
+  <div class="dr r"><div class="av">آ</div><button class="d-play" onclick="playD(this,'lesson12-a1.mp3')">▶</button><div class="bub"><div class="dn">Адам</div><div class="db db-r"><div class="d-ar">فِي الشِّتَاءِ الطَّقْسُ بَارِدٌ جِدًّا وَيَنْزِلُ الثَّلْجُ كَثِيراً!</div><div class="d-tr">Фи ш-шита'и ат-такcу баридун джиддан!</div><div class="d-ru">«Зимой очень холодно и снег идёт много!»</div></div></div></div>
+  <div class="dr"><div class="av">ي</div><button class="d-play" onclick="playD(this,'lesson12-y2.mp3')">▶</button><div class="bub"><div class="dn">Юсуф</div><div class="db"><div class="d-ar">وَفِي الصَّيْفِ؟</div><div class="d-tr">Ва фи с-сайфи?</div><div class="d-ru">«А летом?»</div></div></div></div>
+  <div class="dr r"><div class="av">آ</div><button class="d-play" onclick="playD(this,'lesson12-a2.mp3')">▶</button><div class="bub"><div class="dn">Адам</div><div class="db db-r"><div class="d-ar">الصَّيْفُ حَارٌّ وَجَمِيلٌ. أُحِبُّ الصَّيْفَ!</div><div class="d-tr">Ас-сайфу харрун ва джамиль!</div><div class="d-ru">«Лето жаркое и красивое. Я люблю лето!»</div></div></div></div>
+  <div class="dr"><div class="av">ي</div><button class="d-play" onclick="playD(this,'lesson12-y3.mp3')">▶</button><div class="bub"><div class="dn">Юсуф</div><div class="db"><div class="d-ar">وَأَنَا أُحِبُّ الرَّبِيعَ! الطَّقْسُ مُعْتَدِلٌ.</div><div class="d-tr">Ва ана ухиббу ар-раби'а!</div><div class="d-ru">«А я люблю весну! Погода умеренная.»</div></div></div></div>
+  <div class="dr r"><div class="av">آ</div><button class="d-play" onclick="playD(this,'lesson12-a3.mp3')">▶</button><div class="bub"><div class="dn">Адам</div><div class="db db-r"><div class="d-ar">سُبْحَانَ اللهِ! كُلُّ الفُصُولِ جَمِيلَةٌ بِقُدْرَةِ اللهِ!</div><div class="d-tr">Субхана Ллах! Куллюль-фусули джамиля!</div><div class="d-ru">«Субханаллах! Все сезоны прекрасны силой Аллаха!»</div></div></div></div>
+</div>
+
+<div class="section" id="grammar">
+  <div class="sh"><span class="sh-ar">القواعد</span><span class="sh-ru">Грамматика</span></div>
+  <div class="gb"><div class="gl">Предлог فِي + время года</div><div class="g-ar">فِي الصَّيْفِ — فِي الشِّتَاءِ — فِي الرَّبِيعِ — فِي الخَرِيفِ</div><div class="g-ru">«Летом» — «Зимой» — «Весной» — «Осенью»</div></div>
+  <div class="gb"><div class="gl">Вопрос о погоде</div><div class="g-ar">كَيْفَ الطَّقْسُ؟ — الطَّقْسُ حَارٌّ / بَارِدٌ / مُمْطِرٌ</div><div class="g-ru">«Какая погода?» — «Жаркая / Холодная / Дождливая»</div></div>
+  <div class="gb"><div class="gl">Знамение Аллаха в природе</div><div class="g-ar">وَمِنْ آيَاتِهِ اللَّيْلُ وَالنَّهَارُ وَالشَّمْسُ وَالقَمَرُ</div><div class="g-ru">«Среди Его знамений — ночь и день, солнце и луна» — Фуссылят 37</div></div>
+  <div class="note">Природа — не просто погода, а знамения Всевышнего!</div>
+</div>
+
+<div class="section" id="exercises">
+  <div class="sh"><span class="sh-ar">التدريبات</span><span class="sh-ru">Упражнения</span></div>
+  <div class="ei"><div class="en">Вопрос 1</div><div class="eq">Как спросить «Какая погода?»</div><button class="cbtn" onclick="tog('e1')">Ответ</button><div class="ab" id="e1"><div class="a-ar">كَيْفَ الطَّقْسُ؟</div><div class="a-ru">✓ كَيْفَ = как | الطَّقْسُ = погода</div></div></div>
+  <div class="ei"><div class="en">Вопрос 2</div><div class="eq">Переведи: «Зимой очень холодно»</div><button class="cbtn" onclick="tog('e2')">Ответ</button><div class="ab" id="e2"><div class="a-ar">فِي الشِّتَاءِ الطَّقْسُ بَارِدٌ جِدًّا</div><div class="a-ru">✓ فِي الشِّتَاءِ = зимой</div></div></div>
+  <div class="ei"><div class="en">Вопрос 3</div><div class="eq">«Идёт снег» по-арабски</div><button class="cbtn" onclick="tog('e3')">Ответ</button><div class="ab" id="e3"><div class="a-ar">يَنْزِلُ الثَّلْجُ</div><div class="a-ru">✓ يَنْزِلُ = идёт/опускается</div></div></div>
+  <div class="ei"><div class="en">Вопрос 4</div><div class="eq">Скажи «Я люблю лето»</div><button class="cbtn" onclick="tog('e4')">Ответ</button><div class="ab" id="e4"><div class="a-ar">أُحِبُّ الصَّيْفَ</div><div class="a-ru">✓ الصَّيْفَ — после أُحِبُّ фатха</div></div></div>
+  <div class="ei"><div class="en">Вопрос 5</div><div class="eq">«Весна» по-арабски?</div><button class="cbtn" onclick="tog('e5')">Ответ</button><div class="ab" id="e5"><div class="a-ar">الرَّبِيعُ</div><div class="a-ru">✓ Запомни все 4 сезона!</div></div></div>
+</div>
+
+<div class="section" id="audio">
+  <div class="sh"><span class="sh-ar">النص الصوتي</span><span class="sh-ru">Аудио текст</span></div>
   <div class="audio-card">
-    <div class="play-row"><button class="play-btn">&#9654;</button><div class="pi"><strong>&#1059;&#1088;&#1086;&#1082; 12 &mdash; Погода и сезоны</strong>&#1054;&#1079;&#1074;&#1091;&#1095;&#1082;&#1072; &#1073;&#1091;&#1076;&#1077;&#1090; &#1076;&#1086;&#1073;&#1072;&#1074;&#1083;&#1077;&#1085;&#1072;</div></div>
+    <div class="play-row"><button class="play-btn">▶</button><div class="pi"><strong>Урок 12 — Погода и сезоны</strong>Озвучка будет добавлена</div></div>
     <div class="aud-ar">أُحِبُّ الطَّقْسَ الجَمِيلَ. فِي كَازَاخِسْتَان الشِّتَاءُ بَارِدٌ جِدًّا. الصَّيْفُ حَارٌّ وَجَمِيلٌ. كُلُّ الفُصُولِ آيَةٌ مِنْ آيَاتِ اللهِ.</div>
-    <div class="aud-tr">Ухиббу ат-такcаль-джамиль. Фи Казахстан аш-шита'у баридун джиддан. Ас-сайфу харрун ва джамиль. Куллюль-фусули айатун мин айатиллях.</div>
-    <div class="aud-ru">«Я люблю красивую погоду. В Казахстане зима очень холодная. Лето жаркое и красивое. Все сезоны — знамения Аллаха.»</div>
-    <div class="aud-qs"><div class="aud-ql">&#1055;&#1088;&#1086;&#1074;&#1077;&#1088;&#1086;&#1095;&#1085;&#1099;&#1077; &#1074;&#1086;&#1087;&#1088;&#1086;&#1089;&#1099;</div><div class="aud-q"><span class="aud-qn">١</span><span>كَيْفَ الشِّتَاءُ فِي كَازَاخِسْتَان؟</span></div><div class="aud-q"><span class="aud-qn">٢</span><span>كَيْفَ الصَّيْفُ؟</span></div><div class="aud-q"><span class="aud-qn">٣</span><span>مَا الفُصُولُ الأَرْبَعَةُ؟</span></div></div>
-  </div>
-</div><div class="section" id="games">
-  <div class="sh"><span class="sh-ar">&#x627;&#x644;&#x062a;&#x651;&#x643;&#x631;&#x627;&#x631;</span><span class="sh-ru">&#1055;&#1086;&#1074;&#1090;&#1086;&#1088;&#1077;&#1085;&#1080;&#1077; &#1095;&#1077;&#1088;&#1077;&#1079; &#1080;&#1075;&#1088;&#1099;</span></div>
-  <div class="gsec">
-    <div class="gt">&#1050;&#1072;&#1088;&#1090;&#1086;&#1095;&#1082;&#1080;</div><div class="gs">&#1053;&#1072;&#1078;&#1084;&#1080; &#1095;&#1090;&#1086;&#1073;&#1099; &#1091;&#1074;&#1080;&#1076;&#1077;&#1090;&#1100; &#1087;&#1077;&#1088;&#1077;&#1074;&#1086;&#1076;</div>
-    <div class="fc-wrap"><div class="fc" id="fc" onclick="flipCard()"><div class="fc-f"><div class="fc-ar" id="fc-ar"></div><div class="fc-hint">&#1085;&#1072;&#1078;&#1084;&#1080; &#1095;&#1090;&#1086;&#1073;&#1099; &#1086;&#1090;&#1082;&#1088;&#1099;&#1090;&#1100;</div></div><div class="fc-b"><div class="fc-ru" id="fc-ru"></div><div class="fc-tag" id="fc-tag"></div></div></div></div>
-    <div class="fc-nav"><button class="fc-btn" onclick="fcPrev()">&larr;</button><span class="fc-cnt" id="fc-cnt">1/1</span><button class="fc-btn" onclick="fcNext()">&rarr;</button></div>
-  </div>
-  <div class="gsec">
-    <div class="gt">&#1042;&#1099;&#1073;&#1077;&#1088;&#1080; &#1087;&#1077;&#1088;&#1077;&#1074;&#1086;&#1076;</div><div class="gs">&#1041;&#1077;&#1089;&#1082;&#1086;&#1085;&#1077;&#1095;&#1085;&#1086;&#1077; &#1087;&#1086;&#1074;&#1090;&#1086;&#1088;&#1077;&#1085;&#1080;&#1077;</div>
-    <div class="mw" id="mw"></div><div class="mh">&#1063;&#1090;&#1086; &#1101;&#1090;&#1086; &#1079;&#1085;&#1072;&#1095;&#1080;&#1090;?</div>
-    <div class="m-opts" id="m-opts"></div>
-    <div class="m-score">&#1055;&#1088;&#1072;&#1074;&#1080;&#1083;&#1100;&#1085;&#1086;: <strong id="m-score">0</strong></div>
-  </div>
-  <div class="gsec">
-    <div class="gt">&#1041;&#1099;&#1089;&#1090;&#1088;&#1099;&#1081; &#1086;&#1075;&#1086;&#1085;&#1100;</div><div class="gs">10 &#1089;&#1083;&#1086;&#1074; &middot; 60 &#1089;&#1077;&#1082;&#1091;&#1085;&#1076;</div>
-    <div class="fw">
-      <div id="fire-start"><button class="start-btn" onclick="startFire()">&#1053;&#1072;&#1095;&#1072;&#1090;&#1100;</button></div>
-      <div id="fire-game" style="display:none"><div class="f-timer" id="f-timer">60</div><div class="f-tsub">&#1089;&#1077;&#1082;&#1091;&#1085;&#1076;</div><div class="f-dots" id="f-dots"></div><div class="f-word" id="f-word"></div><div class="f-opts" id="f-opts"></div></div>
-      <div class="g-result" id="fire-res"><div class="gr-n" id="fr-n">0/10</div><div class="gr-ar" id="fr-ar"></div><button class="retry-btn" onclick="restartFire()">&#1045;&#1097;&#1105; &#1088;&#1072;&#1079;</button></div>
+    <div class="aud-tr">Ухиббу ат-такcаль-джамиль. Фи Казахстан аш-шита'у баридун джиддан.</div>
+    <div class="aud-ru">«Я люблю красивую погоду. В Казахстане зима очень холодная. Все сезоны — знамения Аллаха.»</div>
+    <div class="aud-qs"><div class="aud-ql">Проверочные вопросы</div>
+      <div class="aud-q"><span class="aud-qn">١</span><span>كَيْفَ الشِّتَاءُ فِي كَازَاخِسْتَان؟</span></div>
+      <div class="aud-q"><span class="aud-qn">٢</span><span>كَيْفَ الصَّيْفُ؟</span></div>
+      <div class="aud-q"><span class="aud-qn">٣</span><span>مَا الفُصُولُ الأَرْبَعَةُ؟</span></div>
     </div>
   </div>
-</div><div class="section" id="quiz"><div class="sh"><span class="sh-ar">&#1575;&#1582;&#1578;&#1576;&#1575;&#1585; &#1575;&#1604;&#1583;&#1585;&#1587;</span><span class="sh-ru">&#1058;&#1077;&#1089;&#1090; &mdash; 6 &#1074;&#1086;&#1087;&#1088;&#1086;&#1089;&#1086;&#1074;</span></div><div class="qc" id="q1"><div class="ql">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 1 &#1080;&#1079; 6</div><div class="qt">«Лето» по-арабски?</div><div class="q-opts"><button class="q-opt" onclick="ans(1,'a')">شِتَاءٌ</button><button class="q-opt" onclick="ans(1,'b')">رَبِيعٌ</button><button class="q-opt" onclick="ans(1,'c')">صَيْفٌ</button><button class="q-opt" onclick="ans(1,'d')">خَرِيفٌ</button></div><div class="q-fb" id="q1-fb"></div></div><div class="qc" id="q2"><div class="ql">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 2 &#1080;&#1079; 6</div><div class="qt">Как сказать «Зимой»?</div><div class="q-opts"><button class="q-opt" onclick="ans(2,'a')">فِي الصَّيْفِ</button><button class="q-opt" onclick="ans(2,'b')">فِي الشِّتَاءِ</button><button class="q-opt" onclick="ans(2,'c')">فِي الرَّبِيعِ</button><button class="q-opt" onclick="ans(2,'d')">فِي الخَرِيفِ</button></div><div class="q-fb" id="q2-fb"></div></div><div class="qc" id="q3"><div class="ql">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 3 &#1080;&#1079; 6</div><div class="q-ar">كَيْفَ الطَّقْسُ؟</div><div class="qt">Переведи:</div><div class="q-opts"><button class="q-opt" onclick="ans(3,'a')">Где погода?</button><button class="q-opt" onclick="ans(3,'b')">Когда погода?</button><button class="q-opt" onclick="ans(3,'c')">Какая погода?</button><button class="q-opt" onclick="ans(3,'d')">Что за погода?</button></div><div class="q-fb" id="q3-fb"></div></div><div class="qc" id="q4"><div class="ql">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 4 &#1080;&#1079; 6</div><div class="qt">«Идёт дождь» по-арابски?</div><div class="q-opts"><button class="q-opt" onclick="ans(4,'a')">الطَّقْسُ مُمْطِرٌ</button><button class="q-opt" onclick="ans(4,'b')">يَنْزِلُ المَطَرُ</button><button class="q-opt" onclick="ans(4,'c')">الجَوُّ بَارِدٌ</button><button class="q-opt" onclick="ans(4,'d')">تَنْزِلُ الشَّمْسُ</button></div><div class="q-fb" id="q4-fb"></div></div><div class="qc" id="q5"><div class="ql">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 5 &#1080;&#1079; 6</div><div class="qt">«Холодный» по-арабски?</div><div class="q-opts"><button class="q-opt" onclick="ans(5,'a')">حَارٌّ</button><button class="q-opt" onclick="ans(5,'b')">مُمْطِرٌ</button><button class="q-opt" onclick="ans(5,'c')">بَارِدٌ</button><button class="q-opt" onclick="ans(5,'d')">عَاصِفٌ</button></div><div class="q-fb" id="q5-fb"></div></div><div class="qc" id="q6"><div class="ql">&#1042;&#1086;&#1087;&#1088;&#1086;&#1089; 6 &#1080;&#1079; 6</div><div class="qt">«Снег» по-арабски?</div><div class="q-opts"><button class="q-opt" onclick="ans(6,'a')">مَطَرٌ</button><button class="q-opt" onclick="ans(6,'b')">رِيحٌ</button><button class="q-opt" onclick="ans(6,'c')">شَمْسٌ</button><button class="q-opt" onclick="ans(6,'d')">ثَلْجٌ</button></div><div class="q-fb" id="q6-fb"></div></div><div class="qr" id="qr"><div class="qr-pct" id="qr-pct">0%</div><div class="qr-lbl" id="qr-lbl"></div><div class="qr-ar" id="qr-ar"></div><div class="qr-btns"><button class="retry-btn" onclick="resetQuiz()">&#1045;&#1097;&#1105; &#1088;&#1072;&#1079;</button><button class="start-btn" onclick="tab('result',document.querySelectorAll('.tab')[7])" style="padding:9px 22px;font-size:13px">&#1048;&#1090;&#1086;&#1075; &rarr;</button></div></div></div><div class="section" id="result"><div class="sh"><span class="sh-ar">&#1606;&#1578;&#1610;&#1580;&#1577; &#1575;&#1604;&#1583;&#1585;&#1587;</span><span class="sh-ru">&#1048;&#1090;&#1086;&#1075; &#1091;&#1088;&#1086;&#1082;&#1072;</span></div><div class="rg"><div class="ri"><div class="rl">Словарный запас</div><div class="rv">14 слов</div></div><div class="ri"><div class="rl">Диалог</div><div class="rv">О погоде</div></div><div class="ri"><div class="rl">Повторение</div><div class="rv">Уроки 7-10</div></div><div class="ri"><div class="rl">Знамение</div><div class="rv">Природа — аят Аллаха</div></div></div><div class="hw"><div class="hwl">&#1044;&#1086;&#1084;&#1072;&#1096;&#1085;&#1077;&#1077; &#1079;&#1072;&#1076;&#1072;&#1085;&#1080;&#1077;</div><div class="hwi"><span class="hwn">١</span>Опиши погоду сегодня по-арабски</div><div class="hwi"><span class="hwn">٢</span>Выучи 4 сезона наизусть</div><div class="hwi"><span class="hwn">٣</span>Пройди карточки 2 раза</div><div class="hwi"><span class="hwn">٤</span>Озвучь аудио текст своим голосом</div></div></div></div><script>
+</div>
+
+<div class="section" id="games">
+  <div class="sh"><span class="sh-ar">التَّكْرَار</span><span class="sh-ru">Повторение через игры</span></div>
+  <div class="gsec">
+    <div class="gt">Карточки</div><div class="gs">Нажми чтобы увидеть перевод</div>
+    <div class="fc-wrap"><div class="fc" id="fc" onclick="flipCard()"><div class="fc-f"><div class="fc-ar" id="fc-ar"></div><div class="fc-hint">нажми чтобы открыть</div></div><div class="fc-b"><div class="fc-ru" id="fc-ru"></div><div class="fc-tag" id="fc-tag"></div></div></div></div>
+    <div class="fc-nav"><button class="fc-btn" onclick="fcPrev()">←</button><span class="fc-cnt" id="fc-cnt">1/1</span><button class="fc-btn" onclick="fcNext()">→</button></div>
+  </div>
+  <div class="gsec">
+    <div class="gt">Выбери перевод</div><div class="gs">Бесконечное повторение</div>
+    <div class="mw" id="mw"></div><div class="mh">Что это означает?</div>
+    <div class="m-opts" id="m-opts"></div>
+    <div class="m-score">Правильно: <strong id="m-score">0</strong></div>
+  </div>
+  <div class="gsec">
+    <div class="gt">Быстрый огонь</div><div class="gs">10 слов · 60 секунд</div>
+    <div class="fw">
+      <div id="fire-start"><button class="start-btn" onclick="startFire()">Начать</button></div>
+      <div id="fire-game" style="display:none"><div class="f-timer" id="f-timer">60</div><div class="f-tsub">секунд</div><div class="f-dots" id="f-dots"></div><div class="f-word" id="f-word"></div><div class="f-opts" id="f-opts"></div></div>
+      <div class="g-result" id="fire-res"><div class="gr-n" id="fr-n">0/10</div><div class="gr-ar" id="fr-ar"></div><button class="retry-btn" onclick="restartFire()">Ещё раз</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="quiz">
+  <div class="sh"><span class="sh-ar">اختبار الدرس</span><span class="sh-ru">Тест — 6 вопросов</span></div>
+  <div class="qc" id="q1"><div class="ql">Вопрос 1 из 6</div><div class="qt">«Лето» по-арабски?</div><div class="q-opts"><button class="q-opt" onclick="ans(1,'a')">شِتَاءٌ</button><button class="q-opt" onclick="ans(1,'b')">رَبِيعٌ</button><button class="q-opt" onclick="ans(1,'c')">صَيْفٌ</button><button class="q-opt" onclick="ans(1,'d')">خَرِيفٌ</button></div><div class="q-fb" id="q1-fb"></div></div>
+  <div class="qc" id="q2"><div class="ql">Вопрос 2 из 6</div><div class="qt">Как сказать «Зимой»?</div><div class="q-opts"><button class="q-opt" onclick="ans(2,'a')">فِي الصَّيْفِ</button><button class="q-opt" onclick="ans(2,'b')">فِي الشِّتَاءِ</button><button class="q-opt" onclick="ans(2,'c')">فِي الرَّبِيعِ</button><button class="q-opt" onclick="ans(2,'d')">فِي الخَرِيفِ</button></div><div class="q-fb" id="q2-fb"></div></div>
+  <div class="qc" id="q3"><div class="ql">Вопрос 3 из 6</div><div class="q-ar">كَيْفَ الطَّقْسُ؟</div><div class="qt">Переведи:</div><div class="q-opts"><button class="q-opt" onclick="ans(3,'a')">Где погода?</button><button class="q-opt" onclick="ans(3,'b')">Когда погода?</button><button class="q-opt" onclick="ans(3,'c')">Какая погода?</button><button class="q-opt" onclick="ans(3,'d')">Что за погода?</button></div><div class="q-fb" id="q3-fb"></div></div>
+  <div class="qc" id="q4"><div class="ql">Вопрос 4 из 6</div><div class="qt">«Идёт дождь» по-арабски?</div><div class="q-opts"><button class="q-opt" onclick="ans(4,'a')">الطَّقْسُ مُمْطِرٌ</button><button class="q-opt" onclick="ans(4,'b')">يَنْزِلُ المَطَرُ</button><button class="q-opt" onclick="ans(4,'c')">الجَوُّ بَارِدٌ</button><button class="q-opt" onclick="ans(4,'d')">تَنْزِلُ الشَّمْسُ</button></div><div class="q-fb" id="q4-fb"></div></div>
+  <div class="qc" id="q5"><div class="ql">Вопрос 5 из 6</div><div class="qt">«Холодный» по-арабски?</div><div class="q-opts"><button class="q-opt" onclick="ans(5,'a')">حَارٌّ</button><button class="q-opt" onclick="ans(5,'b')">مُمْطِرٌ</button><button class="q-opt" onclick="ans(5,'c')">بَارِدٌ</button><button class="q-opt" onclick="ans(5,'d')">عَاصِفٌ</button></div><div class="q-fb" id="q5-fb"></div></div>
+  <div class="qc" id="q6"><div class="ql">Вопрос 6 из 6</div><div class="qt">«Снег» по-арабски?</div><div class="q-opts"><button class="q-opt" onclick="ans(6,'a')">مَطَرٌ</button><button class="q-opt" onclick="ans(6,'b')">رِيحٌ</button><button class="q-opt" onclick="ans(6,'c')">شَمْسٌ</button><button class="q-opt" onclick="ans(6,'d')">ثَلْجٌ</button></div><div class="q-fb" id="q6-fb"></div></div>
+  <div class="qr" id="qr"><div class="qr-pct" id="qr-pct">0%</div><div class="qr-lbl" id="qr-lbl"></div><div class="qr-ar" id="qr-ar"></div><div class="qr-btns"><button class="retry-btn" onclick="resetQuiz()">Ещё раз</button><button class="start-btn" onclick="tab('result',document.querySelectorAll('.tab')[7])" style="padding:9px 22px;font-size:13px">Итог →</button></div></div>
+</div>
+
+<div class="section" id="result">
+  <div class="sh"><span class="sh-ar">نتيجة الدرس</span><span class="sh-ru">Итог урока</span></div>
+  <div class="rg"><div class="ri"><div class="rl">Словарный запас</div><div class="rv">14 слов</div></div><div class="ri"><div class="rl">Диалог</div><div class="rv">О погоде</div></div><div class="ri"><div class="rl">Повторение</div><div class="rv">Уроки 7-10</div></div><div class="ri"><div class="rl">Знамение</div><div class="rv">Природа — аят Аллаха</div></div></div>
+  <div class="hw"><div class="hwl">Домашнее задание</div>
+    <div class="hwi"><span class="hwn">١</span>Опиши погоду сегодня по-арабски</div>
+    <div class="hwi"><span class="hwn">٢</span>Выучи 4 сезона наизусть</div>
+    <div class="hwi"><span class="hwn">٣</span>Пройди карточки 2 раза</div>
+    <div class="hwi"><span class="hwn">٤</span>Озвучь аудио текст своим голосом</div>
+  </div>
+</div>
+
+</div>
+<script>
 function tab(id,btn){document.querySelectorAll('.section').forEach(s=>s.classList.remove('on'));document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));document.getElementById(id).classList.add('on');if(btn)btn.classList.add('on');window.scrollTo(0,0);}
 function tog(id){document.getElementById(id).classList.toggle('on');}
 var _ca=null,_cb=null;
-function playD(btn,src){if(_ca){_ca.pause();_ca.currentTime=0;}if(_cb){_cb.innerHTML='&#9654;';_cb.classList.remove('playing');}if(_cb===btn){_ca=null;_cb=null;return;}var a=new Audio(src);_ca=a;_cb=btn;btn.innerHTML='&#9646;';btn.classList.add('playing');a.play().catch(function(){btn.innerHTML='&#9654;';btn.classList.remove('playing');});a.onended=function(){btn.innerHTML='&#9654;';btn.classList.remove('playing');_ca=null;_cb=null;};}
-const cards=[{"ar": "صِحَّةٌ", "ru": "здоровье", "tag": "Урок 7"}, {"ar": "مَرَضٌ", "ru": "болезнь", "tag": "Урок 7"}, {"ar": "شَفَاءٌ", "ru": "исцеление", "tag": "Урок 7"}, {"ar": "كُنْتُ", "ru": "я был", "tag": "Урок 7"}, {"ar": "سَفَرٌ", "ru": "путешествие", "tag": "Урок 8"}, {"ar": "مَطَارٌ", "ru": "аэропорт", "tag": "Урок 8"}, {"ar": "تَذْكِرَةٌ", "ru": "билет", "tag": "Урок 8"}, {"ar": "مَعَ السَّلَامَةِ", "ru": "счастливого пути", "tag": "Урок 8"}, {"ar": "لَوْنٌ", "ru": "цвет", "tag": "Урок 9"}, {"ar": "أَبْيَضُ", "ru": "белый", "tag": "Урок 9"}, {"ar": "أَسْوَدُ", "ru": "чёрный", "tag": "Урок 9"}, {"ar": "يَلْبَسُ", "ru": "носит", "tag": "Урок 9"}, {"ar": "يَوْمٌ", "ru": "день", "tag": "Урок 10"}, {"ar": "الجُمُعَةُ", "ru": "пятница", "tag": "Урок 10"}, {"ar": "ذَهَبَ", "ru": "пошёл", "tag": "Урок 10"}, {"ar": "بَكِّراً", "ru": "рано", "tag": "Урок 10"}];
+function playD(btn,src){if(_ca){_ca.pause();_ca.currentTime=0;}if(_cb){_cb.innerHTML='▶';_cb.classList.remove('playing');}if(_cb===btn){_ca=null;_cb=null;return;}var a=new Audio(src);_ca=a;_cb=btn;btn.innerHTML='■';btn.classList.add('playing');a.play().catch(function(){btn.innerHTML='▶';btn.classList.remove('playing');});a.onended=function(){btn.innerHTML='▶';btn.classList.remove('playing');_ca=null;_cb=null;};}
+const cards=[{"ar":"صِحَّةٌ","ru":"здоровье","tag":"Урок 7"},{"ar":"مَرَضٌ","ru":"болезнь","tag":"Урок 7"},{"ar":"شَفَاءٌ","ru":"исцеление","tag":"Урок 7"},{"ar":"كُنْتُ","ru":"я был","tag":"Урок 7"},{"ar":"سَفَرٌ","ru":"путешествие","tag":"Урок 8"},{"ar":"مَطَارٌ","ru":"аэропорт","tag":"Урок 8"},{"ar":"تَذْكِرَةٌ","ru":"билет","tag":"Урок 8"},{"ar":"مَعَ السَّلَامَةِ","ru":"счастливого пути","tag":"Урок 8"},{"ar":"لَوْنٌ","ru":"цвет","tag":"Урок 9"},{"ar":"أَبْيَضُ","ru":"белый","tag":"Урок 9"},{"ar":"أَسْوَدُ","ru":"чёрный","tag":"Урок 9"},{"ar":"يَلْبَسُ","ru":"носит","tag":"Урок 9"},{"ar":"يَوْمٌ","ru":"день","tag":"Урок 10"},{"ar":"الجُمُعَةُ","ru":"пятница","tag":"Урок 10"},{"ar":"ذَهَبَ","ru":"пошёл","tag":"Урок 10"},{"ar":"بَكِّراً","ru":"рано","tag":"Урок 10"}];
 let fi=0;
 function renderFC(){document.getElementById('fc').classList.remove('flp');document.getElementById('fc-ar').textContent=cards[fi].ar;document.getElementById('fc-ru').textContent=cards[fi].ru;document.getElementById('fc-tag').textContent=cards[fi].tag;document.getElementById('fc-cnt').textContent=(fi+1)+' / '+cards.length;}
 function flipCard(){document.getElementById('fc').classList.toggle('flp');}
@@ -223,12 +303,22 @@ let fwi=0,fws=0,fwt=60,fwint=null;
 function startFire(){fwi=0;fws=0;fwt=60;document.getElementById('fire-start').style.display='none';document.getElementById('fire-game').style.display='block';document.getElementById('fire-res').classList.remove('on');document.getElementById('f-dots').innerHTML=Array(10).fill(0).map((_,i)=>`<div class="f-dot ${i===0?'cur':''}" id="fd${i}"></div>`).join('');renderFireQ();fwint=setInterval(()=>{fwt--;const t=document.getElementById('f-timer');t.textContent=fwt;t.className='f-timer'+(fwt<=10?' low':'');if(fwt<=0)endFire();},1000);}
 function renderFireQ(){if(fwi>=10){endFire();return;}const c=fw[fwi];const w=sh(cards.filter(x=>x.ar!==c.ar)).slice(0,3);const o=sh([c,...w]);document.getElementById('f-word').textContent=c.ar;document.getElementById('f-opts').innerHTML=o.map(x=>`<button class="f-opt" onclick="fAns(this,'${x.ru}','${c.ru}')">${x.ru}</button>`).join('');}
 function fAns(btn,ch,co){document.querySelectorAll('.f-opt').forEach(b=>b.classList.add('dis'));const d=document.getElementById('fd'+fwi);if(ch===co){btn.classList.add('ok');fws++;if(d){d.classList.remove('cur');d.classList.add('ok');}}else{btn.classList.add('no');document.querySelectorAll('.f-opt').forEach(b=>{if(b.textContent===co)b.classList.add('sh');});if(d){d.classList.remove('cur');d.classList.add('no');}}fwi++;const nd=document.getElementById('fd'+fwi);if(nd)nd.classList.add('cur');if(fwi<10)setTimeout(renderFireQ,700);else setTimeout(endFire,700);}
-function endFire(){clearInterval(fwint);document.getElementById('fire-game').style.display='none';document.getElementById('fire-res').classList.add('on');document.getElementById('fr-n').textContent=fws+'/10';const a=fws>=8?'ماشاء الله!':fws>=5?'أحسنت!':'حاول مرة أخرى';document.getElementById('fr-ar').textContent=a;}
+function endFire(){clearInterval(fwint);document.getElementById('fire-game').style.display='none';document.getElementById('fire-res').classList.add('on');document.getElementById('fr-n').textContent=fws+'/10';document.getElementById('fr-ar').textContent=fws>=8?'ماشاء الله!':fws>=5?'أحسنت!':'حاول مرة أخرى';}
 function restartFire(){document.getElementById('fire-res').classList.remove('on');document.getElementById('fire-start').style.display='block';}
 let qs=0,qa=0;
-const QC={1:'c',2:'b',3:'c',4:'b',5:'c',6:'d'};const QF={1:{'a':'✗ зима','b':'✗ весна','c':'✓ صَيْفٌ = лето!','d':'✗ осень'}},2:{'a':'✗ летом','b':'✓ فِي الشِّتَاءِ = зимой!','c':'✗ весной','d':'✗ осенью'}},3:{'a':'✗ أَيْنَ = где','b':'✗ مَتَى = когда','c':'✓ كَيْفَ = какая!','d':'✗ مَا = что'}},4:{'a':'✗ погода дождливая','b':'✓ يَنْزِلُ المَطَرُ = идёт дождь','c':'✗ холодно','d':'✗ солнце не идёт!'}},5:{'a':'✗ жаркий','b':'✗ дождливый','c':'✓ بَارِدٌ = холодный!','d':'✗ ветреный'}},6:{'a':'✗ дождь','b':'✗ ветер','c':'✗ солнце','d':'✓ ثَلْجٌ = снег!'}}};
+const QC={1:'c',2:'b',3:'c',4:'b',5:'c',6:'d'};
+const QF={
+  1:{'a':'✗ зима','b':'✗ весна','c':'✓ صَيْفٌ = лето!','d':'✗ осень'},
+  2:{'a':'✗ летом','b':'✓ فِي الشِّتَاءِ = зимой!','c':'✗ весной','d':'✗ осенью'},
+  3:{'a':'✗ أَيْنَ = где','b':'✗ مَتَى = когда','c':'✓ كَيْفَ = какая!','d':'✗ مَا = что'},
+  4:{'a':'✗ погода дождливая','b':'✓ يَنْزِلُ المَطَرُ = идёт дождь','c':'✗ холодно','d':'✗ солнце не идёт!'},
+  5:{'a':'✗ жаркий','b':'✗ دождливый','c':'✓ بَارِدٌ = холодный!','d':'✗ ветреный'},
+  6:{'a':'✗ дождь','b':'✗ ветер','c':'✗ солнце','d':'✓ ثَلْجٌ = снег!'}
+};
 function ans(n,ch){const q=document.getElementById('q'+n);if(q.classList.contains('done'))return;q.classList.add('done');qa++;const opts=q.querySelectorAll('.q-opt');const L=['a','b','c','d'];opts.forEach((o,i)=>{o.classList.add('dis');if(L[i]===QC[n])o.classList.add('sh');});opts[L.indexOf(ch)].classList.remove('sh');if(ch===QC[n]){opts[L.indexOf(ch)].classList.add('ok');qs++;}else opts[L.indexOf(ch)].classList.add('no');const fb=document.getElementById('q'+n+'-fb');fb.textContent=(QF[n]&&QF[n][ch])||'';fb.className='q-fb on '+(ch===QC[n]?'ok':'no');if(qa===6)showQR();}
 function showQR(){const r=document.getElementById('qr');r.classList.add('on');const p=Math.round(qs/6*100);document.getElementById('qr-pct').textContent=p+'%';document.getElementById('qr-lbl').textContent=qs+' из 6';document.getElementById('qr-ar').textContent=p>=85?'ماشاء الله! ممتاز!':p>=60?'أحسنت!':'حاول مرة أخرى';r.scrollIntoView({behavior:'smooth',block:'center'});}
 function resetQuiz(){qs=0;qa=0;for(let i=1;i<=6;i++){const q=document.getElementById('q'+i);q.classList.remove('done');q.querySelectorAll('.q-opt').forEach(o=>o.className='q-opt');const fb=document.getElementById('q'+i+'-fb');fb.className='q-fb';fb.textContent='';}document.getElementById('qr').classList.remove('on');window.scrollTo(0,0);}
 renderFC();renderMatch();
-</script></body></html>
+</script>
+</body>
+</html>
