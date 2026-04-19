@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Адам (мир ему) — История и Викторина</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    :root {
+      --bg:       #FFFFFF;
+      --bg-2:     #F2F2F7;
+      --label:    #000000;
+      --label-2:  rgba(60,60,67,0.60);
+      --label-3:  rgba(60,60,67,0.30);
+      --sep:      rgba(60,60,67,0.12);
+      --accent:   #007AFF;
+      --green:    #34C759;
+      --red:      #FF3B30;
+      --fill:     rgba(120,120,128,0.08);
+      --fill-2:   rgba(120,120,128,0.16);
+      --font:     -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+      --font-ar:  'Amiri', Georgia, serif;
+      --r:        13px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--font);
+      background: var(--bg-2);
+      color: var(--label);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    #root { min-height: 100vh; }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useRef, useEffect, useCallback } = React;
+
+// ─── STORY DATA ───────────────────────────────────────────────────────────────
+
+const PARTS = [
+  {
+    id: 1,
+    title: "Сотворение Адама",
+    subtitle: "Как появился первый человек",
+    text: `Аллах всегда был, и не было ничего прежде Него. Когда Его мудрость и безграничная милость потребовали сотворить первого человека — Адама, отца всего человечества, — Он обратился к ангелам:
+
+«Я установлю на земле наместника».
+
+Ангелы удивились и спросили: «Неужели Ты поселишь там того, кто будет распространять нечестие и проливать кровь?» Аллах ответил им: «Воистину, Я знаю то, чего вы не знаете». Его знание объемлет всякую вещь — Он знал о том несчётном благе, которое повлечёт за собой создание этого творения.
+
+Затем Аллах сотворил Адама. Он взял горсть земли с разных мест планеты — мягкой и твёрдой, плодородной и неплодородной. Именно поэтому потомки Адама такие разные: кроткие и грубые, добрые и злые.
+
+Сначала это была просто земля. Аллах добавил воду — она стала глиной. Долгое время глина пробыла в воде и превратилась в тёмную, гладкую массу. Затем Аллах придал ей нужную форму, высушил — и Адам стал подобен гончарному изделию, которое издаёт звук при ударе. Это была плоть без души.
+
+Когда завершилось сотворение плоти, Аллах вдохнул в Адама дух. И тотчас мёртвая глина превратилась в живое существо — с костями, мясью, нервами и жилами.
+
+Затем Аллах научил Адама именам всех вещей — знаниям, которыми не обладал никто другой. Это было особым даром и достоинством нового творения.`,
+    questions: [
+      {
+        q: "Что ответил Аллах ангелам, когда те усомнились в создании человека?",
+        options: ["«Вы правы, Я подумаю ещё раз»","«Воистину, Я знаю то, чего вы не знаете»","«Человек будет лучше вас во всём»","«Он не будет грешить никогда»"],
+        correct: 1,
+        explanation: "Аллах ответил: «Воистину, Я знаю то, чего вы не знаете». Ангелы видели лишь возможное зло, но Аллах видел несчётное благо, которое несёт создание человека. Когда мы не понимаем Его мудрость — нужно довериться Ему, ведь Его знание объемлет всё.",
+        ayah: "إِنِّي أَعْلَمُ مَا لَا تَعْلَمُونَ", ref: "Аль-Бакара, 2:30"
+      },
+      {
+        q: "Из чего был сотворён Адам (мир ему)?",
+        options: ["Из огня и воды","Из света, как ангелы","Из земли, которая постепенно стала глиной","Из воздуха и духа"],
+        correct: 2,
+        explanation: "Адам был создан из земли — разной земли со всей планеты. Аллах добавил воду, она стала глиной, затем была высушена и в неё вдохнули душу. Именно поэтому люди такие разные — ведь взята земля с разных мест.",
+        ayah: "خَلَقَهُ مِن تُرَابٍ ثُمَّ قَالَ لَهُ كُن فَيَكُونُ", ref: "Аль-Имран, 3:59"
+      }
+    ]
+  },
+  {
+    id: 2,
+    title: "Поклон ангелов и отказ Иблиса",
+    subtitle: "Рождение первого врага человечества",
+    text: `Аллах пожелал показать ангелам совершенство нового творения. Он спросил их: «Назовите мне имена этих вещей, если вы говорите правду». Ангелы честно признались: «Пречист Ты! Мы знаем только то, чему Ты научил нас. Воистину, Ты — Знающий, Мудрый».
+
+Тогда Аллах сказал: «О Адам! Поведай им об их именах». Адам назвал всё. Ангелы были поражены — они увидели совершенство этого создания. Аллах велел им пасть ниц перед Адамом, выражая почёт и уважение. Все ангелы немедленно поклонились.
+
+Но среди них был Иблис. Он был не ангелом, а джинном — созданием из пламени без дыма. Внутри него скрывались зависть и высокомерие. Когда пришёл приказ о поклоне, Иблис отказался.
+
+Он сказал: «Я лучше него! Ты сотворил меня из огня, а его — из глины». Аллах спросил его: «О Иблис! Что помешало тебе пасть ниц перед тем, кого Я сотворил Своими обеими Руками? Ты возгордился?»
+
+Высокомерие, зависть и отказ подчиниться стали причинами его проклятия. Аллах сказал ему: «Низвергнись отсюда! Негоже тебе превозноситься здесь. Изыди, ибо ты — один из униженных».
+
+Один грех гордыни разрушил Иблиса навсегда.`,
+    questions: [
+      {
+        q: "Почему Иблис отказался поклониться Адаму?",
+        options: ["Он не слышал приказ Аллаха","Он считал себя лучше из-за своего происхождения","Ангелы запретили ему это делать","Он боялся, что Адам причинит ему вред"],
+        correct: 1,
+        explanation: "Иблис отказался из-за высокомерия и зависти. Он сказал: «Я лучше него». Высокомерие — один из самых опасных грехов. Именно оно погубило Иблиса и превратило его в вечного врага человечества.",
+        ayah: "أَنَا خَيْرٌ مِّنْهُ خَلَقْتَنِي مِن نَّارٍ وَخَلَقْتَهُ مِن طِينٍ", ref: "Аль-Аъраф, 7:12"
+      },
+      {
+        q: "Кем по своей природе был Иблис?",
+        options: ["Ангелом, созданным из света","Человеком, созданным из земли","Джинном, созданным из пламени без дыма","Особым творением без происхождения"],
+        correct: 2,
+        explanation: "Иблис был джинном, созданным из пламени без дыма. Его природа отличалась от ангелов — именно поэтому в нём жила та гордыня, которую он не смог побороть.",
+        ayah: "كَانَ مِنَ الْجِنِّ فَفَسَقَ عَنْ أَمْرِ رَبِّهِ", ref: "Аль-Кахф, 18:50"
+      }
+    ]
+  },
+  {
+    id: 3,
+    title: "Иблис просит отсрочку",
+    subtitle: "Как сатана объявил войну всему человечеству",
+    text: `После проклятия Иблис не раскаялся. Напротив — с ещё большей злобой настроился против Адама и всего его потомства. Он обратился к Аллаху: «Господи! Предоставь мне отсрочку до того дня, когда они будут воскрешены» — чтобы посвятить всё своё время сбиванию людей с пути.
+
+Аллах в соответствии со Своей мудростью дал ему эту отсрочку. Зачем? Чтобы люди могли быть испытаны и очищены, чтобы добро отличалось от зла, чтобы верующие доказали свою веру через труд и стойкость.
+
+Тогда Иблис открыто заявил о своей вражде: «За то, что Ты совратил меня, я непременно засяду против них на Твоём прямом пути. А затем я буду подходить к ним спереди и сзади, справа и слева, и Ты не найдёшь большинство из них благодарными».
+
+Но Аллах объявил: над теми, кто искренне верует и уповает на Него, Иблис не имеет никакой власти. Вера и упование на Аллаха — это наше главное оружие.`,
+    questions: [
+      {
+        q: "О чём Иблис попросил Аллаха после своего изгнания?",
+        options: ["О прощении своего греха","О возвращении в рай","Об отсрочке до Судного Дня, чтобы сбивать людей с пути","О том, чтобы снова стать праведным"],
+        correct: 2,
+        explanation: "Иблис не попросил прощения. Он попросил лишь отсрочку — чтобы посвятить себя сбиванию людей. В этом его истинная природа: упрямство и злоба. Адам и Хава, когда согрешили — сразу обратились к Аллаху с искренним покаянием.",
+        ayah: "رَبِّ فَأَنظِرْنِي إِلَى يَوْمِ يُبْعَثُونَ", ref: "Аль-Хиджр, 15:36"
+      },
+      {
+        q: "Над кем Иблис не имеет никакой власти?",
+        options: ["Над детьми до семи лет","Над теми, кто уверовал и уповает на своего Господа","Над богатыми и учёными людьми","Над теми, кто много читает Коран вслух"],
+        correct: 1,
+        explanation: "Аллах сказал ясно: «Воистину, он не властен над теми, которые уверовали и уповают только на своего Господа». Вера и упование на Аллаха — наше главное оружие против сатаны.",
+        ayah: "إِنَّهُ لَيْسَ لَهُ سُلْطَانٌ عَلَى الَّذِينَ آمَنُوا وَعَلَى رَبِّهِمْ يَتَوَكَّلُونَ", ref: "Ан-Нахль, 16:99"
+      }
+    ]
+  },
+  {
+    id: 4,
+    title: "Адам и Хава в Раю",
+    subtitle: "Испытание в самом прекрасном месте",
+    text: `Аллах завершил Свою милость по отношению к Адаму — Он создал для него супругу Хаву (Еву), чтобы он нашёл в ней покой, любовь и продолжение рода. Аллах поселил их обоих в Раю.
+
+В Раю было всё. Аллах сказал Адаму: «В нём ты не будешь голодным и нагим. В нём ты не будешь страдать от жажды и зноя». Им дозволено было наслаждаться всем — кроме одного дерева. Аллах сказал: «Ешьте, где пожелаете, но не приближайтесь к этому дереву, а не то окажетесь беззаконниками».
+
+И Аллах предупредил: «Воистину, сатана ваш враг — остерегайтесь его».
+
+Но их враг не дремал. Иблис наблюдал за ними и выжидал момент. Он видел радость Адама от Рая и понял, чем можно соблазнить — желанием остаться там навсегда.
+
+Иблис подошёл к ним в образе искреннего, заботливого друга. Он сказал: «О Адам, не указать ли тебе на дерево, вкусив от которого ты навсегда останешься в этом Раю?» Он нашёптывал, соблазнял и давал клятвы — делая вид, что искренне желает им добра.
+
+Это и есть самый опасный обман: зло, одетое в одежду доброго совета.`,
+    questions: [
+      {
+        q: "Что именно Аллах запретил Адаму и Хаве в Раю?",
+        options: ["Покидать Рай даже временно","Разговаривать с Иблисом","Приближаться к одному определённому дереву","Есть плоды красного цвета"],
+        correct: 2,
+        explanation: "В Раю всё было дозволено — кроме одного: приближаться к определённому дереву. Аллах предупредил: «Не приближайтесь к этому дереву, иначе окажетесь беззаконниками». Одно ограничение на всё изобилие Рая — и именно к нему сатана направил всё своё внимание.",
+        ayah: "وَلَا تَقْرَبَا هَذِهِ الشَّجَرَةَ فَتَكُونَا مِنَ الظَّالِمِينَ", ref: "Аль-Аъраф, 7:19"
+      },
+      {
+        q: "Под каким видом Иблис подошёл к Адаму и Хаве?",
+        options: ["В образе огня и страха","Открыто, назвав себя врагом","В образе искреннего, заботливого друга","В образе прекрасной птицы"],
+        correct: 2,
+        explanation: "Иблис подошёл в образе искреннего друга, притворившись, что желает им добра. Он даже поклялся. Самый опасный обман — тот, который выглядит как добрый совет. Именно поэтому нужно проверять всё через Коран и Сунну.",
+        ayah: "وَقَاسَمَهُمَا إِنِّي لَكُمَا لَمِنَ النَّاصِحِينَ", ref: "Аль-Аъраф, 7:21"
+      }
+    ]
+  },
+  {
+    id: 5,
+    title: "Ошибка, покаяние и земля",
+    subtitle: "Как покаяние изменило всё",
+    text: `Иблис не останавливался. Он продолжал нашёптывать, обещать и искушать — пока Адам и Хава не вкусили от запретного дерева. Как только они съели плод, их срамные места, скрытые прежде, обнаружились. Они растерялись и начали прикрывать себя листьями Рая.
+
+Тогда Господь воззвал к ним: «Разве Я не запретил вам это дерево и не сказал вам, что сатана для вас — явный враг?»
+
+В этот момент Адам и Хава не стали оправдываться. Они сразу обратились к Аллаху с полным, искренним покаянием:
+
+«Господь наш! Мы поступили несправедливо по отношению к себе, и если Ты не простишь нас и не смилостивишься над нами, то мы непременно окажемся одними из потерпевших урон».
+
+Аллах принял их покаяние и простил их. Однако последствие оставалось — они вышли из Рая и поселились на Земле, где добру противостоит зло, а радости — печаль.
+
+Но Аллах обещал: тот, кто уверует и будет творить благие дела, вернётся к благому исходу. Потомство Адама и Хавы стало многочисленным — мужчины и женщины, народы и племена.`,
+    questions: [
+      {
+        q: "Как Адам и Хава отреагировали, осознав свою ошибку?",
+        options: ["Они обвинили Иблиса","Они скрыли свой грех и промолчали","Они немедленно обратились к Аллаху с искренним покаянием","Они попросили остаться в Раю ещё немного"],
+        correct: 2,
+        explanation: "Адам и Хава сразу обратились к Аллаху с покаянием: «Господь наш! Мы поступили несправедливо по отношению к себе...» Аллах рассказал нам об этом, чтобы мы следовали их примеру. Если согрешил — не отчаивайся, поспеши с покаянием.",
+        ayah: "رَبَّنَا ظَلَمْنَا أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ", ref: "Аль-Аъраф, 7:23"
+      },
+      {
+        q: "Что произошло с Адамом и Хавой после того, как Аллах принял их покаяние?",
+        options: ["Они навсегда остались в Раю","Они вышли из Рая и поселились на Земле","Аллах создал для них новый рай на земле","Они были наказаны лишением знаний"],
+        correct: 1,
+        explanation: "Аллах простил их — но они всё равно вышли из Рая, потому что это было предопределено. Земля стала местом испытания. Но Аллах пообещал: кто уверует и делает добро — вернётся к счастливому концу.",
+        ayah: "فَتَلَقَّى آدَمُ مِن رَّبِّهِ كَلِمَاتٍ فَتَابَ عَلَيْهِ", ref: "Аль-Бакара, 2:37"
+      }
+    ]
+  },
+  {
+    id: 6,
+    title: "Уроки для нас",
+    subtitle: "Что история Адама говорит о нас самих",
+    text: `История Адама — это не просто рассказ о прошлом. Это наставление для каждого из нас сегодня. Аллах упомянул её во многих аятах Корана именно для того, чтобы мы извлекли уроки.
+
+Первый урок: достоинство знания. Аллах возвысил Адама именно через знание. Когда ангелы увидели, что он знает то, чего не знают они — они поняли его совершенство.
+
+Второй урок: зависть и высокомерие — самые опасные качества. Один грех гордыни разрушил Иблиса навсегда.
+
+Третий урок: сатана — наш явный враг. Он подходит с разных сторон, прикидываясь другом. Наша защита — Коран, поминание Аллаха и упование на Него.
+
+Четвёртый урок: разница между Иблисом и Адамом — не в том, что Иблис согрешил, а Адам нет. Разница в реакции: Адам покаялся — Иблис возгордился ещё больше. Покаяние — это дверь, которая всегда открыта.
+
+Пятый урок: Аллах Справедлив и Милостив. Он создал нас, зная наши слабости. Он дал нам Коран, посланников и покаяние — всё для того, чтобы мы вернулись к Нему.`,
+    questions: [
+      {
+        q: "В чём главная разница между ошибкой Адама и ошибкой Иблиса?",
+        options: ["Адам не знал о запрете, а Иблис знал","Адам покаялся, а Иблис возгордился ещё больше","Грех Адама был меньше","Иблис просил прощения, но Аллах не принял"],
+        correct: 1,
+        explanation: "И Адам, и Иблис ослушались. Но Адам сразу покаялся и признал свой грех. Иблис же возгордился ещё больше. Не грех разрушает человека — а отказ вернуться к Аллаху.",
+        ayah: "إِنَّ اللَّهَ يُحِبُّ التَّوَّابِينَ وَيُحِبُّ الْمُتَطَهِّرِينَ", ref: "Аль-Бакара, 2:222"
+      },
+      {
+        q: "Что является главным оружием верующего против Иблиса?",
+        options: ["Богатство и физическая сила","Избегание всех людей","Искренняя вера и упование на Аллаха","Знание всех хитростей сатаны"],
+        correct: 2,
+        explanation: "Аллах сказал: «Воистину, он не властен над теми, которые уверовали и уповают только на своего Господа». Не нужно бояться сатаны — нужно укреплять связь с Аллахом через молитву, Коран и поминание.",
+        ayah: "إِنَّهُ لَيْسَ لَهُ سُلْطَانٌ عَلَى الَّذِينَ آمَنُوا وَعَلَى رَبِّهِمْ يَتَوَكَّلُونَ", ref: "Ан-Нахль, 16:99"
+      }
+    ]
+  }
+];
+
+const LETTERS = ["A", "B", "C", "D"];
+
+// ─── TTS ─────────────────────────────────────────────────────────────────────
+function useTTS() {
+  const [active, setActive] = useState(false);
+  const [paused, setPaused] = useState(false);
+
+  const stop = useCallback(() => {
+    window.speechSynthesis.cancel();
+    setActive(false); setPaused(false);
+  }, []);
+
+  const speak = useCallback((text) => {
+    stop();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "ru-RU"; u.rate = 0.9;
+    const voices = window.speechSynthesis.getVoices();
+    const ru = voices.find(v => v.lang.startsWith("ru") && v.localService) || voices.find(v => v.lang.startsWith("ru"));
+    if (ru) u.voice = ru;
+    u.onstart = () => { setActive(true); setPaused(false); };
+    u.onend = u.onerror = () => { setActive(false); setPaused(false); };
+    window.speechSynthesis.speak(u);
+  }, [stop]);
+
+  const toggle = useCallback(() => {
+    if (paused) { window.speechSynthesis.resume(); setPaused(false); }
+    else { window.speechSynthesis.pause(); setPaused(true); }
+  }, [paused]);
+
+  useEffect(() => () => stop(), [stop]);
+  return { active, paused, speak, stop, toggle };
+}
+
+// ─── CSS ─────────────────────────────────────────────────────────────────────
+const css = `
+  .app { min-height:100vh; background:var(--bg-2); max-width:580px; margin:0 auto; }
+
+  /* Nav bar */
+  .nav {
+    position:sticky; top:0; z-index:100;
+    background:rgba(242,242,247,0.9);
+    backdrop-filter:blur(20px) saturate(180%);
+    -webkit-backdrop-filter:blur(20px) saturate(180%);
+    border-bottom:1px solid var(--sep);
+    display:flex; align-items:center; padding:12px 16px; gap:12px;
+  }
+  .nav-back {
+    display:flex; align-items:center; gap:4px;
+    background:none; border:none; cursor:pointer;
+    font-family:var(--font); font-size:17px; color:var(--accent);
+    padding:0; flex-shrink:0;
+  }
+  .nav-back svg { width:10px; height:16px; }
+  .nav-center { flex:1; text-align:center; min-width:0; }
+  .nav-title { font-size:13px; font-weight:600; color:var(--label); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .nav-sub { font-size:11px; color:var(--label-2); margin-top:1px; }
+  .nav-count { font-size:13px; font-weight:500; color:var(--label-2); flex-shrink:0; }
+
+  /* Progress */
+  .progress { height:2px; background:var(--sep); }
+  .progress-bar { height:100%; background:var(--accent); transition:width 0.4s ease; }
+
+  /* Wrap */
+  .wrap { padding:20px 16px 60px; }
+
+  /* Home */
+  .home-header { background:var(--bg); border-radius:var(--r); padding:20px; margin-bottom:12px; }
+  .home-label { font-size:12px; font-weight:500; color:var(--accent); margin-bottom:6px; }
+  .home-ar { font-family:var(--font-ar); font-size:28px; color:var(--label); direction:rtl; line-height:1.4; margin-bottom:6px; }
+  .home-title-text { font-size:22px; font-weight:700; letter-spacing:-0.3px; color:var(--label); margin-bottom:8px; }
+  .home-desc { font-size:15px; color:var(--label-2); line-height:1.5; }
+
+  .home-stats { display:flex; background:var(--bg); border-radius:var(--r); overflow:hidden; margin-bottom:20px; }
+  .hs { flex:1; padding:14px 0; text-align:center; }
+  .hs + .hs { border-left:1px solid var(--sep); }
+  .hs-n { font-size:20px; font-weight:600; }
+  .hs-l { font-size:12px; color:var(--label-2); margin-top:2px; }
+
+  .sec-lbl { font-size:13px; color:var(--label-2); text-transform:uppercase; letter-spacing:0.4px; padding:0 4px 8px; }
+
+  .parts-list { background:var(--bg); border-radius:var(--r); overflow:hidden; }
+  .part-row {
+    display:flex; align-items:center; gap:12px;
+    padding:13px 16px; border-bottom:1px solid var(--sep);
+    cursor:pointer; transition:background 0.1s;
+  }
+  .part-row:last-child { border-bottom:none; }
+  .part-row:active, .part-row:hover { background:var(--fill); }
+  .pr-num { font-size:13px; font-weight:600; color:var(--accent); width:20px; flex-shrink:0; }
+  .pr-body { flex:1; min-width:0; }
+  .pr-title { font-size:16px; font-weight:400; color:var(--label); }
+  .pr-sub { font-size:13px; color:var(--label-2); margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .pr-done { width:20px; height:20px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .pr-done svg { width:10px; height:10px; fill:#fff; }
+  .pr-chev { color:var(--label-3); flex-shrink:0; }
+  .pr-chev svg { width:7px; height:12px; fill:var(--label-3); }
+
+  .start-all {
+    width:100%; background:var(--accent); color:#fff;
+    border:none; border-radius:var(--r);
+    padding:15px; font-family:var(--font);
+    font-size:17px; font-weight:600; cursor:pointer;
+    margin-top:12px; transition:opacity 0.15s; letter-spacing:-0.2px;
+  }
+  .start-all:hover { opacity:0.88; }
+  .start-all:active { opacity:0.72; }
+
+  /* Story */
+  .story-block { background:var(--bg); border-radius:var(--r); padding:20px; margin-bottom:12px; }
+  .story-eyebrow { font-size:12px; font-weight:500; color:var(--accent); margin-bottom:12px; }
+  .story-text {
+    font-size:17px; line-height:1.75; color:var(--label);
+    white-space:pre-line; letter-spacing:-0.1px;
+  }
+
+  /* TTS */
+  .audio-bar {
+    background:var(--bg); border-radius:var(--r);
+    padding:14px 16px; margin-bottom:12px;
+    display:flex; align-items:center; gap:12px;
+  }
+  .audio-btn {
+    width:36px; height:36px; border-radius:50%;
+    border:none; background:var(--accent); cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; transition:opacity 0.15s;
+  }
+  .audio-btn:hover { opacity:0.88; }
+  .audio-btn svg { width:12px; height:14px; fill:#fff; }
+  .audio-btn.stop-btn { background:var(--fill-2); }
+  .audio-btn.stop-btn svg { fill:var(--label); }
+  .audio-info { flex:1; }
+  .audio-label { font-size:14px; font-weight:500; color:var(--label); }
+  .audio-sub { font-size:12px; color:var(--label-2); margin-top:2px; }
+  .audio-bars { display:flex; align-items:center; gap:2px; }
+  .audio-bars span {
+    display:block; width:3px; background:var(--accent); border-radius:2px;
+    animation:soundwave 0.8s ease-in-out infinite;
+  }
+  .audio-bars span:nth-child(2) { animation-delay:0.12s; }
+  .audio-bars span:nth-child(3) { animation-delay:0.24s; }
+  .audio-bars span:nth-child(4) { animation-delay:0.18s; }
+  @keyframes soundwave { 0%,100% { height:4px; } 50% { height:16px; } }
+
+  .btn-primary {
+    width:100%; background:var(--accent); color:#fff;
+    border:none; border-radius:var(--r); padding:15px;
+    font-family:var(--font); font-size:17px; font-weight:600;
+    cursor:pointer; letter-spacing:-0.2px; transition:opacity 0.15s;
+  }
+  .btn-primary:hover { opacity:0.88; }
+  .btn-primary:active { opacity:0.72; }
+
+  /* Question */
+  .q-block { background:var(--bg); border-radius:var(--r); padding:20px; margin-bottom:12px; }
+  .q-eyebrow { font-size:12px; font-weight:500; color:var(--label-2); text-transform:uppercase; letter-spacing:0.4px; margin-bottom:10px; }
+  .q-text { font-size:19px; font-weight:400; line-height:1.45; color:var(--label); letter-spacing:-0.2px; }
+
+  .opts { display:flex; flex-direction:column; gap:8px; margin-bottom:12px; }
+  .opt {
+    display:flex; align-items:flex-start; gap:12px;
+    background:var(--bg); border-radius:var(--r);
+    padding:14px 16px; border:none; text-align:left;
+    font-family:var(--font); font-size:16px; font-weight:400;
+    color:var(--label); cursor:pointer; line-height:1.4;
+    border:1px solid var(--sep); transition:background 0.1s;
+  }
+  .opt:hover:not(:disabled) { background:var(--fill); }
+  .opt:disabled { cursor:not-allowed; }
+  .opt.correct { border-color:var(--green); background:rgba(52,199,89,0.06); }
+  .opt.wrong { border-color:var(--red); background:rgba(255,59,48,0.05); }
+  .opt.dim { opacity:0.35; }
+  .opt-badge {
+    width:24px; height:24px; border-radius:6px;
+    background:var(--fill-2); display:flex; align-items:center;
+    justify-content:center; font-size:11px; font-weight:700;
+    color:var(--label-2); flex-shrink:0; margin-top:1px; letter-spacing:0;
+  }
+  .opt.correct .opt-badge { background:var(--green); color:#fff; }
+  .opt.wrong .opt-badge { background:var(--red); color:#fff; }
+
+  /* Explanation */
+  .exp { background:var(--bg); border-radius:var(--r); padding:18px 16px; margin-bottom:12px; animation:fadeUp 0.3s ease; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+  .exp-status { font-size:14px; font-weight:600; margin-bottom:10px; }
+  .exp-status.ok { color:var(--green); }
+  .exp-status.err { color:var(--red); }
+  .exp-text { font-size:15px; color:var(--label-2); line-height:1.6; margin-bottom:14px; }
+  .exp-ayah { border-left:2px solid var(--sep); padding-left:14px; }
+  .ayah-ar { font-family:var(--font-ar); font-size:20px; color:var(--label); direction:rtl; text-align:right; line-height:1.9; margin-bottom:5px; }
+  .ayah-ref { font-size:12px; color:var(--label-3); }
+
+  /* Result */
+  .result { padding:48px 16px 60px; display:flex; flex-direction:column; align-items:center; text-align:center; }
+  .result-score-label { font-size:13px; font-weight:500; color:var(--label-2); text-transform:uppercase; letter-spacing:0.4px; margin-bottom:12px; }
+  .result-score { font-size:64px; font-weight:700; letter-spacing:-2px; color:var(--label); line-height:1; }
+  .result-denom { font-size:24px; font-weight:400; color:var(--label-2); }
+  .result-msg { font-size:17px; color:var(--label-2); line-height:1.55; max-width:320px; margin:16px auto 28px; }
+  .result-hadith { background:var(--bg); border-radius:var(--r); padding:18px; width:100%; margin-bottom:24px; border-left:2px solid var(--sep); text-align:right; }
+  .rh-ar { font-family:var(--font-ar); font-size:18px; direction:rtl; line-height:1.8; color:var(--label); margin-bottom:8px; }
+  .rh-tr { font-size:13px; color:var(--label-2); font-style:italic; text-align:left; direction:ltr; line-height:1.5; }
+  .rh-ref { font-size:12px; color:var(--label-3); text-align:left; direction:ltr; margin-top:3px; }
+  .result-btns { width:100%; display:flex; flex-direction:column; gap:10px; }
+  .btn-outline {
+    width:100%; background:var(--bg); border:1px solid var(--sep);
+    border-radius:var(--r); padding:15px; font-family:var(--font);
+    font-size:17px; font-weight:400; color:var(--accent);
+    cursor:pointer; transition:background 0.1s; letter-spacing:-0.2px;
+  }
+  .btn-outline:hover { background:var(--fill); }
+`;
+
+// ─── SVG ICONS ────────────────────────────────────────────────────────────────
+const IcBack = () => (
+  <svg viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8.5 1L1.5 8L8.5 15" stroke="#007AFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+  </svg>
+);
+
+const IcPlay = () => (
+  <svg viewBox="0 0 12 14" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1 1.5L11 7L1 12.5V1.5Z" fill="white"/>
+  </svg>
+);
+
+const IcPause = () => (
+  <svg viewBox="0 0 12 14" xmlns="http://www.w3.org/2000/svg">
+    <rect x="1" y="1" width="3.5" height="12" rx="1" fill="white"/>
+    <rect x="7.5" y="1" width="3.5" height="12" rx="1" fill="white"/>
+  </svg>
+);
+
+const IcStop = () => (
+  <svg viewBox="0 0 12 14" xmlns="http://www.w3.org/2000/svg">
+    <rect x="1" y="1" width="10" height="12" rx="1.5" fill="currentColor"/>
+  </svg>
+);
+
+const IcChev = () => (
+  <svg viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1 1L6 6L1 11" stroke="#C7C7CC" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+  </svg>
+);
+
+const IcCheck = () => (
+  <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1 5L4 8L9 2" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+  </svg>
+);
+
+// ─── APP ─────────────────────────────────────────────────────────────────────
+function App() {
+  const [screen, setScreen] = useState("home");
+  const [pIdx, setPIdx] = useState(0);
+  const [qIdx, setQIdx] = useState(0);
+  const [chosen, setChosen] = useState(null);
+  const [score, setScore] = useState(0);
+  const [totalQ, setTotalQ] = useState(0);
+  const [done, setDone] = useState([]);
+  const { active, paused, speak, stop, toggle } = useTTS();
+
+  const part = PARTS[pIdx];
+  const q = part?.questions[qIdx];
+  const totalQs = PARTS.reduce((s, p) => s + p.questions.length, 0);
+  const pct = screen === "result" ? 100 : (pIdx / PARTS.length) * 100;
+
+  const goStory = (i) => { setPIdx(i); setQIdx(0); setChosen(null); stop(); setScreen("story"); };
+  const goQuestion = () => { stop(); setChosen(null); setQIdx(0); setScreen("question"); };
+
+  const answer = (i) => {
+    if (chosen !== null) return;
+    setChosen(i);
+    if (i === q.correct) setScore(s => s + 1);
+    setTotalQ(s => s + 1);
+  };
+
+  const next = () => {
+    const nq = qIdx + 1;
+    if (nq < part.questions.length) { setQIdx(nq); setChosen(null); }
+    else {
+      setDone(d => [...d, pIdx]);
+      const np = pIdx + 1;
+      if (np < PARTS.length) { setPIdx(np); setQIdx(0); setChosen(null); setScreen("story"); }
+      else setScreen("result");
+    }
+  };
+
+  const restart = () => { setScreen("home"); setPIdx(0); setQIdx(0); setChosen(null); setScore(0); setTotalQ(0); setDone([]); stop(); };
+
+  const msg = score >= totalQs * 0.9 ? "Машааллах. Вы глубоко усвоили историю Адама (мир ему)."
+    : score >= totalQs * 0.7 ? "Хороший результат. Продолжайте изучать — знания укрепляют веру."
+    : "Пройдите ещё раз. Знания о пророках — это нур (свет) для сердца.";
+
+  return (
+    <>
+      <style>{css}</style>
+      <div className="app">
+
+        {/* NAV */}
+        {screen !== "home" && screen !== "result" && (
+          <div className="nav">
+            <button className="nav-back" onClick={() => screen === "question" ? (stop(), setScreen("story"), setChosen(null)) : restart()}>
+              <IcBack /> {screen === "story" ? "Главная" : "К тексту"}
+            </button>
+            <div className="nav-center">
+              <div className="nav-title">{part.title}</div>
+              {screen === "question" && <div className="nav-sub">Вопрос {qIdx + 1} из {part.questions.length}</div>}
+            </div>
+            <div className="nav-count">{pIdx + 1} / {PARTS.length}</div>
+          </div>
+        )}
+
+        {screen !== "home" && (
+          <div className="progress"><div className="progress-bar" style={{width: pct + "%"}} /></div>
+        )}
+
+        {/* HOME */}
+        {screen === "home" && (
+          <div className="wrap">
+            <div className="home-header">
+              <div className="home-label">Пророк № 1</div>
+              <div className="home-ar">آدَمُ عَلَيْهِ السَّلَامُ</div>
+              <div className="home-title-text">Адам (мир ему)</div>
+              <div className="home-desc">История его сотворения, испытания в Раю, отказ Иблиса и урок покаяния — на основе Корана и достоверных источников.</div>
+            </div>
+
+            <div className="home-stats">
+              <div className="hs"><div className="hs-n">{PARTS.length}</div><div className="hs-l">частей</div></div>
+              <div className="hs"><div className="hs-n">{totalQs}</div><div className="hs-l">вопросов</div></div>
+              <div className="hs"><div className="hs-n">15</div><div className="hs-l">минут</div></div>
+            </div>
+
+            <div className="sec-lbl">Содержание</div>
+            <div className="parts-list">
+              {PARTS.map((p, i) => (
+                <div key={i} className="part-row" onClick={() => goStory(i)}>
+                  <div className="pr-num">{p.id}</div>
+                  <div className="pr-body">
+                    <div className="pr-title">{p.title}</div>
+                    <div className="pr-sub">{p.subtitle}</div>
+                  </div>
+                  {done.includes(i)
+                    ? <div className="pr-done"><IcCheck /></div>
+                    : <div className="pr-chev"><IcChev /></div>}
+                </div>
+              ))}
+            </div>
+            <button className="start-all" onClick={() => goStory(0)}>Начать с начала</button>
+          </div>
+        )}
+
+        {/* STORY */}
+        {screen === "story" && part && (
+          <div className="wrap">
+            <div className="audio-bar">
+              {!active
+                ? <button className="audio-btn" onClick={() => speak(part.text)}><IcPlay /></button>
+                : <>
+                    <button className="audio-btn" onClick={toggle}>{paused ? <IcPlay /> : <IcPause />}</button>
+                    <button className="audio-btn stop-btn" onClick={stop}><IcStop /></button>
+                  </>
+              }
+              <div className="audio-info">
+                <div className="audio-label">{active && !paused ? "Озвучка идёт" : paused ? "Пауза" : "Прослушать"}</div>
+                <div className="audio-sub">{active ? "Нажмите для паузы" : "Нажмите ▶ чтобы начать"}</div>
+              </div>
+              {active && !paused && (
+                <div className="audio-bars">
+                  <span /><span /><span /><span />
+                </div>
+              )}
+            </div>
+
+            <div className="story-block">
+              <div className="story-eyebrow">Часть {part.id} · {part.title}</div>
+              <div className="story-text">{part.text}</div>
+            </div>
+
+            <button className="btn-primary" onClick={goQuestion}>Перейти к вопросам</button>
+          </div>
+        )}
+
+        {/* QUESTION */}
+        {screen === "question" && part && q && (
+          <div className="wrap">
+            <div className="q-block">
+              <div className="q-eyebrow">Вопрос {qIdx + 1} из {part.questions.length}</div>
+              <div className="q-text">{q.q}</div>
+            </div>
+
+            <div className="opts">
+              {q.options.map((opt, i) => {
+                let cls = "opt";
+                if (chosen !== null) {
+                  if (i === q.correct) cls += " correct";
+                  else if (i === chosen) cls += " wrong";
+                  else cls += " dim";
+                }
+                return (
+                  <button key={i} className={cls} onClick={() => answer(i)} disabled={chosen !== null}>
+                    <span className="opt-badge">{LETTERS[i]}</span>
+                    {opt}
+                  </button>
+                );
+              })}
+            </div>
+
+            {chosen !== null && (
+              <div className="exp">
+                <div className={`exp-status ${chosen === q.correct ? "ok" : "err"}`}>
+                  {chosen === q.correct ? "Правильно" : "Неверно — запомни"}
+                </div>
+                <div className="exp-text">{q.explanation}</div>
+                {q.ayah && (
+                  <div className="exp-ayah">
+                    <div className="ayah-ar">{q.ayah}</div>
+                    <div className="ayah-ref">{q.ref}</div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {chosen !== null && (
+              <button className="btn-primary" onClick={next}>
+                {qIdx + 1 < part.questions.length ? "Следующий вопрос"
+                  : pIdx + 1 < PARTS.length ? `Часть ${pIdx + 2}: ${PARTS[pIdx + 1].title}`
+                  : "Посмотреть результат"}
+              </button>
+            )}
+          </div>
+        )}
+
+        {/* RESULT */}
+        {screen === "result" && (
+          <div className="result">
+            <div className="result-score-label">Результат</div>
+            <div className="result-score">
+              {score}<span className="result-denom"> / {totalQ}</span>
+            </div>
+            <div className="result-msg">{msg}</div>
+
+            <div className="result-hadith">
+              <div className="rh-ar">طَلَبُ الْعِلْمِ فَرِيضَةٌ عَلَى كُلِّ مُسْلِمٍ</div>
+              <div className="rh-tr">«Стремление к знаниям — обязанность каждого мусульманина»</div>
+              <div className="rh-ref">Ибн Маджа</div>
+            </div>
+
+            <div className="result-btns">
+              <button className="btn-primary" onClick={() => goStory(0)}>Пройти ещё раз</button>
+              <button className="btn-outline" onClick={restart}>К содержанию</button>
+              <a href="index.html" style={{display:"block",width:"100%",background:"none",border:"none",textAlign:"center",color:"var(--label-2)",fontSize:"15px",padding:"8px",cursor:"pointer",textDecoration:"none"}}>
+                На главную
+              </a>
+            </div>
+          </div>
+        )}
+
+      </div>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
