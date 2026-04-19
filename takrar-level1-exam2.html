@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="light only">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التكرار — الاختبار الثاني</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light only;--bg:#f2f2f7;--bg2:#fff;--text:#000;--text2:#3c3c43;--text3:#8e8e93;--accent:#007aff;--acc-bg:#e5f0ff;--green:#34c759;--grn-bg:#edfaf1;--red:#ff3b30;--red-bg:#fff0ef;--gold:#b8860b;--border:rgba(60,60,67,0.18);--r:12px;--r-sm:10px;}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans',-apple-system,sans-serif;font-size:15px;line-height:1.5;}
+@media(prefers-color-scheme:dark){html,body{background:#f2f2f7!important;color:#000!important;}*{color-scheme:light!important;}}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(242,242,247,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-in{max-width:720px;margin:0 auto;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;}
+.logo{font-family:'Amiri',serif;font-size:18px;color:var(--text);direction:rtl;}
+.back{font-size:13px;color:var(--accent);text-decoration:none;font-weight:500;}
+
+.hero{padding:44px 20px 36px;text-align:center;border-bottom:1px solid var(--border);background:var(--bg2);}
+.hero-eye{font-size:12px;font-weight:600;color:var(--green);letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px;}
+.hero-ar{font-family:'Amiri',serif;font-size:30px;color:var(--text);direction:rtl;margin-bottom:4px;}
+.hero-ru{font-size:24px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.hero-sub{font-size:13px;color:var(--text3);}
+
+.info-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:12px 20px;}
+.info-in{max-width:720px;margin:0 auto;display:flex;gap:20px;flex-wrap:wrap;justify-content:center;}
+.info-item{font-size:12px;color:var(--text3);display:flex;align-items:center;gap:4px;}
+.info-val{font-weight:600;color:var(--text);}
+
+.main{max-width:720px;margin:0 auto;padding:28px 20px 80px;}
+.section{display:none;}.section.on{display:block;}
+
+/* INTRO */
+.intro-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:24px;margin-bottom:20px;text-align:center;}
+.ic-ar{font-family:'Scheherazade New',serif;font-size:22px;color:var(--gold);direction:rtl;margin-bottom:8px;}
+.ic-ru{font-size:13px;color:var(--text2);margin-bottom:20px;line-height:1.6;}
+.topics{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:24px;text-align:left;}
+.topic{background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:10px 12px;}
+.t-ar{font-family:'Amiri',serif;font-size:16px;color:var(--gold);direction:rtl;display:block;margin-bottom:2px;}
+.t-ru{font-size:11px;color:var(--text3);}
+.start-btn{padding:13px 36px;background:var(--green);color:white;border:none;border-radius:24px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s;}
+.start-btn:hover{opacity:.88;}
+
+/* PROGRESS */
+.exam-prog{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:20px;}
+.ep-top{display:flex;justify-content:space-between;margin-bottom:8px;}
+.ep-lbl{font-size:11px;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.5px;}
+.ep-num{font-size:12px;color:var(--green);font-weight:700;}
+.ep-track{height:6px;background:#e5e5ea;border-radius:3px;overflow:hidden;}
+.ep-fill{height:100%;background:var(--green);border-radius:3px;transition:width .3s;}
+
+/* QUESTION */
+.q-card{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:16px;}
+.q-topic{font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.q-ar{font-family:'Scheherazade New',serif;font-size:22px;direction:rtl;text-align:right;line-height:1.8;color:var(--text);margin-bottom:10px;}
+.q-text{font-size:14px;font-weight:600;color:var(--text);margin-bottom:14px;}
+.q-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.q-opt{padding:12px 14px;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--bg2);cursor:pointer;font-size:13px;font-weight:500;font-family:inherit;color:var(--text);text-align:center;transition:all .15s;}
+.q-opt:hover:not(.dis){border-color:var(--green);color:var(--green);background:var(--grn-bg);}
+.q-opt.ok{border-color:var(--green);background:var(--grn-bg);color:#1a7a3a;font-weight:600;}
+.q-opt.no{border-color:var(--red);background:var(--red-bg);color:#c00;}
+.q-opt.sh{border-color:var(--green);background:var(--grn-bg);color:#1a7a3a;}
+.q-opt.dis{pointer-events:none;}
+.q-fb{display:none;font-size:12px;font-weight:600;margin-top:10px;padding:8px 12px;border-radius:var(--r-sm);}
+.q-fb.on{display:block;}
+.q-fb.ok{background:var(--grn-bg);color:#1a7a3a;}
+.q-fb.no{background:var(--red-bg);color:#c00;}
+
+/* RESULT */
+.result-card{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--r);padding:32px 24px;text-align:center;}
+.rc-circle{width:120px;height:120px;border-radius:50%;margin:0 auto 16px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:4px solid var(--green);}
+.rc-circle.good{border-color:var(--gold);}
+.rc-circle.retry{border-color:var(--red);}
+.rc-pct{font-size:34px;font-weight:700;color:var(--green);}
+.rc-circle.good .rc-pct{color:var(--gold);}
+.rc-circle.retry .rc-pct{color:#c00;}
+.rc-lbl{font-size:11px;color:var(--text3);}
+.rc-ar{font-family:'Scheherazade New',serif;font-size:22px;direction:rtl;color:var(--text);margin-bottom:8px;}
+.rc-badge{display:inline-block;padding:6px 20px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:20px;}
+.rc-badge.ex{background:var(--grn-bg);color:#1a7a3a;border:1px solid rgba(52,199,89,.3);}
+.rc-badge.gd{background:#fdf6e3;color:var(--gold);border:1px solid rgba(184,134,11,.3);}
+.rc-badge.rt{background:var(--red-bg);color:#c00;border:1px solid rgba(255,59,48,.3);}
+.rc-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:16px 0 24px;}
+.rs{background:var(--bg);border-radius:var(--r-sm);padding:12px 8px;text-align:center;}
+.rs-n{font-size:22px;font-weight:700;margin-bottom:3px;}
+.rs-n.g{color:var(--green);}
+.rs-n.r{color:var(--red);}
+.rs-n.b{color:var(--accent);}
+.rs-l{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;}
+.rc-btns{display:flex;gap:10px;justify-content:center;}
+.rc-btn{padding:10px 24px;border-radius:22px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s;border:none;}
+.rc-btn.pr{background:var(--green);color:white;}
+.rc-btn.sc{background:var(--bg);color:var(--text2);border:1.5px solid var(--border);}
+.rc-btn.sc:hover{border-color:var(--accent);color:var(--accent);}
+
+/* REVIEW */
+.review-title{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin:20px 0 10px;text-align:left;}
+.rv-card{background:#fff8f8;border:1px solid rgba(255,59,48,.2);border-radius:var(--r-sm);padding:12px 14px;margin-bottom:8px;text-align:left;}
+.rv-topic{font-size:10px;color:var(--text3);margin-bottom:4px;font-weight:600;text-transform:uppercase;}
+.rv-q{font-size:13px;font-weight:500;color:var(--text);margin-bottom:6px;}
+.rv-ar{font-family:'Scheherazade New',serif;font-size:17px;direction:rtl;text-align:right;color:var(--text);margin-bottom:6px;}
+.rv-wrong{font-size:12px;color:#c00;margin-bottom:2px;}
+.rv-right{font-size:12px;color:#1a7a3a;font-weight:600;}
+
+@media(max-width:540px){.q-opts{grid-template-columns:1fr;}.topics{grid-template-columns:1fr;}.rc-stats{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a class="back" href="index.html">← Главная</a>
+    <div class="logo">&#x627;&#x644;&#x062a;&#x651;&#x643;&#x652;&#x631;&#x627;&#x631;&#x64f; &#x623;&#x64f;&#x645;&#x651;&#x64f; &#x627;&#x644;&#x652;&#x639;&#x650;&#x644;&#x652;&#x645;&#x650;</div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eye">Уровень 1 · Экзамен 2 из 2</div>
+  <div class="hero-ar">الاختبار الثاني — المستوى الأول</div>
+  <div class="hero-ru">Второй Экзамен</div>
+  <div class="hero-sub">Уроки 8–14 · 20 вопросов</div>
+</div>
+
+<div class="info-bar">
+  <div class="info-in">
+    <div class="info-item">Вопросов: <span class="info-val">20</span></div>
+    <div class="info-item">Уроки: <span class="info-val">8–14</span></div>
+    <div class="info-item">Проходной: <span class="info-val">70%</span></div>
+    <div class="info-item">Отлично: <span class="info-val">90%+</span></div>
+  </div>
+</div>
+
+<div class="main">
+
+<div class="section on" id="intro">
+  <div class="intro-card">
+    <div class="ic-ar">التَّكْرَارُ أُمُّ الْعِلْمِ</div>
+    <div class="ic-ru">Ты прошёл уроки 8–14! Пришло время проверить знания.<br>20 вопросов по всем темам.</div>
+    <div class="topics">
+      <div class="topic"><span class="t-ar">السفر</span><span class="t-ru">Урок 8 — Путешествие</span></div>
+      <div class="topic"><span class="t-ar">الألوان</span><span class="t-ru">Урок 9 — Цвета</span></div>
+      <div class="topic"><span class="t-ar">الأيام</span><span class="t-ru">Урок 10 — Дни недели</span></div>
+      <div class="topic"><span class="t-ar">المدينة</span><span class="t-ru">Урок 11 — Город</span></div>
+      <div class="topic"><span class="t-ar">الطقس</span><span class="t-ru">Урок 12 — Погода</span></div>
+      <div class="topic"><span class="t-ar">الأرقام</span><span class="t-ru">Урок 13 — Числа</span></div>
+      <div class="topic"><span class="t-ar">المشاعر</span><span class="t-ru">Урок 14 — Чувства</span></div>
+    </div>
+    <button class="start-btn" onclick="startExam()">Начать экзамен</button>
+  </div>
+</div>
+
+<div class="section" id="exam">
+  <div class="exam-prog">
+    <div class="ep-top"><span class="ep-lbl">Прогресс</span><span class="ep-num" id="ep-num">0 / 20</span></div>
+    <div class="ep-track"><div class="ep-fill" id="ep-fill" style="width:0%"></div></div>
+  </div>
+  <div id="q-wrap"></div>
+</div>
+
+<div class="section" id="result">
+  <div class="result-card">
+    <div class="rc-circle" id="rc-circle">
+      <div class="rc-pct" id="rc-pct">0%</div>
+      <div class="rc-lbl">результат</div>
+    </div>
+    <div class="rc-ar" id="rc-ar"></div>
+    <div><span class="rc-badge" id="rc-badge"></span></div>
+    <div class="rc-stats">
+      <div class="rs"><div class="rs-n g" id="rs-ok">0</div><div class="rs-l">Верно</div></div>
+      <div class="rs"><div class="rs-n r" id="rs-no">0</div><div class="rs-l">Неверно</div></div>
+      <div class="rs"><div class="rs-n b">20</div><div class="rs-l">Всего</div></div>
+    </div>
+    <div id="review-wrap"></div>
+    <div class="rc-btns">
+      <button class="rc-btn sc" onclick="restartExam()">↺ Ещё раз</button>
+      <a class="rc-btn pr" href="index.html">На главную</a>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const questions = [
+  // Урок 8 — Путешествие
+  {t:'Урок 8 — السفر', q:'Что означает سَفَرٌ?', ar:'', opts:['Аэропорт','Путешествие','Билет','Отель'], ans:1},
+  {t:'Урок 8 — السفر', q:'«Счастливого пути» по-арабски?', ar:'', opts:['أَهْلاً وَسَهْلاً','مَعَ السَّلَامَةِ','بِسْمِ اللهِ','إِنْ شَاءَ اللهُ'], ans:1},
+  {t:'Урок 8 — السفر', q:'Переведи:', ar:'سَأُسَافِرُ غَداً', opts:['Я еду сегодня','Он поедет завтра','Я поеду завтра','Я уже приехал'], ans:2},
+
+  // Урок 9 — Цвета
+  {t:'Урок 9 — الألوان', q:'«Белый» по-арабски?', ar:'', opts:['أَسْوَدُ','أَحْمَرُ','أَبْيَضُ','أَزْرَقُ'], ans:2},
+  {t:'Урок 9 — الألوان', q:'Женский род от أَحْمَرُ?', ar:'', opts:['أَحْمَرَةٌ','حَمْرَاءُ','أَحْمَرُونَ','حَمْرَاءَةٌ'], ans:1},
+  {t:'Урок 9 — الألوان', q:'Переведи:', ar:'قَمِيصِي أَبْيَضُ', opts:['Его рубашка белая','Моя рубашка белая','Твоя рубашка белая','Рубашка красивая'], ans:1},
+
+  // Урок 10 — Дни
+  {t:'Урок 10 — الأيام', q:'«Пятница» по-арабски?', ar:'', opts:['الخَمِيسُ','الجُمُعَةُ','السَّبْتُ','الأَحَدُ'], ans:1},
+  {t:'Урок 10 — الأيام', q:'Переведи:', ar:'ذَهَبْتُ إِلَى المَسْجِدِ بَكِّراً', opts:['Он пошёл поздно','Я пойду завтра','Я пошёл рано','Мечеть открылась'], ans:2},
+  {t:'Урок 10 — الأيام', q:'«Я пошёл» — правильная форма?', ar:'', opts:['يَذْهَبُ','ذَهَبَ','ذَهَبْتُ','سَأَذْهَبُ'], ans:2},
+
+  // Урок 11 — Город
+  {t:'Урок 11 — المدينة', q:'«Правая сторона» по-арабски?', ar:'', opts:['يَسَارٌ','يَمِينٌ','أَمَامَ','وَرَاءَ'], ans:1},
+  {t:'Урок 11 — المدينة', q:'Переведи:', ar:'المَسْجِدُ أَمَامَ البَيْتِ', opts:['Мечеть за домом','Мечеть рядом','Мечеть перед домом','Дом перед мечетью'], ans:2},
+  {t:'Урок 11 — المدينة', q:'«Рынок» по-арабски?', ar:'', opts:['مَطْعَمٌ','بَنْكٌ','سُوقٌ','مَسْجِدٌ'], ans:2},
+
+  // Урок 12 — Погода
+  {t:'Урок 12 — الطقس', q:'«Зима» по-арабски?', ar:'', opts:['صَيْفٌ','رَبِيعٌ','شِتَاءٌ','خَرِيفٌ'], ans:2},
+  {t:'Урок 12 — الطقس', q:'Переведи:', ar:'كَيْفَ الطَّقْسُ؟', opts:['Где погода?','Когда погода?','Какая погода?','Что за погода?'], ans:2},
+  {t:'Урок 12 — الطقس', q:'«Холодный» по-арабски?', ar:'', opts:['حَارٌّ','مُمْطِرٌ','بَارِدٌ','عَاصِفٌ'], ans:2},
+
+  // Урок 13 — Числа
+  {t:'Урок 13 — الأرقام', q:'«Пять» по-арабски?', ar:'', opts:['أَرْبَعَةٌ','خَمْسَةٌ','سِتَّةٌ','سَبْعَةٌ'], ans:1},
+  {t:'Урок 13 — الأرقام', q:'Как спросить «Сколько тебе лет?»', ar:'', opts:['كَيْفَ عُمُرُكَ؟','كَمْ عُمُرُكَ؟','مَا عُمُرُكَ؟','أَيْنَ عُمُرُكَ؟'], ans:1},
+  {t:'Урок 13 — الأرقام', q:'Переведи:', ar:'عُمُرِي عَشَرَةُ أَعْوَامٍ', opts:['Мне двадцать лет','Мне пятнадцать лет','Мне десять лет','У меня десять детей'], ans:2},
+
+  // Урок 14 — Чувства
+  {t:'Урок 14 — المشاعر', q:'«Счастливый» по-арабски?', ar:'', opts:['حَزِينٌ','خَائِفٌ','سَعِيدٌ','مُتَعَبٌ'], ans:2},
+  {t:'Урок 14 — المشاعر', q:'Аят об успокоении сердца?', ar:'', opts:['البقرة 255','يس 1','الرعد 28','الفاتحة 1'], ans:2},
+  {t:'Урок 14 — المشاعر', q:'Переведи:', ar:'أَشْعُرُ بِالتَّعَبِ', opts:['Я счастлив','Я грустен','Я чувствую усталость','Я испуган'], ans:2},
+];
+
+let cur=0, score=0, wrongs=[], answered=[];
+
+function startExam(){
+  cur=0;score=0;wrongs=[];answered=[];
+  showSec('exam');
+  renderQ();
+}
+
+function renderQ(){
+  updateProg();
+  const q=questions[cur];
+  const L=['أ','ب','ج','د'];
+  let html=`<div class="q-card">
+    <div class="q-topic">${q.t} · Вопрос ${cur+1} из ${questions.length}</div>
+    ${q.ar?`<div class="q-ar">${q.ar}</div>`:''}
+    <div class="q-text">${q.q}</div>
+    <div class="q-opts">
+      ${q.opts.map((o,i)=>`<button class="q-opt" onclick="answer(${i})" id="opt${i}">
+        <span style="font-family:'Scheherazade New',serif;font-size:14px;color:var(--gold);margin-left:4px">${L[i]}</span> ${o}
+      </button>`).join('')}
+    </div>
+    <div class="q-fb" id="qfb"></div>
+  </div>`;
+  document.getElementById('q-wrap').innerHTML=html;
+}
+
+function answer(chosen){
+  const q=questions[cur];
+  document.querySelectorAll('.q-opt').forEach(b=>b.classList.add('dis'));
+  document.getElementById('opt'+q.ans).classList.add('sh');
+  const fb=document.getElementById('qfb');
+  if(chosen===q.ans){
+    document.getElementById('opt'+chosen).classList.add('ok');
+    score++;
+    fb.textContent='✓ Правильно!';
+    fb.className='q-fb on ok';
+  } else {
+    document.getElementById('opt'+chosen).classList.add('no');
+    wrongs.push({q, chosen});
+    fb.textContent='✗ Неверно. Правильно: '+q.opts[q.ans];
+    fb.className='q-fb on no';
+  }
+  setTimeout(()=>{
+    cur++;
+    if(cur<questions.length) renderQ();
+    else showResult();
+  }, 1300);
+}
+
+function updateProg(){
+  const p=Math.round(cur/questions.length*100);
+  document.getElementById('ep-fill').style.width=p+'%';
+  document.getElementById('ep-num').textContent=cur+' / '+questions.length;
+}
+
+function showResult(){
+  showSec('result');
+  const p=Math.round(score/questions.length*100);
+  document.getElementById('rc-pct').textContent=p+'%';
+  document.getElementById('rs-ok').textContent=score;
+  document.getElementById('rs-no').textContent=questions.length-score;
+  const circle=document.getElementById('rc-circle');
+  const ar=document.getElementById('rc-ar');
+  const badge=document.getElementById('rc-badge');
+  if(p>=90){
+    circle.className='rc-circle';
+    ar.textContent='ماشاء الله! ممتاز جداً! أنت نجحت!';
+    badge.textContent='Отлично — '+p+'%';
+    badge.className='rc-badge ex';
+  } else if(p>=70){
+    circle.className='rc-circle good';
+    ar.textContent='أحسنت! نجحت بإذن الله';
+    badge.textContent='Хорошо — '+p+'%';
+    badge.className='rc-badge gd';
+  } else {
+    circle.className='rc-circle retry';
+    ar.textContent='حاول مرة أخرى بإذن الله';
+    badge.textContent='Повтори уроки — '+p+'%';
+    badge.className='rc-badge rt';
+  }
+  if(wrongs.length>0){
+    let html='<div class="review-title">Разбор ошибок</div>';
+    wrongs.forEach(({q,chosen})=>{
+      html+=`<div class="rv-card">
+        <div class="rv-topic">${q.t}</div>
+        ${q.ar?`<div class="rv-ar">${q.ar}</div>`:''}
+        <div class="rv-q">${q.q}</div>
+        <div class="rv-wrong">✗ Твой ответ: ${q.opts[chosen]}</div>
+        <div class="rv-right">✓ Правильно: ${q.opts[q.ans]}</div>
+      </div>`;
+    });
+    document.getElementById('review-wrap').innerHTML=html;
+  }
+}
+
+function showSec(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  window.scrollTo(0,0);
+}
+
+function restartExam(){ startExam(); }
+</script>
+</body>
+</html>
