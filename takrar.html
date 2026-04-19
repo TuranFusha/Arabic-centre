@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Такрар — Уровень 1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:      #FFFFFF;
+      --bg-2:    #F2F2F7;
+      --label:   #000000;
+      --label-2: rgba(60,60,67,0.60);
+      --label-3: rgba(60,60,67,0.30);
+      --sep:     rgba(60,60,67,0.12);
+      --accent:  #007AFF;
+      --orange:  #FF9500;
+      --fill:    rgba(120,120,128,0.08);
+      --font:    -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+      --font-ar: 'Amiri', Georgia, serif;
+      --r:       13px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--font);
+      background: var(--bg-2);
+      color: var(--label);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    .page { max-width: 580px; margin: 0 auto; padding-bottom: 60px; }
+
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(242,242,247,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--sep);
+      padding: 12px 16px;
+      display: flex; align-items: center;
+    }
+    .nav-back {
+      display: flex; align-items: center; gap: 3px;
+      background: none; border: none; cursor: pointer;
+      font-family: var(--font); font-size: 17px;
+      color: var(--accent); padding: 0;
+      text-decoration: none; flex-shrink: 0;
+    }
+    .nav-back svg { width: 10px; height: 16px; margin-right: 2px; }
+    .nav-title {
+      flex: 1; text-align: center;
+      font-size: 17px; font-weight: 600; color: var(--label);
+    }
+    .nav-spacer { width: 80px; flex-shrink: 0; }
+
+    /* Header */
+    .header {
+      background: var(--bg);
+      padding: 24px 20px 20px;
+      border-bottom: 1px solid var(--sep);
+    }
+    .header-eyebrow { font-size: 12px; font-weight: 500; color: var(--accent); margin-bottom: 6px; }
+    .header-title { font-size: 28px; font-weight: 700; letter-spacing: -0.4px; color: var(--label); margin-bottom: 5px; }
+    .header-ar {
+      font-family: var(--font-ar); font-size: 20px;
+      color: var(--label-2); direction: rtl; text-align: right;
+      line-height: 1.6; margin-bottom: 8px;
+    }
+    .header-desc { font-size: 15px; color: var(--label-2); line-height: 1.5; }
+
+    /* Stats */
+    .stats { display: flex; background: var(--bg); border-bottom: 1px solid var(--sep); }
+    .stat { flex: 1; padding: 12px 0; text-align: center; }
+    .stat + .stat { border-left: 1px solid var(--sep); }
+    .stat-n { font-size: 18px; font-weight: 600; }
+    .stat-l { font-size: 12px; color: var(--label-2); margin-top: 1px; }
+
+    /* Section label */
+    .sec-label {
+      font-size: 13px; color: var(--label-2);
+      text-transform: uppercase; letter-spacing: 0.4px;
+      padding: 20px 20px 8px;
+    }
+
+    /* List */
+    .list {
+      background: var(--bg);
+      border-radius: var(--r);
+      margin: 0 16px;
+      border: 1px solid var(--sep);
+      overflow: hidden;
+    }
+
+    .row {
+      display: flex; align-items: center; gap: 14px;
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--sep);
+      text-decoration: none; color: inherit;
+      transition: background 0.1s;
+    }
+    .row:last-child { border-bottom: none; }
+    .row:active, .row:hover { background: var(--fill); }
+
+    /* Number badge */
+    .badge {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .badge.lesson {
+      background: rgba(0,122,255,0.1);
+      color: var(--accent);
+    }
+    .badge.exam {
+      background: rgba(255,149,0,0.12);
+      color: var(--orange);
+      font-size: 11px;
+    }
+
+    .row-body { flex: 1; min-width: 0; }
+    .row-title { font-size: 16px; font-weight: 400; color: var(--label); }
+    .row-sub { font-size: 13px; color: var(--label-2); margin-top: 2px; }
+
+    .row-chev svg { width: 7px; height: 12px; fill: var(--label-3); }
+
+    /* Exam separator row */
+    .exam-row { background: rgba(255,149,0,0.03); }
+
+    /* Footer */
+    .footer {
+      margin: 24px 16px 0; padding: 18px;
+      background: var(--bg); border-radius: var(--r);
+      border: 1px solid var(--sep);
+    }
+    .footer-ar {
+      font-family: var(--font-ar); font-size: 18px;
+      color: var(--label); direction: rtl; text-align: right;
+      line-height: 1.8; margin-bottom: 6px;
+    }
+    .footer-tr { font-size: 13px; color: var(--label-2); font-style: italic; }
+    .footer-ref { font-size: 12px; color: var(--label-3); margin-top: 3px; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="nav">
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 10 16" fill="none"><path d="M8.5 1L1.5 8L8.5 15" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Главная
+    </a>
+    <div class="nav-title">Арабский язык</div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <div class="header">
+    <div class="header-eyebrow">Уровень 1 · 14 уроков · 2 экзамена</div>
+    <div class="header-title">Такрар</div>
+    <div class="header-ar">التَّكْرَار أُمُّ الْعِلْم</div>
+    <div class="header-desc">Повторение — мать учения. Арабский язык через системное повторение.</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-n">14</div><div class="stat-l">уроков</div></div>
+    <div class="stat"><div class="stat-n">2</div><div class="stat-l">экзамена</div></div>
+    <div class="stat"><div class="stat-n">1</div><div class="stat-l">уровень</div></div>
+  </div>
+
+  <!-- Уроки 1–7 -->
+  <div class="sec-label">Первая половина · Уроки 1–7</div>
+
+  <div class="list">
+    <a href="takrar-level1-lesson1.html" class="row">
+      <div class="badge lesson">1</div>
+      <div class="row-body"><div class="row-title">Урок 1</div><div class="row-sub">التعارف · Знакомство</div></div>
+      <div class="row-chev"><svg viewBox="0 0 7 12" fill="none"><path d="M1 1L6 6L1 11" stroke="#C7C7CC" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+    <a href="takrar-level1-lesson2.html" class="row">
+      <div class="badge lesson">2</div>
+      <div class="row-body"><div class="row-title">Урок 2</div><div class="row-sub">الدرس الثاني</div></div>
+      <div class="row-chev"><svg viewBox="0 0 7 12" fill="none"><path d="M1 1L6 6L1 11" stroke="#C7C7CC" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+    <a href="takrar-level1-lesson3.html" class="row">
+      <div class="badge lesson">3</div>
+      <div class="row-body"><div class="row-title">Урок 3</div><div class="row-sub">الدرس الثالث</div></div>
+      <div class="row-chev"><svg viewBox="0 0 7 12" fill="none"><path d="M1 1L6 6L1 11" stroke="#C7C7CC" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+    <a href="takrar-level1-lesson4.html" class="row">
+      <div class="badge lesson">4</div>
+      <div class="row-body"><div class="row-title">Урок 4</div><div class="row-sub">الدرس الرابع</div></div>
+      <div class="row-chev"><svg viewBox="0 0 7 12" fill="none"><path d="M1 1L6 6L1 11" stroke="#C7C7CC" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+    <a href="takrar-level1-lesson5.html" class="row">
+      <div class="badge lesson">5</div>
+      <div class="row-body"><div class="row-title">Урок 5</div><div class="row-sub">الدرس الخامس</div></div>
+      <div class="row-chev"><svg viewBox="0 0 7 12" fill="none"><path d="M1 1L6 6L1 11" stroke="#C7C7CC" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+    <a href="takrar-level1-lesson6.html" class="row">
+      <div class="badge lesson">6</div>
+      <div class="row-body"><div class="row-title">Урок 6</div><div class="row-sub">الدرس السادس</div></div>
+      <div class="row-chev"><svg viewBox="0 0 7 12" fill="none"><path d="M1 1L6 6L1 11" stroke="#C7C7CC" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+    <a href="takrar-level1-lesson7.html" class="row">
+      <div class="badge lesson">7</div>
+      <div class="row-body"><div class="row-title">Урок 7</div><div class="row-sub">الدرس السابع</div></div>
+      <div class="row-chev"><svg viewBox="0 0 7 12" fill="none"><path d="M1 1L6 6L1 11" stroke="#C7C7CC" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+  </div>
+
+  <!-- Экзамен 1 -->
+  <div class="sec-label">Экзамен после уроков 1–7</div>
+
+  <div class="list">
+    <a href="takrar-level1-exam1.html" class="row exam-row">
+      <div class="badge exam">ЭКЗАМЕН 1</div>
+      <div class="row-body">
+        <div class="row-title">Экзамен — Уроки 1–7</div>
+        <div class="row-sub">Проверка знаний первых семи уроков</div>
+      </div>
+      <div class="row-chev"><svg viewBox="0 0 7 12" fill="none"><path d="M1 1L6 6L1 11" stroke="#C7C7CC" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+  </div>
+
+  <!-- Уроки 8–14 -->
+  <div class="sec-label">Вторая половина · Уроки 8–14</div>
+
+  <div class="list">
+    <a href="takrar-level1-lesson8.html" class="row">
+      <div class="badge lesson">8</div>
+      <div class="row-body"><div class="row-title">Урок 8</div><div class="row-sub">الدرس الثامن</div></div>
+      <div class="row-chev"><svg viewBox="0 0 7 12" fill="none"><path d="M1 1L6 6L1 11" stroke="#C7C7CC" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+    <a href="takrar-level1-lesson9.html" class="row">
+      <div class="badge lesson">9</div>
+      <div class="row-body"><div class="row-title">Урок 9</div><div class="row-sub">الدرس التاسع</div></div>
+      <div class="row-chev"><svg viewBox="0 0 7 12" fill="none"><path d="M1 1L6 6L1 11" stroke="#C7C7CC" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+    <a href="takrar-level1-lesson10.html" class="row">
+      <div class="badge lesson">10</div>
+      <div class="row-body"><div class="row-title">Урок 10</div><div class="row-sub">الدرس العاشر</div></div>
+      <div class="row-chev"><svg viewBox="0 0 7 12" fill="none"><path d="M1 1L6 6L1 11" stroke="#C7C7CC" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+    <a href="takrar-level1-lesson11.html" class="row">
+      <div class="badge lesson">11</div>
+      <div class="row-body"><div class="row-title">Урок 11</div><div class="row-sub">الدرس الحادي عشر</div></div>
+      <div class="row-chev"><svg viewBox="0 0 7 12" fill="none"><path d="M1 1L6 6L1 11" stroke="#C7C7CC" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+    <a href="takrar-level1-lesson12.html" class="row">
+      <div class="badge lesson">12</div>
+      <div class="row-body"><div class="row-title">Урок 12</div><div class="row-sub">الدرس الثاني عشر</div></div>
+      <div class="row-chev"><svg viewBox="0 0 7 12" fill="none"><path d="M1 1L6 6L1 11" stroke="#C7C7CC" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+    <a href="takrar-level1-lesson13.html" class="row">
+      <div class="badge lesson">13</div>
+      <div class="row-body"><div class="row-title">Урок 13</div><div class="row-sub">الدرس الثالث عشر</div></div>
+      <div class="row-chev"><svg viewBox="0 0 7 12" fill="none"><path d="M1 1L6 6L1 11" stroke="#C7C7CC" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+    <a href="takrar-level1-lesson14.html" class="row">
+      <div class="badge lesson">14</div>
+      <div class="row-body"><div class="row-title">Урок 14</div><div class="row-sub">الدرس الرابع عشر</div></div>
+      <div class="row-chev"><svg viewBox="0 0 7 12" fill="none"><path d="M1 1L6 6L1 11" stroke="#C7C7CC" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+  </div>
+
+  <!-- Экзамен 2 -->
+  <div class="sec-label">Финальный экзамен · Уроки 8–14</div>
+
+  <div class="list">
+    <a href="takrar-level1-exam2.html" class="row exam-row">
+      <div class="badge exam">ЭКЗАМЕН 2</div>
+      <div class="row-body">
+        <div class="row-title">Финальный экзамен</div>
+        <div class="row-sub">Проверка знаний уроков 8–14</div>
+      </div>
+      <div class="row-chev"><svg viewBox="0 0 7 12" fill="none"><path d="M1 1L6 6L1 11" stroke="#C7C7CC" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </a>
+  </div>
+
+  <div class="footer">
+    <div class="footer-ar">وَقُل رَّبِّ زِدْنِي عِلْمًا</div>
+    <div class="footer-tr">«Господи, прибавь мне знания»</div>
+    <div class="footer-ref">Коран, Та-ха 20:114</div>
+  </div>
+
+</div>
+</body>
+</html>
